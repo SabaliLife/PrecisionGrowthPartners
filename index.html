@@ -806,7 +806,8 @@ function dismissIntro(){
       </div>
       <div class="form-card">
         <!-- Wire action to your Formspree endpoint, e.g. action="https://formspree.io/f/XXXX" -->
-        <form id="lead-form" method="POST" onsubmit="return handleLead(event)">
+        <form id="lead-form" action="https://formspree.io/f/mojbowww" method="POST" onsubmit="return handleLead(event)">
+          <input type="hidden" name="_subject" value="New inquiry — Precision Growth Partners">
           <p class="form-intro" data-i18n="form_intro">Tell us about your business. The more we understand, the better the demo lands.</p>
 
           <div class="form-section">
@@ -884,7 +885,7 @@ function dismissIntro(){
           </div>
 
           <button type="submit" data-i18n="f_submit">Request My Demo</button>
-          <div class="form-note" id="form-note" data-i18n="f_note">Connect this form to Formspree before going live.</div>
+          <div class="form-note" id="form-note" data-i18n="f_note">Your inquiry goes straight to Jose Octavio — no auto-replies, no funnel.</div>
         </form>
       </div>
     </div>
@@ -1191,9 +1192,11 @@ function dismissIntro(){
     f_msg:["What would you like demoed?","¿Qué te gustaría ver en la demo?"],
     f_msg_ph:["Tell us about your business...","Cuéntanos sobre tu negocio..."],
     f_submit:["Request My Demo","Solicitar Mi Demo"],
-    f_note:["Connect this form to Formspree before going live.","Conecta este formulario a Formspree antes de salir en vivo."],
-    f_note_thanks:["Thanks — this is a demo form. Wire to Formspree to receive real leads.",
-                   "Gracias — este es un formulario de demostración. Conéctalo a Formspree para recibir prospectos reales."],
+    f_note:["Your inquiry goes straight to Jose Octavio — no auto-replies, no funnel.","Tu mensaje llega directamente a Jose Octavio — sin respuestas automáticas, sin embudo."],
+    f_note_thanks:["Thanks — got it. I’ll read every word and reach out within a day or two.",
+                   "Gracias — recibido. Voy a leer cada palabra y te contactaré en uno o dos días."],
+    f_note_error:["Couldn’t send right now. Please email JoseOctavio@PrecisionGrowthPartnersAZ.com directly.",
+                  "No se pudo enviar ahora. Por favor escríbeme a JoseOctavio@PrecisionGrowthPartnersAZ.com directamente."],
 
     form_intro:["Tell us about your business. The more we understand, the better the demo lands.",
                 "Cuéntanos sobre tu negocio. Mientras más entendamos, mejor cae la demo."],
@@ -1280,11 +1283,50 @@ function dismissIntro(){
   });
   document.addEventListener("DOMContentLoaded", applyLang);
 
-  function handleLead(e){
+  async function handleLead(e){
     e.preventDefault();
-    var n=document.getElementById('form-note');
-    n.textContent = t("f_note_thanks");
-    n.style.color = '#C99383';
+    var form = e.target;
+    var n = document.getElementById('form-note');
+    var btn = form.querySelector('button[type="submit"]');
+    var originalBtn = btn.textContent;
+
+    btn.disabled = true;
+    btn.textContent = STATE.lang === 'es' ? 'Enviando…' : 'Sending…';
+    n.style.color = '#cfd3d8';
+    n.textContent = STATE.lang === 'es' ? 'Enviando tu mensaje…' : 'Sending your message…';
+
+    try {
+      var data = new FormData(form);
+      var response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        n.textContent = t('f_note_thanks');
+        n.style.color = '#46b08a';
+        form.reset();
+        btn.textContent = STATE.lang === 'es' ? '¡Enviado!' : 'Sent!';
+        setTimeout(function(){
+          btn.disabled = false;
+          btn.textContent = t('f_submit');
+          n.textContent = t('f_note');
+          n.style.color = '';
+        }, 5000);
+      } else {
+        var result = {};
+        try { result = await response.json(); } catch(e) {}
+        n.textContent = result.error || t('f_note_error');
+        n.style.color = '#C99383';
+        btn.disabled = false;
+        btn.textContent = originalBtn;
+      }
+    } catch (err) {
+      n.textContent = t('f_note_error');
+      n.style.color = '#C99383';
+      btn.disabled = false;
+      btn.textContent = originalBtn;
+    }
     return false;
   }
 </script>
