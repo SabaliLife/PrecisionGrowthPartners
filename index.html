@@ -295,19 +295,21 @@
   .form-section{margin-top:18px;padding-top:6px}
   .form-section + .form-section{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
   .form-sec-kicker{display:flex;align-items:center;gap:10px;
-    font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;
-    letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+    font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;
+    letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:14px}
   .form-sec-num{display:inline-flex;align-items:center;justify-content:center;
     width:26px;height:26px;border-radius:50%;background:var(--grad-rose);color:#fff;
     font-size:13px;font-weight:700;letter-spacing:0}
   #lead-form textarea{resize:vertical;min-height:80px;font-family:inherit}
   .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-  .pill{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;
-    border:1px solid var(--line);border-radius:999px;background:var(--paper);
+  .pill{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;
+    border:1.5px solid var(--accent);border-radius:999px;background:var(--paper);
+    color:var(--accent-d);font-weight:600;
     font-size:13px;cursor:pointer;transition:all .15s;user-select:none}
-  .pill:hover{border-color:var(--accent);color:var(--accent-d)}
-  .pill input{margin:0;accent-color:var(--accent)}
-  .pill:has(input:checked){background:var(--accent);border-color:var(--accent);color:#fff}
+  .pill:hover{background:rgba(201,147,131,.08);border-color:var(--accent-d);color:var(--accent-d)}
+  .pill input{margin:0;accent-color:var(--rose)}
+  .pill:has(input:checked){background:var(--rose);border-color:var(--rose);color:#fff}
+  .pill:has(input:checked):hover{background:var(--rose-d);border-color:var(--rose-d)}
 
   /* ---------- LANG TOGGLE ---------- */
   .mascot-nav{height:90px;width:auto;display:block;margin-left:12px;flex-shrink:0;
@@ -813,15 +815,15 @@ function dismissIntro(){
           <div class="form-section">
             <div class="form-sec-kicker"><span class="form-sec-num">1</span><span data-i18n="form_sec1">About you</span></div>
             <label data-i18n="f_name">Name</label>
-            <input name="name" type="text" placeholder="Your name" data-i18n-placeholder="f_name_ph" required>
+            <input name="Name" type="text" placeholder="Your name" data-i18n-placeholder="f_name_ph" required>
             <label data-i18n="f_biz">Business Name</label>
-            <input name="business" type="text" placeholder="Your business" data-i18n-placeholder="f_biz_ph" required>
+            <input name="Business" type="text" placeholder="Your business" data-i18n-placeholder="f_biz_ph" required>
             <label data-i18n="f_email">Email</label>
-            <input name="email" type="email" placeholder="you@email.com" data-i18n-placeholder="f_email_ph" required>
+            <input name="Email" type="email" placeholder="you@email.com" data-i18n-placeholder="f_email_ph" required>
             <label data-i18n="f_phone">Phone</label>
-            <input name="phone" type="tel" placeholder="(520) 555-0100">
+            <input name="Phone" type="tel" placeholder="(520) 555-0100">
             <label data-i18n="f_ind">Industry / Trade</label>
-            <select name="industry">
+            <select name="Industry">
               <option data-i18n="ind_landscape">Landscaping</option>
               <option data-i18n="ind_roofing">Roofing</option>
               <option data-i18n="ind_drywall">Drywall</option>
@@ -834,38 +836,38 @@ function dismissIntro(){
           <div class="form-section">
             <div class="form-sec-kicker"><span class="form-sec-num">2</span><span data-i18n="form_sec2">Tell us where you&rsquo;re at</span></div>
             <label data-i18n="f_disc1">The 3 biggest things you want to accomplish in the next 6&ndash;12 months</label>
-            <textarea name="discovery_goals" rows="4" placeholder="1.&#10;2.&#10;3." data-i18n-placeholder="f_disc_ph" required></textarea>
+            <textarea name="Top 3 goals (next 6-12 months)" rows="4" placeholder="1.&#10;2.&#10;3." data-i18n-placeholder="f_disc_ph" required></textarea>
             <label data-i18n="f_disc2">The 3 things helping you the most right now</label>
-            <textarea name="discovery_helps" rows="4" placeholder="1.&#10;2.&#10;3." data-i18n-placeholder="f_disc_ph"></textarea>
+            <textarea name="Top 3 things helping right now" rows="4" placeholder="1.&#10;2.&#10;3." data-i18n-placeholder="f_disc_ph"></textarea>
             <label data-i18n="f_disc3">The 3 things in the way</label>
-            <textarea name="discovery_blocks" rows="4" placeholder="1.&#10;2.&#10;3." data-i18n-placeholder="f_disc_ph"></textarea>
+            <textarea name="Top 3 things in the way" rows="4" placeholder="1.&#10;2.&#10;3." data-i18n-placeholder="f_disc_ph"></textarea>
             <label data-i18n="f_disc4">What could your business benefit from?</label>
-            <textarea name="discovery_benefit" rows="3" placeholder="In your own words..." data-i18n-placeholder="f_benefit_ph"></textarea>
+            <textarea name="What their business could benefit from" rows="3" placeholder="In your own words..." data-i18n-placeholder="f_benefit_ph"></textarea>
           </div>
 
           <div class="form-section">
             <div class="form-sec-kicker"><span class="form-sec-num">3</span><span data-i18n="form_sec3">Logistics</span></div>
             <label data-i18n="f_timeline">Timeline to get started</label>
-            <select name="timeline">
+            <select name="Timeline">
               <option data-i18n="f_tl_now">Ready now</option>
               <option data-i18n="f_tl_30">Within 30 days</option>
               <option data-i18n="f_tl_90">1&ndash;3 months</option>
               <option data-i18n="f_tl_later">Exploring &mdash; no fixed date</option>
             </select>
             <label data-i18n="f_msg">What would you like demoed?</label>
-            <textarea name="message" rows="3" placeholder="Tell us about your business..." data-i18n-placeholder="f_msg_ph"></textarea>
+            <textarea name="What they want demoed" rows="3" placeholder="Tell us about your business..." data-i18n-placeholder="f_msg_ph"></textarea>
             <label data-i18n="f_call_len">Preferred call length</label>
-            <select name="call_length">
+            <select name="Preferred call length">
               <option>15 min</option><option>30 min</option><option>45 min</option><option>60 min</option>
             </select>
             <label data-i18n="f_format">Format</label>
             <div class="pill-row">
-              <label class="pill"><input type="radio" name="format" value="video" checked><span data-i18n="f_fmt_video">Video</span></label>
-              <label class="pill"><input type="radio" name="format" value="phone"><span data-i18n="f_fmt_phone">Phone</span></label>
-              <label class="pill"><input type="radio" name="format" value="in_person"><span data-i18n="f_fmt_inperson">In person</span></label>
+              <label class="pill"><input type="radio" name="Format" value="video" checked><span data-i18n="f_fmt_video">Video</span></label>
+              <label class="pill"><input type="radio" name="Format" value="phone"><span data-i18n="f_fmt_phone">Phone</span></label>
+              <label class="pill"><input type="radio" name="Format" value="in_person"><span data-i18n="f_fmt_inperson">In person</span></label>
             </div>
             <label data-i18n="f_tz">Time zone</label>
-            <select name="timezone">
+            <select name="Time zone">
               <option>Pacific (PT)</option>
               <option>Mountain (MT)</option>
               <option>Arizona (no DST)</option>
@@ -876,11 +878,11 @@ function dismissIntro(){
             </select>
             <label data-i18n="f_best_time">Best time to contact</label>
             <div class="pill-row">
-              <label class="pill"><input type="checkbox" name="contact_time" value="morning"><span data-i18n="f_t_morning">Morning</span></label>
-              <label class="pill"><input type="checkbox" name="contact_time" value="afternoon"><span data-i18n="f_t_afternoon">Afternoon</span></label>
-              <label class="pill"><input type="checkbox" name="contact_time" value="evening"><span data-i18n="f_t_evening">Evening</span></label>
-              <label class="pill"><input type="checkbox" name="contact_time" value="weekday"><span data-i18n="f_t_weekday">Weekday</span></label>
-              <label class="pill"><input type="checkbox" name="contact_time" value="weekend"><span data-i18n="f_t_weekend">Weekend</span></label>
+              <label class="pill"><input type="checkbox" name="Best time to contact" value="morning"><span data-i18n="f_t_morning">Morning</span></label>
+              <label class="pill"><input type="checkbox" name="Best time to contact" value="afternoon"><span data-i18n="f_t_afternoon">Afternoon</span></label>
+              <label class="pill"><input type="checkbox" name="Best time to contact" value="evening"><span data-i18n="f_t_evening">Evening</span></label>
+              <label class="pill"><input type="checkbox" name="Best time to contact" value="weekday"><span data-i18n="f_t_weekday">Weekday</span></label>
+              <label class="pill"><input type="checkbox" name="Best time to contact" value="weekend"><span data-i18n="f_t_weekend">Weekend</span></label>
             </div>
           </div>
 
