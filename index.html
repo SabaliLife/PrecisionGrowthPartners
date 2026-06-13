@@ -417,6 +417,23 @@
   html[lang="es"] .epigraph .es-sub{display:block}
 
 }
+  /* ---------- NAV DROPDOWNS ---------- */
+  .nav-dd{position:relative;display:inline-block}
+  .nav-dd>.nav-dd-btn{background:none;border:0;color:#b6bcc6;font-family:inherit;font-size:13.5px;
+    font-weight:500;cursor:pointer;white-space:nowrap;padding:0;display:inline-flex;align-items:center;gap:5px}
+  .nav-dd>.nav-dd-btn:hover{color:#fff}
+  .nav-dd>.nav-dd-btn .caret{font-size:9px;opacity:.7;transition:transform .15s}
+  .nav-dd.open>.nav-dd-btn .caret{transform:rotate(180deg)}
+  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 14px);left:0;background:#1f242c;
+    border:1px solid #2a2e36;border-radius:10px;padding:8px;min-width:236px;
+    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60}
+  .nav-dd-menu a{display:block;color:#b6bcc6;font-size:13.5px;font-weight:500;padding:9px 12px;
+    border-radius:6px;white-space:nowrap}
+  .nav-dd-menu a:hover{background:#2a2e36;color:#fff}
+  .nav-dd-menu .dd-sep{border-top:1px solid #2a2e36;margin:6px 4px;padding:0}
+  .nav-dd.open>.nav-dd-menu{display:block}
+  @media(hover:hover) and (min-width:861px){.nav-dd:hover>.nav-dd-menu{display:block}}
+
   /* ---------- HAMBURGER (mobile menu) ---------- */
   .hamburger{display:none;background:transparent;border:1px solid #3a3f49;border-radius:7px;
     padding:8px 10px;cursor:pointer;margin-left:auto;flex-direction:column;gap:4px;
@@ -439,6 +456,13 @@
     .nav-links.open{display:flex}
     .nav-links a{padding:13px 4px;border-bottom:1px solid #2a2e36;font-size:15px;color:#e1e4e9}
     .nav-links a:last-of-type{border-bottom:none}
+    .nav-dd{display:block;width:100%}
+    .nav-dd>.nav-dd-btn{display:flex;width:100%;justify-content:space-between;text-align:left;
+      padding:13px 4px;border-bottom:1px solid #2a2e36;font-size:15px;color:#e1e4e9}
+    .nav-dd-menu{position:static;display:none;background:transparent;border:0;box-shadow:none;
+      padding:2px 0 8px 14px;min-width:0}
+    .nav-dd.open>.nav-dd-menu{display:block}
+    .nav-dd-menu a{padding:11px 4px;font-size:14px;color:#aeb4bd;border-bottom:1px solid #23272f}
     .nav-cta{margin-top:8px;text-align:center;padding:12px 18px;font-size:14px}
     .lang-btn{margin:8px 0;text-align:center;width:100%;padding:11px 16px;font-size:14px}
     nav{position:relative}
