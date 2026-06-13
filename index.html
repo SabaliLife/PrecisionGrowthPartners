@@ -416,7 +416,6 @@
     font-weight:600;color:var(--accent);line-height:1.25}
   html[lang="es"] .epigraph .es-sub{display:block}
 
-}
   /* ---------- NAV DROPDOWNS ---------- */
   .nav-dd{position:relative;display:inline-block}
   .nav-dd>.nav-dd-btn{background:none;border:0;color:#b6bcc6;font-family:inherit;font-size:13.5px;
@@ -424,9 +423,9 @@
   .nav-dd>.nav-dd-btn:hover{color:#fff}
   .nav-dd>.nav-dd-btn .caret{font-size:9px;opacity:.7;transition:transform .15s}
   .nav-dd.open>.nav-dd-btn .caret{transform:rotate(180deg)}
-  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 14px);left:0;background:#1f242c;
+  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#1f242c;
     border:1px solid #2a2e36;border-radius:10px;padding:8px;min-width:236px;
-    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60}
+    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60;max-height:min(72vh,540px);overflow-y:auto}
   .nav-dd-menu a{display:block;color:#b6bcc6;font-size:13.5px;font-weight:500;padding:9px 12px;
     border-radius:6px;white-space:nowrap}
   .nav-dd-menu a:hover{background:#2a2e36;color:#fff}
@@ -612,14 +611,36 @@ function dismissIntro(){
           <a href="drywall-contractor-software.html">Drywall</a>
           <a href="solar-installer-software.html">Solar</a>
           <a href="barber-salon-software.html">Barber &amp; Salon</a>
+          <div class="dd-sep"></div>
+          <a href="#industries">Construction &amp; Trades</a>
+          <a href="#industries">Vehicle &amp; Mobile Services</a>
+          <a href="#industries">Personal Care</a>
+          <a href="#industries">Food &amp; Hospitality</a>
+          <a href="#industries">Creative &amp; Production</a>
+          <a href="#industries">Family, Home &amp; Property</a>
+          <a href="#industries">Logistics &amp; Specialty</a>
+          <div class="dd-sep"></div>
+          <a href="#industries"><strong>See all 50+ trades &rarr;</strong></a>
         </div>
       </div>
       <div class="nav-dd">
         <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
         <div class="nav-dd-menu">
-          <a href="small-business-software-arizona.html">Arizona</a>
-          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="small-business-software-arizona.html">Arizona (statewide)</a>
+          <div class="dd-sep"></div>
           <a href="tucson-small-business-help.html">Tucson</a>
+          <a href="oro-valley-small-business-help.html">Oro Valley</a>
+          <a href="marana-small-business-help.html">Marana</a>
+          <a href="vail-small-business-help.html">Vail</a>
+          <a href="green-valley-small-business-help.html">Green Valley</a>
+          <div class="dd-sep"></div>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tempe-small-business-help.html">Tempe</a>
+          <a href="chandler-small-business-help.html">Chandler</a>
+          <a href="gilbert-small-business-help.html">Gilbert</a>
+          <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+          <div class="dd-sep"></div>
+          <a href="casa-grande-small-business-help.html">Casa Grande</a>
         </div>
       </div>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
@@ -1129,10 +1150,19 @@ function dismissIntro(){
         <a href="barber-salon-software.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Barber &amp; Salon</a>
       </div>
       <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;color:#fff;margin-bottom:12px;text-transform:uppercase">Locations</div>
-        <a href="small-business-software-arizona.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Arizona</a>
-        <a href="phoenix-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Phoenix</a>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;color:#fff;margin-bottom:12px;text-transform:uppercase">Service Areas</div>
+        <a href="small-business-software-arizona.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Arizona (statewide)</a>
         <a href="tucson-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Tucson</a>
+        <a href="oro-valley-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Oro Valley</a>
+        <a href="marana-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Marana</a>
+        <a href="vail-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Vail</a>
+        <a href="green-valley-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Green Valley</a>
+        <a href="phoenix-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Phoenix</a>
+        <a href="tempe-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Tempe</a>
+        <a href="chandler-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Chandler</a>
+        <a href="gilbert-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Gilbert</a>
+        <a href="ahwatukee-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Ahwatukee</a>
+        <a href="casa-grande-small-business-help.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Casa Grande</a>
       </div>
       <div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;color:#fff;margin-bottom:12px;text-transform:uppercase">Get Started</div>
@@ -1419,222 +1449,4 @@ function dismissIntro(){
              "Una cuota mensual fija que cubre el trabajo administrativo, las negociaciones, y el soporte continuo — para que te enfoques en la ejecución mientras nosotros nos encargamos de la administración."],
     pay3_no:["PART 03","PARTE 03"],
     pay3_h: ["Revenue Share","Participación en Ingresos"],
-    pay3_p: ["A small percentage of gross revenue, billed quarterly — and capped every year. You never owe an unlimited amount. Past the cap, your growth is one hundred percent yours.",
-             "Un pequeño porcentaje de los ingresos brutos, facturado trimestralmente — y con tope cada año. Nunca debes una cantidad ilimitada. Pasado el tope, tu crecimiento es cien por ciento tuyo."],
-    pay_foot:["No surprises. Every number is on the table in your proposal, before anything is signed.",
-              "Sin sorpresas. Cada cifra está sobre la mesa en tu propuesta, antes de firmar nada."],
-    pay_more:["See full pricing & payment options →","Ver precios completos y opciones de pago →"],
-    pay_opt_label:["Flexible payment options — pick what fits your cash flow",
-                   "Opciones de pago flexibles — elige lo que se ajusta a tu flujo"],
-    pay_opt_upfront:["Pay Up Front","Pago por Adelantado"],
-    pay_opt_monthly:["Monthly Installments","Pagos Mensuales"],
-    pay_opt_revenue:["Revenue Percentage","Porcentaje de Ingresos"],
-    pay_opt_hybrid:["Hybrid","Híbrido"],
-
-    contact_kicker:["Book a Demo","Solicita una Demo"],
-    contact_title: ["See your business, running.","Ve tu negocio, funcionando."],
-    contact_lead:  ["Tell us your trade and we’ll walk you through the working system configured for it. No obligation — just a look at what “I have the bones done” actually means.",
-                    "Cuéntanos tu oficio y te llevamos por el sistema funcionando, configurado para él. Sin compromiso — solo un vistazo a lo que significa “tengo los huesos hechos”."],
-    cp1_h:["Live, not slideware","En vivo, no diapositivas"],
-    cp1_p:["You click through a real app, not a deck.","Navegas por una aplicación real, no por una presentación."],
-    cp2_h:["Fast to your numbers","Rápido a tus números"],
-    cp2_p:["One intake form moves you from demo to deployed.","Un formulario te lleva de la demo al despliegue."],
-    cp3_h:["Owned by you","De tu propiedad"],
-    cp3_p:["Your domain, your data, your system to keep.","Tu dominio, tus datos, tu sistema para quedarte con él."],
-    model_h:["The Model","El Modelo"],
-    model_p:["I’ll give the time and effort up front, before you owe anything for results. When it starts to grow and the individual acknowledges successful direction, then we figure out what works for them. I want to provide a service that allows them to hone in on execution while I take care of the clerical and negotiations for the business to grow.",
-             "Pongo el tiempo y el esfuerzo por adelantado, antes de que debas nada por los resultados. Cuando empiece a crecer y el dueño reconozca que la dirección está dando frutos, entonces vemos qué le funciona. Quiero ofrecer un servicio que les permita concentrarse en la ejecución, mientras yo me encargo de lo administrativo y las negociaciones para que el negocio crezca."],
-
-    f_name:["Name","Nombre"],
-    f_name_ph:["Your name","Tu nombre"],
-    f_biz:["Business Name","Nombre del Negocio"],
-    f_biz_ph:["Your business","Tu negocio"],
-    f_email:["Email","Correo"],
-    f_email_ph:["you@email.com","tu@correo.com"],
-    f_phone:["Phone","Teléfono"],
-    f_ind:["Industry / Trade","Industria / Oficio"],
-    f_msg:["What would you like demoed?","¿Qué te gustaría ver en la demo?"],
-    f_msg_ph:["Tell us about your business...","Cuéntanos sobre tu negocio..."],
-    f_submit:["Request My Demo","Solicitar Mi Demo"],
-    f_note:["Your inquiry goes straight to Jose Octavio — no auto-replies, no funnel.","Tu mensaje llega directamente a Jose Octavio — sin respuestas automáticas, sin embudo."],
-    f_note_thanks:["Thanks — got it. I’ll read every word and reach out within a day or two.",
-                   "Gracias — recibido. Voy a leer cada palabra y te contactaré en uno o dos días."],
-    f_note_error:["Couldn’t send right now. Please email JoseOctavio@PrecisionGrowthPartnersAZ.com directly.",
-                  "No se pudo enviar ahora. Por favor escríbeme a JoseOctavio@PrecisionGrowthPartnersAZ.com directamente."],
-
-    form_intro:["Tell us about your business. The more we understand, the better the demo lands.",
-                "Cuéntanos sobre tu negocio. Mientras más entendamos, mejor cae la demo."],
-    form_sec1: ["About you","Sobre ti"],
-    form_sec2: ["Tell us where you’re at","Cuéntanos dónde estás"],
-    form_sec3: ["Logistics","Logística"],
-    f_disc1:["The 3 biggest things you want to accomplish in the next 6–12 months",
-             "Las 3 cosas más importantes que quieres lograr en los próximos 6–12 meses"],
-    f_disc2:["The 3 things helping you the most right now",
-             "Las 3 cosas que más te están ayudando ahora"],
-    f_disc3:["The 3 things in the way",
-             "Las 3 cosas que están en el camino"],
-    f_disc4:["What could your business benefit from?",
-             "¿De qué podría beneficiarse tu negocio?"],
-    f_disc_ph:["1.\n2.\n3.","1.\n2.\n3."],
-    f_benefit_ph:["In your own words...","En tus propias palabras..."],
-    f_timeline:["Timeline to get started","Cuándo te gustaría empezar"],
-    f_tl_now:["Ready now","Listo ahora"],
-    f_tl_30: ["Within 30 days","Dentro de 30 días"],
-    f_tl_90: ["1–3 months","1–3 meses"],
-    f_tl_later:["Exploring — no fixed date","Explorando — sin fecha fija"],
-    f_call_len:["Preferred call length","Duración preferida de la llamada"],
-    f_format:["Format","Formato"],
-    f_fmt_video:["Video","Video"],
-    f_fmt_phone:["Phone","Teléfono"],
-    f_fmt_inperson:["In person","En persona"],
-    f_tz:["Time zone","Zona horaria"],
-    f_tz_mx:["Mexico City (CST)","Ciudad de México (CST)"],
-    f_tz_other:["Other","Otra"],
-    f_best_time:["Best time to contact","Mejor horario para contactarte"],
-    f_t_morning:["Morning","Mañana"],
-    f_t_afternoon:["Afternoon","Tarde"],
-    f_t_evening:["Evening","Noche"],
-    f_t_weekday:["Weekday","Entre semana"],
-    f_t_weekend:["Weekend","Fin de semana"],
-
-    footer:["© 2026 Precision Growth Partners","© 2026 Precision Growth Partners"],
-    foot_tag:["Built honest. Built precise.","Construido honesto. Construido preciso."],
-    foot_loc:["Phoenix, Arizona — Serving Arizona and beyond","Phoenix, Arizona — Atendiendo Arizona y más allá"],
-
-    btn_to_es:["Hablo Español","Hablo Español"],
-    btn_to_en:["English","English"]
-  };
-
-  function t(key){ var e=I18N[key]; if(!e) return key; return STATE.lang==="es" ? e[1] : e[0]; }
-  function applyLang(){
-    document.documentElement.lang = STATE.lang;
-    document.title = t("page_title");
-    document.querySelectorAll("[data-i18n]").forEach(function(el){
-      var k=el.getAttribute("data-i18n"); el.textContent = t(k);
-    });
-    document.querySelectorAll("[data-i18n-html]").forEach(function(el){
-      var k=el.getAttribute("data-i18n-html"); el.innerHTML = t(k);
-    });
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){
-      var k=el.getAttribute("data-i18n-placeholder"); el.placeholder = t(k);
-    });
-    var btn=document.getElementById("lang-btn");
-    if(btn){
-      btn.textContent = STATE.lang==="en" ? t("btn_to_es") : t("btn_to_en");
-      btn.setAttribute("data-lang", STATE.lang);
-    }
-  }
-  function toggleLang(){
-    STATE.lang = STATE.lang==="en" ? "es" : "en";
-    try { localStorage.setItem("pgp_lang", STATE.lang); } catch(e){}
-    applyLang();
-  }
-  function showCat(id){
-    document.querySelectorAll(".ind-cat-tile").forEach(function(t){ t.classList.toggle("active", t.getAttribute("data-cat")===id); });
-    document.querySelectorAll(".ind-cat-list").forEach(function(l){ l.classList.toggle("show", l.getAttribute("data-cat")===id); });
-  }
-  function toggleMobileNav(){
-    var h=document.getElementById('hamburger'), n=document.getElementById('nav-links');
-    if(!h||!n) return;
-    h.classList.toggle('open'); n.classList.toggle('open');
-  }
-  /* close mobile nav when a link inside it is clicked */
-  document.addEventListener('click', function(e){
-    if(e.target.matches('#nav-links a')){
-      var h=document.getElementById('hamburger'), n=document.getElementById('nav-links');
-      if(h) h.classList.remove('open'); if(n) n.classList.remove('open');
-    }
-  });
-  document.addEventListener("DOMContentLoaded", applyLang);
-
-  async function handleLead(e){
-    e.preventDefault();
-    var form = e.target;
-    var n = document.getElementById('form-note');
-    var btn = form.querySelector('button[type="submit"]');
-    var originalBtn = btn.textContent;
-
-    btn.disabled = true;
-    btn.textContent = STATE.lang === 'es' ? 'Enviando…' : 'Sending…';
-    n.style.color = '#cfd3d8';
-    n.textContent = STATE.lang === 'es' ? 'Enviando tu mensaje…' : 'Sending your message…';
-
-    try {
-      var data = new FormData(form);
-      var response = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (response.ok) {
-        n.textContent = t('f_note_thanks');
-        n.style.color = '#46b08a';
-        form.reset();
-        btn.textContent = STATE.lang === 'es' ? '¡Enviado!' : 'Sent!';
-        setTimeout(function(){
-          btn.disabled = false;
-          btn.textContent = t('f_submit');
-          n.textContent = t('f_note');
-          n.style.color = '';
-        }, 5000);
-      } else {
-        var result = {};
-        try { result = await response.json(); } catch(e) {}
-        n.textContent = result.error || t('f_note_error');
-        n.style.color = '#C99383';
-        btn.disabled = false;
-        btn.textContent = originalBtn;
-      }
-    } catch (err) {
-      n.textContent = t('f_note_error');
-      n.style.color = '#C99383';
-      btn.disabled = false;
-      btn.textContent = originalBtn;
-    }
-    return false;
-  }
-</script>
-
-
-
-<script>
-/* Mascot autoplay retry helper. Some browsers (esp. Chrome on file://) stall video
-   autoplay even when muted. This nudges any .mascot-hero on the page to start. */
-(function(){
-  function nudge(v){
-    if(!v) return;
-    if(!v.paused && v.currentTime>0) return;
-    var p=v.play();
-    if(p && p.catch) p.catch(function(err){
-      console.warn('mascot autoplay blocked, awaiting interaction', err && err.name);
-      // last-resort: try again on first user click anywhere
-      var once=function(){ v.play().catch(function(){}); document.removeEventListener('click', once); };
-      document.addEventListener('click', once, {once:true});
-    });
-  }
-  function init(){
-    document.querySelectorAll('video.mascot-hero').forEach(function(v){
-      if(v.readyState>=2) nudge(v); else v.addEventListener('canplay', function(){nudge(v);}, {once:true});
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
-
-<!-- Vercel Web Analytics — page views, top pages, referrers, device/country breakdown. -->
-<!-- Enable in Vercel dashboard: Project → Analytics → Enable Web Analytics. -->
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-
-<!-- Vercel Speed Insights — Core Web Vitals (LCP, CLS, INP) from real visitors. -->
-<!-- Enable in Vercel dashboard: Project → Speed Insights → Enable. -->
-<script>
-  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-
-</body>
-</html>
+    pay3_p: ["A small percentage of gross revenue, billed quarterly — and capped  

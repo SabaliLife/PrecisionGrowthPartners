@@ -212,7 +212,6 @@
     .foot-name{font-size:17px;letter-spacing:2.5px}
   }
 
-}
   @media (max-width:600px){.mascot-tag{font-size:22px}.mascot-hero{max-width:88%}}
   /* NAV DROPDOWNS */
   .nav-dd{position:relative;display:inline-block}
@@ -221,9 +220,9 @@
   .nav-dd>.nav-dd-btn:hover{color:#fff}
   .nav-dd>.nav-dd-btn .caret{font-size:9px;opacity:.7;transition:transform .15s}
   .nav-dd.open>.nav-dd-btn .caret{transform:rotate(180deg)}
-  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 14px);left:0;background:#1f242c;
+  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 4px);left:0;background:#1f242c;
     border:1px solid #2a2e36;border-radius:10px;padding:8px;min-width:236px;
-    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60}
+    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60;max-height:min(72vh,540px);overflow-y:auto}
   .nav-dd-menu a{display:block;color:#b6bcc6;font-size:13.5px;font-weight:500;padding:9px 12px;
     border-radius:6px;white-space:nowrap}
   .nav-dd-menu a:hover{background:#2a2e36;color:#fff}
@@ -325,14 +324,36 @@
           <a href="drywall-contractor-software.html">Drywall</a>
           <a href="solar-installer-software.html">Solar</a>
           <a href="barber-salon-software.html">Barber &amp; Salon</a>
+          <div class="dd-sep"></div>
+          <a href="index.html#industries">Construction &amp; Trades</a>
+          <a href="index.html#industries">Vehicle &amp; Mobile Services</a>
+          <a href="index.html#industries">Personal Care</a>
+          <a href="index.html#industries">Food &amp; Hospitality</a>
+          <a href="index.html#industries">Creative &amp; Production</a>
+          <a href="index.html#industries">Family, Home &amp; Property</a>
+          <a href="index.html#industries">Logistics &amp; Specialty</a>
+          <div class="dd-sep"></div>
+          <a href="index.html#industries"><strong>See all 50+ trades &rarr;</strong></a>
         </div>
       </div>
       <div class="nav-dd">
         <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
         <div class="nav-dd-menu">
-          <a href="small-business-software-arizona.html">Arizona</a>
-          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="small-business-software-arizona.html">Arizona (statewide)</a>
+          <div class="dd-sep"></div>
           <a href="tucson-small-business-help.html">Tucson</a>
+          <a href="oro-valley-small-business-help.html">Oro Valley</a>
+          <a href="marana-small-business-help.html">Marana</a>
+          <a href="vail-small-business-help.html">Vail</a>
+          <a href="green-valley-small-business-help.html">Green Valley</a>
+          <div class="dd-sep"></div>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tempe-small-business-help.html">Tempe</a>
+          <a href="chandler-small-business-help.html">Chandler</a>
+          <a href="gilbert-small-business-help.html">Gilbert</a>
+          <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+          <div class="dd-sep"></div>
+          <a href="casa-grande-small-business-help.html">Casa Grande</a>
         </div>
       </div>
       <a href="index.html#projects" data-i18n="nav_projects">Projects</a>
@@ -532,117 +553,4 @@
     opt5_h:["Hybrid","Híbrido"],
     opt5_p:["Combine any of the above to match your cash cycle. Half up front, half in installments, with a revenue-percentage tail — whatever fits.",
             "Combina cualquiera de las anteriores para ajustarse a tu ciclo de efectivo. Mitad por adelantado, mitad en parcialidades, con una cola de porcentaje sobre ingresos — lo que mejor se acomode."],
-    opt_close:["<strong>The options are endless</strong> as long as the partnership makes sense. We’re firm about being upfront with every number; we’re flexible about how the money moves.",
-               "<strong>Las opciones son infinitas</strong> mientras la asociación tenga sentido. Somos firmes en ser claros con cada cifra; somos flexibles en cómo se mueve el dinero."],
-
-    cc_kicker:["Why This Works","Por Qué Funciona"],
-    cc_title: ["A market course correction.","Una corrección de rumbo en el mercado."],
-    cc_lead:  ["Small business owners have been overcharged for software for decades.",
-               "A los dueños de pequeños negocios les han cobrado de más por software por décadas."],
-    cc_p1:["The vendors built for enterprise, then sold a watered-down version to small operators at full price. Then sold integrations on top. Then upcharged for support. Then bundled features behind a “starter tier” that no real business could actually run on.",
-           "Los proveedores construyeron para empresas grandes, luego vendieron una versión diluida a operadores pequeños al precio completo. Después vendieron integraciones por encima. Después cobraron extra por soporte. Después escondieron funciones detrás de un “nivel inicial” en el que ningún negocio real podía operar."],
-    cc_p2:["That is not the model here.","Ese no es el modelo aquí."],
-    cc_p3:["Our goal is to provide <strong>the best technology at a price others won’t be willing to do the work for.</strong> Not the cheapest — the most honest. Built complete, deployed working, owned by you, supported on a flat retainer. No per-seat fees. No paywall on the features that actually matter.",
-           "Nuestra meta es ofrecer <strong>la mejor tecnología a un precio que otros no están dispuestos a trabajar.</strong> No la más barata — la más honesta. Construida completa, desplegada funcionando, tuya, soportada con una iguala plana. Sin cuotas por usuario. Sin paywall en las funciones que realmente importan."],
-    cc_p4:["The market got this wrong. We’re correcting course.",
-           "El mercado se equivocó en esto. Estamos corrigiendo el rumbo."],
-    cc_quote:["“The best technology at a price others won’t do the work for.”<span class=\"by\">— The PGP Standard</span>",
-              "“La mejor tecnología a un precio que otros no están dispuestos a trabajar.”<span class=\"by\">— El Estándar PGP</span>"],
-
-    masc_tag:["Precise by design. Patient by choice.",
-              "Preciso por diseño. Paciente por elección."],
-    masc_sub:["Precision Growth Partners","Precision Growth Partners"],
-
-    ct_kicker:["Got Questions?","¿Tienes Preguntas?"],
-    ct_h:["Let’s talk about what makes sense.","Hablemos de lo que tiene sentido."],
-    ct_p:["Every partnership is built to fit. Send us a note — tell us your trade, your timeline, what your cash flow looks like. We’ll meet you where you are.",
-          "Cada asociación se construye a la medida. Mándanos un mensaje — cuéntanos tu oficio, tu plazo, cómo se ve tu flujo de efectivo. Te alcanzamos donde estás."],
-    ct_cta:["Or send the full intake form →","O envía el formulario de captura completo →"],
-
-    footer:["© 2026 Precision Growth Partners","© 2026 Precision Growth Partners"],
-    foot_tag:["Built honest. Built precise.","Construido honesto. Construido preciso."],
-    foot_loc:["Phoenix, Arizona — Serving Arizona and beyond","Phoenix, Arizona — Atendiendo Arizona y más allá"],
-    back_home:["← Back to home","← Regresar al inicio"],
-
-    btn_to_es:["Hablo Español","Hablo Español"],
-    btn_to_en:["English","English"]
-  };
-
-  function t(key){ var e=I18N[key]; if(!e) return key; return STATE.lang==="es" ? e[1] : e[0]; }
-  function applyLang(){
-    document.documentElement.lang = STATE.lang;
-    document.title = t("page_title");
-    document.querySelectorAll("[data-i18n]").forEach(function(el){
-      var k=el.getAttribute("data-i18n"); el.textContent = t(k);
-    });
-    document.querySelectorAll("[data-i18n-html]").forEach(function(el){
-      var k=el.getAttribute("data-i18n-html"); el.innerHTML = t(k);
-    });
-    var btn=document.getElementById("lang-btn");
-    if(btn){
-      btn.textContent = STATE.lang==="en" ? t("btn_to_es") : t("btn_to_en");
-      btn.setAttribute("data-lang", STATE.lang);
-    }
-  }
-  function toggleLang(){
-    STATE.lang = STATE.lang==="en" ? "es" : "en";
-    try { localStorage.setItem("pgp_lang", STATE.lang); } catch(e){}
-    applyLang();
-  }
-  function toggleMobileNav(){
-    var h=document.getElementById('hamburger'), n=document.getElementById('nav-links');
-    if(!h||!n) return;
-    h.classList.toggle('open'); n.classList.toggle('open');
-  }
-  document.addEventListener('click', function(e){
-    if(e.target.matches('#nav-links a')){
-      var h=document.getElementById('hamburger'), n=document.getElementById('nav-links');
-      if(h) h.classList.remove('open'); if(n) n.classList.remove('open');
-    }
-  });
-  document.addEventListener("DOMContentLoaded", applyLang);
-</script>
-
-
-
-<script>
-/* Mascot autoplay retry helper. Some browsers (esp. Chrome on file://) stall video
-   autoplay even when muted. This nudges any .mascot-hero on the page to start. */
-(function(){
-  function nudge(v){
-    if(!v) return;
-    if(!v.paused && v.currentTime>0) return;
-    var p=v.play();
-    if(p && p.catch) p.catch(function(err){
-      console.warn('mascot autoplay blocked, awaiting interaction', err && err.name);
-      // last-resort: try again on first user click anywhere
-      var once=function(){ v.play().catch(function(){}); document.removeEventListener('click', once); };
-      document.addEventListener('click', once, {once:true});
-    });
-  }
-  function init(){
-    document.querySelectorAll('video.mascot-hero').forEach(function(v){
-      if(v.readyState>=2) nudge(v); else v.addEventListener('canplay', function(){nudge(v);}, {once:true});
-    });
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
-
-<!-- Vercel Web Analytics — page views, top pages, referrers, device/country breakdown. -->
-<!-- Enable in Vercel dashboard: Project → Analytics → Enable Web Analytics. -->
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-
-<!-- Vercel Speed Insights — Core Web Vitals (LCP, CLS, INP) from real visitors. -->
-<!-- Enable in Vercel dashboard: Project → Speed Insights → Enable. -->
-<script>
-  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-
-</body>
-</html>
+    opt_close:["<strong>The options are endless</  

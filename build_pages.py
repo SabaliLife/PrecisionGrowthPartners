@@ -111,14 +111,36 @@ NAV = """<nav>
           <a href="drywall-contractor-software.html">Drywall</a>
           <a href="solar-installer-software.html">Solar</a>
           <a href="barber-salon-software.html">Barber &amp; Salon</a>
+          <div class="dd-sep"></div>
+          <a href="index.html#industries">Construction &amp; Trades</a>
+          <a href="index.html#industries">Vehicle &amp; Mobile Services</a>
+          <a href="index.html#industries">Personal Care</a>
+          <a href="index.html#industries">Food &amp; Hospitality</a>
+          <a href="index.html#industries">Creative &amp; Production</a>
+          <a href="index.html#industries">Family, Home &amp; Property</a>
+          <a href="index.html#industries">Logistics &amp; Specialty</a>
+          <div class="dd-sep"></div>
+          <a href="index.html#industries"><strong>See all 50+ trades &rarr;</strong></a>
         </div>
       </div>
       <div class="nav-dd">
         <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
         <div class="nav-dd-menu">
-          <a href="small-business-software-arizona.html">Arizona</a>
-          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="small-business-software-arizona.html">Arizona (statewide)</a>
+          <div class="dd-sep"></div>
           <a href="tucson-small-business-help.html">Tucson</a>
+          <a href="oro-valley-small-business-help.html">Oro Valley</a>
+          <a href="marana-small-business-help.html">Marana</a>
+          <a href="vail-small-business-help.html">Vail</a>
+          <a href="green-valley-small-business-help.html">Green Valley</a>
+          <div class="dd-sep"></div>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tempe-small-business-help.html">Tempe</a>
+          <a href="chandler-small-business-help.html">Chandler</a>
+          <a href="gilbert-small-business-help.html">Gilbert</a>
+          <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+          <div class="dd-sep"></div>
+          <a href="casa-grande-small-business-help.html">Casa Grande</a>
         </div>
       </div>
       <a href="index.html#projects">Projects</a>
@@ -152,8 +174,17 @@ def footer(active=None):
                   ("Solar", "solar-installer-software.html"),
                   ("Barber & Salon", "barber-salon-software.html")]
     locations = [("Arizona", "small-business-software-arizona.html"),
+                 ("Tucson", "tucson-small-business-help.html"),
+                 ("Oro Valley", "oro-valley-small-business-help.html"),
+                 ("Marana", "marana-small-business-help.html"),
+                 ("Vail", "vail-small-business-help.html"),
+                 ("Green Valley", "green-valley-small-business-help.html"),
                  ("Phoenix", "phoenix-small-business-help.html"),
-                 ("Tucson", "tucson-small-business-help.html")]
+                 ("Tempe", "tempe-small-business-help.html"),
+                 ("Chandler", "chandler-small-business-help.html"),
+                 ("Gilbert", "gilbert-small-business-help.html"),
+                 ("Ahwatukee", "ahwatukee-small-business-help.html"),
+                 ("Casa Grande", "casa-grande-small-business-help.html")]
     company = [("Start a Business", "start-a-contracting-business-arizona.html"),
                ("Startup Help", "small-business-startup-help-arizona.html"),
                ("Partnership Structures", "pricing.html"),
@@ -379,7 +410,119 @@ R = {
  "tuc":   ("Tucson Small Business Help", "Local systems support across the Tucson metro.", "tucson-small-business-help.html"),
  "start": ("Start a Contracting Business", "Stand up your business on real systems from day one.", "start-a-contracting-business-arizona.html"),
  "startup":("Small Business Startup Help", "From idea to first invoice with the right foundation.", "small-business-startup-help-arizona.html"),
+ "tucson":("Tucson", "Local systems support across the Tucson metro.", "tucson-small-business-help.html"),
+ "phoenix":("Phoenix", "Hands-on systems and guidance for Phoenix-area owners.", "phoenix-small-business-help.html"),
 }
+
+
+def city_page(name, slug_city, metro, nearby, character, intro, faq_extra, anchors):
+    """Build a locally-unique service-area page dict for one city."""
+    nearby_str = ", ".join(nearby)
+    rel = [R["az"]] + [R[a] for a in anchors] + [R["play"]]
+    rel = rel[:4]
+    return {
+        "slug": f"{slug_city}-small-business-help",
+        "crumb": name,
+        "title": f"{name} Small Business Help & Systems | Precision Growth Partners",
+        "desc": f"{name} small business help — operating systems and guidance for contractors and service businesses across {metro}.",
+        "svc_type": "Small business operations software & consulting",
+        "kicker": f"Serving {name}",
+        "h1": f'{name} small business, <span class="accent">run by the numbers.</span>',
+        "sub": f"{character} We build complete operating systems — quoting, materials, scheduling, and job costing — for {name} contractors and service businesses, and stay on as a partner who runs the numbers with you.",
+        "meta_line": f"Serving {name} & the {metro}",
+        "stats": [("Local", metro.split(" and ")[0]), ("End-to-end", "Quote to cash"),
+                  ("Bilingual", "EN / ES"), ("Partner", "Not a vendor")],
+        "s1_kicker": f"For {name} operators",
+        "s1_title": f"Local help, real systems",
+        "s1_intro": intro,
+        "features": [
+            ("01", "Your system, deployed", f"Quoting, inventory, scheduling, and job costing stood up for your {name} business — not a login and a tutorial."),
+            ("02", "Hands-on guidance", "Pricing, hiring, cash reserves, and growth milestones, reviewed with you each quarter."),
+            ("03", f"Close to {name}", f"We serve {name} and nearby {nearby_str} — on-site where it helps, remote where it's faster."),
+        ],
+        "steps_title": f"How we help {name} businesses",
+        "steps": [
+            ("Working demo", f"See your real {name} numbers in the system before you commit to anything."),
+            ("Deploy & load", "We stand up the system with your services, materials, and standards."),
+            ("Run by the numbers", "Your whole operation becomes visible — quotes, costs, cash."),
+            ("Grow together", "Add modules and open growth doors on the same monthly partnership."),
+        ],
+        "checks_kicker": f"Around {name}",
+        "checks_title": f"{name} and nearby communities we serve",
+        "checks": [f"{name} and the surrounding {metro}",
+                   f"Nearby: {nearby_str}",
+                   "On-site where it helps, remote where it's faster",
+                   "Bilingual (English / Spanish) service",
+                   "Contractors, service businesses, and startups",
+                   "Flexible partnership structures to fit your cash flow"],
+        "faq_title": f"{name} small business questions",
+        "faq": [
+            (f"Do you work with businesses in {name}?", f"Yes. We serve {name} and the wider {metro}, including {nearby_str}. Deployment and support are remote-friendly, with on-site visits where they help."),
+            faq_extra,
+            ("How much does it cost?", "It's built to fit your cash flow — an initial payment, a monthly retainer, and a revenue share with a cap, or a hybrid. See Partnership Structures for the full model."),
+        ],
+        "related": rel,
+        "cta_title": f"Let's grow your {name} business.",
+        "cta_sub": f"Book a working demo and see your {name} business running on a real system.",
+    }
+
+
+CITY_DATA = [
+ dict(name="Marana", slug_city="marana", metro="Tucson metro",
+      nearby=["Tucson","Oro Valley","Avra Valley","Catalina"],
+      character="Marana is one of the fastest-growing towns in the Tucson metro, and growth is hard on a business run out of a shoebox.",
+      intro="From the I-10 corridor to the new rooftops going up across Marana, local operators are scaling faster than their paperwork can keep up.",
+      faq_extra=("Why systems for a growing town like Marana?","Fast growth is exactly when a loose, shoebox operation breaks — more jobs, more materials, more crews, and no clear view of the numbers. Putting your quoting and job costing on a system now is what lets you grow without losing the margin."),
+      anchors=["tucson"]),
+ dict(name="Vail", slug_city="vail", metro="Tucson metro",
+      nearby=["Tucson","Rita Ranch","Corona de Tucson","Sahuarita"],
+      character="Vail has grown from a rural stop into one of southeast Tucson's busiest communities.",
+      intro="As Vail and the Rita Ranch area fill in, the contractors and service businesses serving them are juggling more work than ever.",
+      faq_extra=("Do you serve the Rita Ranch and Corona de Tucson areas too?","Yes. We cover Vail and the surrounding southeast Tucson communities, including Rita Ranch and Corona de Tucson, with remote deployment and on-site visits where they help."),
+      anchors=["tucson"]),
+ dict(name="Green Valley", slug_city="green-valley", metro="Tucson metro",
+      nearby=["Sahuarita","Tucson","Continental","Amado"],
+      character="Green Valley's service businesses keep a large, established community running.",
+      intro="Green Valley and neighboring Sahuarita lean heavily on dependable local trades and service businesses — the kind that win on reliability and clear pricing.",
+      faq_extra=("Is this a fit for a smaller market like Green Valley?","Absolutely. In a tight-knit community, reputation is everything — clear written quotes, professional follow-through, and knowing your real costs are what keep referrals coming. The system is built for exactly that."),
+      anchors=["tucson"]),
+ dict(name="Oro Valley", slug_city="oro-valley", metro="Tucson metro",
+      nearby=["Tucson","Catalina","Marana","Catalina Foothills"],
+      character="Oro Valley's master-planned growth means demanding customers and high standards.",
+      intro="Oro Valley homeowners and builders expect polish — and a contractor whose quoting and follow-through match the quality of the work.",
+      faq_extra=("My Oro Valley clients expect a polished experience — does this help?","Yes. Professional, itemized quotes sent same-day and clear communication at every stage are exactly what discerning Oro Valley customers expect — and what the system makes easy to deliver."),
+      anchors=["tucson"]),
+ dict(name="Casa Grande", slug_city="casa-grande", metro="Casa Grande and Pinal County",
+      nearby=["Coolidge","Eloy","Maricopa","Arizona City"],
+      character="Casa Grande sits at the center of Arizona's fastest-growing county, with new industry and rooftops arriving fast.",
+      intro="Halfway between Phoenix and Tucson, Casa Grande and Pinal County are booming — and local operators are scaling into the demand.",
+      faq_extra=("Do you serve the rest of Pinal County?","Yes. From Casa Grande we serve the surrounding Pinal County communities — Coolidge, Eloy, Maricopa, and Arizona City — sitting conveniently between our Phoenix and Tucson coverage."),
+      anchors=["phoenix","tucson"]),
+ dict(name="Chandler", slug_city="chandler", metro="Phoenix East Valley",
+      nearby=["Gilbert","Tempe","Mesa","Ahwatukee"],
+      character="Chandler's tech-driven growth raises the bar for every local trade and service business.",
+      intro="In a competitive East Valley market like Chandler, the businesses that win are the ones that quote fast, look professional, and actually know their numbers.",
+      faq_extra=("Chandler is competitive — how does this help me stand out?","Speed and professionalism win bids. Same-day itemized quotes, clear milestones, and knowing your true margin let you compete on value instead of racing to the bottom on price."),
+      anchors=["phoenix"]),
+ dict(name="Gilbert", slug_city="gilbert", metro="Phoenix East Valley",
+      nearby=["Chandler","Mesa","Queen Creek","Tempe"],
+      character="Gilbert went from farm town to one of the Valley's largest, fastest-growing communities.",
+      intro="Gilbert's explosive growth means more work for local contractors and service businesses — and more ways to lose the margin if you're running on memory.",
+      faq_extra=("My Gilbert business is growing fast — will this keep up?","That's the point. The system scales with you — add crews, jobs, and modules as you grow, without the operation falling apart. Growth is exactly when systems matter most."),
+      anchors=["phoenix"]),
+ dict(name="Ahwatukee", slug_city="ahwatukee", metro="Phoenix area",
+      nearby=["Tempe","Chandler","Phoenix","Mesa"],
+      character="Ahwatukee's foothills neighborhoods are tight-knit, and word travels fast.",
+      intro="In a referral-driven community like Ahwatukee, professional quoting and reliable follow-through are the whole game.",
+      faq_extra=("Ahwatukee runs on referrals — does this help?","Yes. Clear written quotes, on-time communication, and doing the job right the first time are what generate referrals. The system makes that consistency easy to deliver on every job."),
+      anchors=["phoenix"]),
+ dict(name="Tempe", slug_city="tempe", metro="Phoenix metro",
+      nearby=["Phoenix","Mesa","Chandler","Scottsdale"],
+      character="Tempe's dense, fast-moving market keeps local operators busy year-round.",
+      intro="Between ASU, dense neighborhoods, and constant turnover, Tempe contractors and service businesses rarely get a slow week.",
+      faq_extra=("Tempe keeps me slammed — when would I set this up?","We do the setup for you. We deploy the system, load your services and materials, and walk you through it — so you get the benefit without losing billable days building software."),
+      anchors=["phoenix"]),
+]
 
 PAGES = [
 # ============================== MODULE / OFFERING ==============================
@@ -850,6 +993,8 @@ PAGES = [
 },
 ]
 
+PAGES += [city_page(**c) for c in CITY_DATA]
+
 if __name__ == "__main__":
     written = []
     for p in PAGES:
@@ -857,10 +1002,9 @@ if __name__ == "__main__":
         with open(out, "w", encoding="utf-8") as f:
             f.write(render(p))
         written.append(p["slug"] + ".html")
-    # sitemap.xml
     urls = ["", "pricing.html"] + [s for s in written]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
-          '<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">'.replace("sitemap.org","sitemaps.org")]
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     from datetime import date
     today = date.today().isoformat()
     for u in urls:
@@ -870,12 +1014,6 @@ if __name__ == "__main__":
     sm.append("</urlset>")
     with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write("\n".join(sm))
-    # robots.txt
     with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as f:
         f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
-    print("WROTE", len(written), "pages + sitemap.xml + robots.txt")
-    for w in written:
-        print(" -", w)
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+    print("WROTE", len(written), "pages (incl. city service-area pages) + sitemap.xml + robots.txt")
