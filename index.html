@@ -344,6 +344,7 @@
     border-left:3px solid var(--accent);transition:transform .15s,box-shadow .15s,border-color .15s}
   .project-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.08);
     border-left-color:var(--rose)}
+  .proj-logo{display:block;width:100%;height:160px;object-fit:contain;background:#14171b;border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:16px}
   .proj-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;
     margin-bottom:14px;flex-wrap:wrap}
   .proj-badge{background:var(--grad-teal);color:#fff;padding:4px 11px;border-radius:999px;
@@ -951,15 +952,26 @@ function dismissIntro(){
   <div class="wrap">
     <div class="sec-kicker" data-i18n="proj_kicker">Built &amp; Running</div>
     <h2 class="sec-title" data-i18n="proj_title">Projects you can see.</h2>
-    <p class="sec-intro" data-i18n="proj_intro">Real businesses running on this system today. Click through to see the work &mdash; not slideware.</p>
+    <p class="sec-intro" data-i18n="proj_intro">Real businesses and teams running on systems we built. Click through to see the work &mdash; not slideware.</p>
     <div class="projects-grid">
       <a class="project-card" href="https://www.TucsonBadgerElectric.com" target="_blank" rel="noopener noreferrer">
+        <img class="proj-logo" src="tbe-logo.png" alt="Tucson Badger Electric logo" onerror="this.style.display='none'">
         <div class="proj-meta">
           <span class="proj-badge" data-i18n="proj_badge_active">Currently Active</span>
           <span class="proj-trade" data-i18n="proj1_trade">Electrical (Residential) &middot; Tucson, AZ</span>
         </div>
         <h3 class="proj-name" data-i18n="proj1_name">Tucson Badger Electric</h3>
         <p class="proj-blurb" data-i18n="proj1_blurb">Residential electrical contractor running quoting, scheduling, materials and job costing on the PGP platform.</p>
+        <span class="proj-link" data-i18n="proj_visit">Visit the site &rarr;</span>
+      </a>
+      <a class="project-card" href="https://tucson-honey-badgers.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <img class="proj-logo" src="honey-badgers-logo.png" alt="Tucson Honey Badgers basketball logo" onerror="this.style.display='none'">
+        <div class="proj-meta">
+          <span class="proj-badge" data-i18n="proj_badge_active">Currently Active</span>
+          <span class="proj-trade" data-i18n="proj2_trade">Youth Club Basketball &middot; Tucson, AZ</span>
+        </div>
+        <h3 class="proj-name" data-i18n="proj2_name">Tucson Honey Badgers</h3>
+        <p class="proj-blurb" data-i18n="proj2_blurb">Youth club basketball program with a custom team website &mdash; schedule, roster, and online home, built and running.</p>
         <span class="proj-link" data-i18n="proj_visit">Visit the site &rarr;</span>
       </a>
     </div>
@@ -1425,13 +1437,17 @@ function dismissIntro(){
     nav_projects:["Projects","Proyectos"],
     proj_kicker:["Built & Running","Construido y Funcionando"],
     proj_title: ["Projects you can see.","Proyectos que puedes ver."],
-    proj_intro: ["Real businesses running on this system today. Click through to see the work — not slideware.",
-                 "Negocios reales operando con este sistema hoy. Haz clic para ver el trabajo — no es presentación."],
+    proj_intro: ["Real businesses and teams running on systems we built. Click through to see the work — not slideware.",
+                 "Negocios y equipos reales funcionando en sistemas que construimos. Haz clic para ver el trabajo — no es presentación."],
     proj_badge_active:["Currently Active","Cliente Activo"],
     proj1_trade:["Electrical (Residential) · Tucson, AZ","Electricidad (Residencial) · Tucson, AZ"],
     proj1_name: ["Tucson Badger Electric","Tucson Badger Electric"],
     proj1_blurb:["Residential electrical contractor running quoting, scheduling, materials and job costing on the PGP platform.",
                  "Contratista de electricidad residencial operando cotizaciones, programación, materiales y costeo de trabajos en la plataforma PGP."],
+    proj2_trade:["Youth Club Basketball · Tucson, AZ","Básquetbol Juvenil de Club · Tucson, AZ"],
+    proj2_name: ["Tucson Honey Badgers","Tucson Honey Badgers"],
+    proj2_blurb:["Youth club basketball program with a custom team website — schedule, roster, and online home, built and running.",
+                 "Programa de básquetbol juvenil de club con un sitio web a la medida — calendario, roster y hogar en línea, construido y funcionando."],
     proj_visit:["Visit the site →","Visita el sitio →"],
 
     pay_kicker:["How It Works","Cómo Funciona"],
