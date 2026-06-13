@@ -558,6 +558,14 @@ try{
 </div>
 
 <script>
+function toggleDD(btn){
+  var dd=btn.parentElement, isOpen=dd.classList.contains('open');
+  document.querySelectorAll('.nav-dd.open').forEach(function(x){ if(x!==dd) x.classList.remove('open'); });
+  dd.classList.toggle('open', !isOpen);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-dd')) document.querySelectorAll('.nav-dd.open').forEach(function(x){ x.classList.remove('open'); });
+});
 function dismissIntro(){
   var el=document.getElementById('intro'); if(!el) return;
   el.classList.add('gone');
@@ -584,11 +592,36 @@ function dismissIntro(){
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="#mission" data-i18n="nav_mission">Mission</a>
-      <a href="#how-we-help" data-i18n="nav_help">How We Help</a>
-      <a href="#what" data-i18n="nav_what">What We Build</a>
-      <a href="#pricing" data-i18n="nav_hiw">How It Works</a>
-      <a href="#industries" data-i18n="nav_ind">Industries</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Solutions <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing &amp; Profit</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="start-a-contracting-business-arizona.html">Start a Business</a>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Industries <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="landscaping-business-software.html">Landscaping</a>
+          <a href="roofing-business-software.html">Roofing</a>
+          <a href="drywall-contractor-software.html">Drywall</a>
+          <a href="solar-installer-software.html">Solar</a>
+          <a href="barber-salon-software.html">Barber &amp; Salon</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="small-business-software-arizona.html">Arizona</a>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tucson-small-business-help.html">Tucson</a>
+        </div>
+      </div>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
       <a href="pricing.html" data-i18n="nav_pricing">Partnership Structures</a>
       <button type="button" id="lang-btn" class="lang-btn" data-lang="en" onclick="toggleLang()">Hablo Espa&ntilde;ol</button>
@@ -1089,7 +1122,6 @@ function dismissIntro(){
       </div>
       <div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;color:#fff;margin-bottom:12px;text-transform:uppercase">Industries</div>
-        <a href="electrical-contractor-software.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Electrical Contractors</a>
         <a href="landscaping-business-software.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Landscaping</a>
         <a href="roofing-business-software.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Roofing</a>
         <a href="drywall-contractor-software.html" style="display:block;color:#aeb4bd;font-size:13px;padding:4px 0">Drywall</a>

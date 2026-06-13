@@ -87,19 +87,57 @@ PAGE_CSS = """
 NAV = """<nav>
   <div class="nav-in">
     <a href="index.html"><img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners"></a>
-    <button type="button" class="hamburger" id="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+    <button type="button" class="hamburger" id="hamburger" onclick="this.classList.toggle('open');document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="index.html#how-we-help">How We Help</a>
-      <a href="index.html#what">What We Build</a>
-      <a href="index.html#industries">Industries</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Solutions <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing &amp; Profit</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="start-a-contracting-business-arizona.html">Start a Business</a>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Industries <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="landscaping-business-software.html">Landscaping</a>
+          <a href="roofing-business-software.html">Roofing</a>
+          <a href="drywall-contractor-software.html">Drywall</a>
+          <a href="solar-installer-software.html">Solar</a>
+          <a href="barber-salon-software.html">Barber &amp; Salon</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="small-business-software-arizona.html">Arizona</a>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tucson-small-business-help.html">Tucson</a>
+        </div>
+      </div>
       <a href="index.html#projects">Projects</a>
       <a href="pricing.html">Partnership Structures</a>
       <a href="#quote" class="nav-cta">Book a Demo</a>
     </div>
   </div>
 </nav>"""
+
+NAV_JS = """<script>
+function toggleDD(btn){
+  var dd=btn.parentElement, isOpen=dd.classList.contains('open');
+  document.querySelectorAll('.nav-dd.open').forEach(function(x){ if(x!==dd) x.classList.remove('open'); });
+  dd.classList.toggle('open', !isOpen);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-dd')) document.querySelectorAll('.nav-dd.open').forEach(function(x){ x.classList.remove('open'); });
+});
+</script>"""
 
 def footer(active=None):
     def links(items):
@@ -108,8 +146,7 @@ def footer(active=None):
                  ("Inventory & Operations", "inventory-operations-software.html"),
                  ("Job Costing & Profit", "job-costing-software.html"),
                  ("Operating Playbook", "business-operations-playbook.html")]
-    industries = [("Electrical Contractors", "electrical-contractor-software.html"),
-                  ("Landscaping", "landscaping-business-software.html"),
+    industries = [("Landscaping", "landscaping-business-software.html"),
                   ("Roofing", "roofing-business-software.html"),
                   ("Drywall", "drywall-contractor-software.html"),
                   ("Solar", "solar-installer-software.html"),
@@ -321,6 +358,7 @@ def render(p):
   </div>
 </section>
 {footer()}
+{NAV_JS}
 </body>
 </html>"""
 
@@ -331,7 +369,6 @@ R = {
  "inv":   ("Inventory & Operations", "Materials, scheduling, and purchasing planned off your real job pipeline.", "inventory-operations-software.html"),
  "cost":  ("Job Costing & Profit", "See what every job actually made — and tighten the next quote.", "job-costing-software.html"),
  "play":  ("The Operating Playbook", "Run by the numbers: hiring, pricing, cash, and growth milestones.", "business-operations-playbook.html"),
- "elec":  ("Electrical Contractors", "The system behind our first live build, Tucson Badger Electric.", "electrical-contractor-software.html"),
  "land":  ("Landscaping", "Quote, route, and cost recurring and project landscaping work.", "landscaping-business-software.html"),
  "roof":  ("Roofing", "Material-heavy, multi-stage roofing jobs, run start to finish.", "roofing-business-software.html"),
  "dry":   ("Drywall", "Bid by the board, track production, and stop guessing on materials.", "drywall-contractor-software.html"),
@@ -376,7 +413,7 @@ PAGES = [
  "faq":[("Is this just a quote template?","No. It's a connected quoting system: quotes are priced from your real material and labor costs, logged with win/loss outcomes, and they feed your purchasing, scheduling, and job-costing automatically. A template can't tell you your close rate or protect your margin."),
         ("Do I need to be technical to use it?","No. It's built for owners and crews who have never used software like this. We deploy it for you, load your services and materials, and walk you through it. The whole point of Precision Growth Partners is that you get the system without having to build it."),
         ("Will it work for my trade?","The quoting engine is industry-agnostic — it runs on whatever services and materials we load for your trade. We have live and demo-ready builds for electrical, landscaping, roofing, drywall, solar, and barber/salon, and we build new trades to fit.")],
- "related":[R["inv"],R["cost"],R["play"],R["elec"]],
+ "related":[R["inv"],R["cost"],R["play"],R["land"]],
  "cta_title":"See your quotes, running.","cta_sub":"Book a working demo and we'll quote a real job from your trade — live, with your numbers."
 },
 {
@@ -479,39 +516,6 @@ PAGES = [
  "cta_title":"It's time to bake our own bread.","cta_sub":"Book a working demo and let's talk about what your business could become with the right system behind it."
 },
 # ============================== INDUSTRY ==============================
-{
- "slug":"electrical-contractor-software", "crumb":"Electrical Contractors",
- "title":"Electrical Contractor Software in Arizona | Precision Growth Partners",
- "desc":"Quoting, materials, permits, and job costing for electrical contractors. The operating system behind Tucson Badger Electric — built for Arizona electricians.",
- "svc_type":"Electrical contractor operations software",
- "kicker":"Industry · Electrical (Residential & Commercial)", "h1":'The system behind a <span class="accent">working electrician.</span>',
- "sub":"From quote to permit to inspection to paid — the operating system we built with our first live client, Tucson Badger Electric. Itemized bids, material netting, milestone payments, and the margin on every job.",
- "meta_line":"Live build: Tucson Badger Electric · Phoenix & Tucson, Arizona",
- "stats":[("Live","Real deployment"),("30/40/30","Milestone payments"),("Permit","To inspection, tracked"),("Per job","Real margin")],
- "s1_kicker":"Built with a real electrician","s1_title":"Quote → Permit → Install → Inspection → Paid",
- "s1_intro":"Electrical work is permit-heavy, material-heavy, and milestone-paid. The system maps the whole lifecycle so nothing falls through — and you always know where every job and every dollar stands.",
- "features":[("01","Itemized electrical bids","Price panel upgrades, EV chargers, rewires, and new construction off real materials and labor — defendable to the customer, profitable to you."),
-             ("02","Materials netted to the schedule","Wire, panels, breakers, and devices netted against on-hand stock by job date, with supplier RFQs one click away."),
-             ("03","Milestone payments & job costing","30/40/30 milestone billing tied to rough-in and final, with quoted-vs-actual margin on every job.")],
- "steps_title":"How an electrical job runs in the system",
- "steps":[("Quote the job","Itemized bid from your electrical service and material standards, sent same-day as a clean PDF."),
-          ("Pull permits & order","Permit tracked, materials netted and ordered via RFQ so the truck is stocked before the crew rolls."),
-          ("Install & track","Job moves across stages — scheduled, rough-in, trim-out — with labor logged against the bid."),
-          ("Inspect, invoice, learn","Final inspection, milestone invoice, and a closed-out margin that sharpens the next quote.")],
- "checks_kicker":"For electricians","checks_title":"What electrical contractors get",
- "checks":["Itemized quoting for panel upgrades, EV chargers, remodels, additions, and new builds",
-           "Material netting for wire, panels, breakers, and devices with supplier RFQs",
-           "Permit and inspection stages tracked across the job lifecycle",
-           "30/40/30 milestone billing on new construction and large jobs",
-           "Quoted-vs-actual job costing and win/loss analysis",
-           "Bilingual (English / Spanish) — built for Arizona crews"],
- "faq_title":"Electrical contractor software questions",
- "faq":[("Is this really running in a real business?","Yes. Tucson Badger Electric is our first live client and the real-world deployment of this system. The electrical build started from our industry-standard template and was customized with their actual services, pricing, and workflow."),
-        ("Does it handle permits and inspections?","The job lifecycle includes the stages an electrical job actually moves through — quoted, permitted, scheduled, installed, inspected, invoiced, paid — so you always know where a job stands and nothing stalls between steps."),
-        ("Commercial or residential?","Both. The residential build is live today; commercial electrical runs on the same engine with its own services, materials, and stages. We tailor the build to how you actually work.")],
- "related":[R["quote"],R["inv"],R["solar"],R["tuc"]],
- "cta_title":"See an electrical job, running.","cta_sub":"Book a demo and we'll run a real electrical job from quote to closed margin in the live system."
-},
 {
  "slug":"landscaping-business-software", "crumb":"Landscaping",
  "title":"Landscaping Business Software in Arizona | Precision Growth Partners",
@@ -641,7 +645,7 @@ PAGES = [
  "faq":[("Does it track the full permit-to-PTO lifecycle?","Yes. A solar job's stages — design, permit, install, inspection, permission-to-operate — are tracked so you always know where each project stands across a multi-week timeline and nothing falls through."),
         ("Can it manage high-value equipment?","Equipment like panels and inverters is netted against your job schedule with supplier RFQs, so expensive gear is ordered to arrive when the install needs it — not too early, not too late."),
         ("Is the solar build ready to see?","Solar is a demo-ready industry build. We show a working version and then customize it with your real equipment, pricing, and workflow as a client build.")],
- "related":[R["inv"],R["quote"],R["elec"],R["cost"]],
+ "related":[R["inv"],R["quote"],R["roof"],R["cost"]],
  "cta_title":"See a solar job, running.","cta_sub":"Book a demo and we'll run a real solar install from proposal to closed margin."
 },
 {
@@ -747,12 +751,12 @@ PAGES = [
 {
  "slug":"tucson-small-business-help", "crumb":"Tucson",
  "title":"Tucson Small Business Help & Systems | Precision Growth Partners",
- "desc":"Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live client.",
+ "desc":"Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live partner.",
  "svc_type":"Small business operations software & consulting",
  "kicker":"Serving the Tucson Metro", "h1":'Tucson small business, <span class="accent">running on a system.</span>',
- "sub":"Tucson is home to our first live client, Tucson Badger Electric. We bring the same complete operating system and hands-on partnership to contractors and service businesses across the metro.",
+ "sub":"Tucson is home to our first live partner, Tucson Badger Electric. We bring the same complete operating system and hands-on partnership to contractors and service businesses across the metro.",
  "meta_line":"Serving Tucson, Marana, Oro Valley, Sahuarita & Vail",
- "stats":[("Tucson","First live client"),("Metro-wide","On-site & remote"),("End-to-end","Quote to cash"),("Bilingual","EN / ES")],
+ "stats":[("Tucson","First live partner"),("Metro-wide","On-site & remote"),("End-to-end","Quote to cash"),("Bilingual","EN / ES")],
  "s1_kicker":"For Tucson operators","s1_title":"Proven local, built to fit",
  "s1_intro":"Our first real deployment runs in Tucson. That means the system isn't a concept here — it's working in a local business, and we bring the same build-and-partner approach to your trade.",
  "features":[("01","A proven local build","Tucson Badger Electric runs on this system today. We start from a working build and customize it to how you operate."),
@@ -765,17 +769,17 @@ PAGES = [
           ("Grow together","Add modules and open growth doors on the same monthly partnership.")],
  "checks_kicker":"Across the metro","checks_title":"Tucson-area communities we serve",
  "checks":["Tucson, Marana, Oro Valley, Sahuarita, Green Valley, Vail, Catalina Foothills",
-           "Home of our first live client, Tucson Badger Electric",
+           "Home of our first live partner, Tucson Badger Electric",
            "On-site where it helps, remote where it's faster",
            "Bilingual (English / Spanish) service",
            "Contractors, service businesses, and startups",
            "Flexible partnership structures to fit your cash flow"],
  "faq_title":"Tucson small business questions",
- "faq":[("Do you really have a live client in Tucson?","Yes. Tucson Badger Electric is our first live client and the real-world deployment of the system. It started from our electrical template and was customized with their actual services, pricing, and workflow."),
+ "faq":[("Do you really have a live partner in Tucson?","Yes. We're proud to partner with Tucson Badger Electric, a local business running on the system today — built around their actual services, pricing, and workflow."),
         ("Will you build for my trade in Tucson?","Yes. We have demo-ready builds for several trades and customize them to your business. If your trade isn't built yet, you could be the first local case study for it."),
         ("Is service available in Spanish?","Yes. The system, quotes, and support are bilingual in English and Spanish, built for the Tucson metro's operators and customers.")],
- "related":[R["elec"],R["az"],R["phx"],R["start"]],
- "cta_title":"Let's grow your Tucson business.","cta_sub":"Book a working demo and see your Tucson business running on the same system as our first live client."
+ "related":[R["az"],R["phx"],R["land"],R["start"]],
+ "cta_title":"Let's grow your Tucson business.","cta_sub":"Book a working demo and see your Tucson business running on the same system as our first live partner."
 },
 # ============================== STARTUP ==============================
 {
@@ -874,3 +878,4 @@ if __name__ == "__main__":
         print(" -", w)
 
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

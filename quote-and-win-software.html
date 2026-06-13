@@ -383,6 +383,23 @@
   html[lang="es"] .epigraph .es-sub{display:block}
 
 }
+  /* ---------- NAV DROPDOWNS ---------- */
+  .nav-dd{position:relative;display:inline-block}
+  .nav-dd>.nav-dd-btn{background:none;border:0;color:#b6bcc6;font-family:inherit;font-size:13.5px;
+    font-weight:500;cursor:pointer;white-space:nowrap;padding:0;display:inline-flex;align-items:center;gap:5px}
+  .nav-dd>.nav-dd-btn:hover{color:#fff}
+  .nav-dd>.nav-dd-btn .caret{font-size:9px;opacity:.7;transition:transform .15s}
+  .nav-dd.open>.nav-dd-btn .caret{transform:rotate(180deg)}
+  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 14px);left:0;background:#1f242c;
+    border:1px solid #2a2e36;border-radius:10px;padding:8px;min-width:236px;
+    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60}
+  .nav-dd-menu a{display:block;color:#b6bcc6;font-size:13.5px;font-weight:500;padding:9px 12px;
+    border-radius:6px;white-space:nowrap}
+  .nav-dd-menu a:hover{background:#2a2e36;color:#fff}
+  .nav-dd-menu .dd-sep{border-top:1px solid #2a2e36;margin:6px 4px;padding:0}
+  .nav-dd.open>.nav-dd-menu{display:block}
+  @media(hover:hover) and (min-width:861px){.nav-dd:hover>.nav-dd-menu{display:block}}
+
   /* ---------- HAMBURGER (mobile menu) ---------- */
   .hamburger{display:none;background:transparent;border:1px solid #3a3f49;border-radius:7px;
     padding:8px 10px;cursor:pointer;margin-left:auto;flex-direction:column;gap:4px;
@@ -405,6 +422,13 @@
     .nav-links.open{display:flex}
     .nav-links a{padding:13px 4px;border-bottom:1px solid #2a2e36;font-size:15px;color:#e1e4e9}
     .nav-links a:last-of-type{border-bottom:none}
+    .nav-dd{display:block;width:100%}
+    .nav-dd>.nav-dd-btn{display:flex;width:100%;justify-content:space-between;text-align:left;
+      padding:13px 4px;border-bottom:1px solid #2a2e36;font-size:15px;color:#e1e4e9}
+    .nav-dd-menu{position:static;display:none;background:transparent;border:0;box-shadow:none;
+      padding:2px 0 8px 14px;min-width:0}
+    .nav-dd.open>.nav-dd-menu{display:block}
+    .nav-dd-menu a{padding:11px 4px;font-size:14px;color:#aeb4bd;border-bottom:1px solid #23272f}
     .nav-cta{margin-top:8px;text-align:center;padding:12px 18px;font-size:14px}
     .lang-btn{margin:8px 0;text-align:center;width:100%;padding:11px 16px;font-size:14px}
     nav{position:relative}
@@ -644,13 +668,40 @@
 <nav>
   <div class="nav-in">
     <a href="index.html"><img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners"></a>
-    <button type="button" class="hamburger" id="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+    <button type="button" class="hamburger" id="hamburger" onclick="this.classList.toggle('open');document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="index.html#how-we-help">How We Help</a>
-      <a href="index.html#what">What We Build</a>
-      <a href="index.html#industries">Industries</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Solutions <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing &amp; Profit</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="start-a-contracting-business-arizona.html">Start a Business</a>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Industries <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="landscaping-business-software.html">Landscaping</a>
+          <a href="roofing-business-software.html">Roofing</a>
+          <a href="drywall-contractor-software.html">Drywall</a>
+          <a href="solar-installer-software.html">Solar</a>
+          <a href="barber-salon-software.html">Barber &amp; Salon</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="small-business-software-arizona.html">Arizona</a>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tucson-small-business-help.html">Tucson</a>
+        </div>
+      </div>
       <a href="index.html#projects">Projects</a>
       <a href="pricing.html">Partnership Structures</a>
       <a href="#quote" class="nav-cta">Book a Demo</a>
@@ -700,7 +751,7 @@
   <div class="wrap">
     <div class="sec-kicker">Explore More</div>
     <h2 class="sec-title">Related solutions</h2>
-    <div class="rel-grid"><a class="rel-card" href="inventory-operations-software.html"><div class="rt">Inventory &amp; Operations</div><div class="rd">Materials, scheduling, and purchasing planned off your real job pipeline.</div></a><a class="rel-card" href="job-costing-software.html"><div class="rt">Job Costing &amp; Profit</div><div class="rd">See what every job actually made — and tighten the next quote.</div></a><a class="rel-card" href="business-operations-playbook.html"><div class="rt">The Operating Playbook</div><div class="rd">Run by the numbers: hiring, pricing, cash, and growth milestones.</div></a><a class="rel-card" href="electrical-contractor-software.html"><div class="rt">Electrical Contractors</div><div class="rd">The system behind our first live build, Tucson Badger Electric.</div></a></div>
+    <div class="rel-grid"><a class="rel-card" href="inventory-operations-software.html"><div class="rt">Inventory &amp; Operations</div><div class="rd">Materials, scheduling, and purchasing planned off your real job pipeline.</div></a><a class="rel-card" href="job-costing-software.html"><div class="rt">Job Costing &amp; Profit</div><div class="rd">See what every job actually made — and tighten the next quote.</div></a><a class="rel-card" href="business-operations-playbook.html"><div class="rt">The Operating Playbook</div><div class="rd">Run by the numbers: hiring, pricing, cash, and growth milestones.</div></a><a class="rel-card" href="landscaping-business-software.html"><div class="rt">Landscaping</div><div class="rd">Quote, route, and cost recurring and project landscaping work.</div></a></div>
   </div>
 </section>
 <section class="cta-band" id="quote">
@@ -739,7 +790,7 @@
     </div>
     <div class="foot-cols">
       <div><h5>Solutions</h5><a href="quote-and-win-software.html">Quoting &amp; Sales</a><a href="inventory-operations-software.html">Inventory &amp; Operations</a><a href="job-costing-software.html">Job Costing &amp; Profit</a><a href="business-operations-playbook.html">Operating Playbook</a></div>
-      <div><h5>Industries</h5><a href="electrical-contractor-software.html">Electrical Contractors</a><a href="landscaping-business-software.html">Landscaping</a><a href="roofing-business-software.html">Roofing</a><a href="drywall-contractor-software.html">Drywall</a><a href="solar-installer-software.html">Solar</a><a href="barber-salon-software.html">Barber &amp; Salon</a></div>
+      <div><h5>Industries</h5><a href="landscaping-business-software.html">Landscaping</a><a href="roofing-business-software.html">Roofing</a><a href="drywall-contractor-software.html">Drywall</a><a href="solar-installer-software.html">Solar</a><a href="barber-salon-software.html">Barber &amp; Salon</a></div>
       <div><h5>Locations</h5><a href="small-business-software-arizona.html">Arizona</a><a href="phoenix-small-business-help.html">Phoenix</a><a href="tucson-small-business-help.html">Tucson</a></div>
       <div><h5>Company</h5><a href="start-a-contracting-business-arizona.html">Start a Business</a><a href="small-business-startup-help-arizona.html">Startup Help</a><a href="pricing.html">Partnership Structures</a><a href="index.html">Home</a></div>
     </div>
@@ -748,5 +799,15 @@
     </div>
   </div>
 </footer>
+<script>
+function toggleDD(btn){
+  var dd=btn.parentElement, isOpen=dd.classList.contains('open');
+  document.querySelectorAll('.nav-dd.open').forEach(function(x){ if(x!==dd) x.classList.remove('open'); });
+  dd.classList.toggle('open', !isOpen);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-dd')) document.querySelectorAll('.nav-dd.open').forEach(function(x){ x.classList.remove('open'); });
+});
+</script>
 </body>
 </html>

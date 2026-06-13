@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tucson Small Business Help &amp; Systems | Precision Growth Partners</title>
-<meta name="description" content="Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live client.">
+<meta name="description" content="Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live partner.">
 <link rel="canonical" href="https://www.precisiongrowthpartnersaz.com/tucson-small-business-help">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Precision Growth Partners">
@@ -15,12 +15,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Precision Growth Partners">
 <meta property="og:title" content="Tucson Small Business Help &amp; Systems | Precision Growth Partners">
-<meta property="og:description" content="Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live client.">
+<meta property="og:description" content="Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live partner.">
 <meta property="og:url" content="https://www.precisiongrowthpartnersaz.com/tucson-small-business-help">
 <meta property="og:image" content="https://www.precisiongrowthpartnersaz.com/pgp-logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tucson Small Business Help &amp; Systems | Precision Growth Partners">
-<meta name="twitter:description" content="Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live client.">
+<meta name="twitter:description" content="Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live partner.">
 <meta name="twitter:image" content="https://www.precisiongrowthpartnersaz.com/pgp-logo.png">
 <link rel="icon" type="image/png" href="pgp-logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -383,6 +383,23 @@
   html[lang="es"] .epigraph .es-sub{display:block}
 
 }
+  /* ---------- NAV DROPDOWNS ---------- */
+  .nav-dd{position:relative;display:inline-block}
+  .nav-dd>.nav-dd-btn{background:none;border:0;color:#b6bcc6;font-family:inherit;font-size:13.5px;
+    font-weight:500;cursor:pointer;white-space:nowrap;padding:0;display:inline-flex;align-items:center;gap:5px}
+  .nav-dd>.nav-dd-btn:hover{color:#fff}
+  .nav-dd>.nav-dd-btn .caret{font-size:9px;opacity:.7;transition:transform .15s}
+  .nav-dd.open>.nav-dd-btn .caret{transform:rotate(180deg)}
+  .nav-dd-menu{display:none;position:absolute;top:calc(100% + 14px);left:0;background:#1f242c;
+    border:1px solid #2a2e36;border-radius:10px;padding:8px;min-width:236px;
+    box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:60}
+  .nav-dd-menu a{display:block;color:#b6bcc6;font-size:13.5px;font-weight:500;padding:9px 12px;
+    border-radius:6px;white-space:nowrap}
+  .nav-dd-menu a:hover{background:#2a2e36;color:#fff}
+  .nav-dd-menu .dd-sep{border-top:1px solid #2a2e36;margin:6px 4px;padding:0}
+  .nav-dd.open>.nav-dd-menu{display:block}
+  @media(hover:hover) and (min-width:861px){.nav-dd:hover>.nav-dd-menu{display:block}}
+
   /* ---------- HAMBURGER (mobile menu) ---------- */
   .hamburger{display:none;background:transparent;border:1px solid #3a3f49;border-radius:7px;
     padding:8px 10px;cursor:pointer;margin-left:auto;flex-direction:column;gap:4px;
@@ -405,6 +422,13 @@
     .nav-links.open{display:flex}
     .nav-links a{padding:13px 4px;border-bottom:1px solid #2a2e36;font-size:15px;color:#e1e4e9}
     .nav-links a:last-of-type{border-bottom:none}
+    .nav-dd{display:block;width:100%}
+    .nav-dd>.nav-dd-btn{display:flex;width:100%;justify-content:space-between;text-align:left;
+      padding:13px 4px;border-bottom:1px solid #2a2e36;font-size:15px;color:#e1e4e9}
+    .nav-dd-menu{position:static;display:none;background:transparent;border:0;box-shadow:none;
+      padding:2px 0 8px 14px;min-width:0}
+    .nav-dd.open>.nav-dd-menu{display:block}
+    .nav-dd-menu a{padding:11px 4px;font-size:14px;color:#aeb4bd;border-bottom:1px solid #23272f}
     .nav-cta{margin-top:8px;text-align:center;padding:12px 18px;font-size:14px}
     .lang-btn{margin:8px 0;text-align:center;width:100%;padding:11px 16px;font-size:14px}
     nav{position:relative}
@@ -579,7 +603,7 @@
    "@id": "https://www.precisiongrowthpartnersaz.com/tucson-small-business-help#service",
    "name": "Tucson Small Business Help & Systems",
    "serviceType": "Small business operations software & consulting",
-   "description": "Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live client.",
+   "description": "Tucson small business help — operating systems and hands-on guidance for contractors and service businesses across the Tucson metro. Home of our first live partner.",
    "provider": {
     "@id": "https://www.precisiongrowthpartnersaz.com/#org"
    },
@@ -612,10 +636,10 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Do you really have a live client in Tucson?",
+     "name": "Do you really have a live partner in Tucson?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes. Tucson Badger Electric is our first live client and the real-world deployment of the system. It started from our electrical template and was customized with their actual services, pricing, and workflow."
+      "text": "Yes. We're proud to partner with Tucson Badger Electric, a local business running on the system today — built around their actual services, pricing, and workflow."
      }
     },
     {
@@ -644,13 +668,40 @@
 <nav>
   <div class="nav-in">
     <a href="index.html"><img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners"></a>
-    <button type="button" class="hamburger" id="hamburger" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+    <button type="button" class="hamburger" id="hamburger" onclick="this.classList.toggle('open');document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="index.html#how-we-help">How We Help</a>
-      <a href="index.html#what">What We Build</a>
-      <a href="index.html#industries">Industries</a>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Solutions <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing &amp; Profit</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="start-a-contracting-business-arizona.html">Start a Business</a>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Industries <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="landscaping-business-software.html">Landscaping</a>
+          <a href="roofing-business-software.html">Roofing</a>
+          <a href="drywall-contractor-software.html">Drywall</a>
+          <a href="solar-installer-software.html">Solar</a>
+          <a href="barber-salon-software.html">Barber &amp; Salon</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button type="button" class="nav-dd-btn" onclick="toggleDD(this)">Service Areas <span class="caret">&#9662;</span></button>
+        <div class="nav-dd-menu">
+          <a href="small-business-software-arizona.html">Arizona</a>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tucson-small-business-help.html">Tucson</a>
+        </div>
+      </div>
       <a href="index.html#projects">Projects</a>
       <a href="pricing.html">Partnership Structures</a>
       <a href="#quote" class="nav-cta">Book a Demo</a>
@@ -662,7 +713,7 @@
   <div class="wrap">
     <div class="kicker">Serving the Tucson Metro</div>
     <h1>Tucson small business, <span class="accent">running on a system.</span></h1>
-    <p>Tucson is home to our first live client, Tucson Badger Electric. We bring the same complete operating system and hands-on partnership to contractors and service businesses across the metro.</p>
+    <p>Tucson is home to our first live partner, Tucson Badger Electric. We bring the same complete operating system and hands-on partnership to contractors and service businesses across the metro.</p>
     <div class="hero-btns">
       <a href="#quote" class="btn-lg">Book a Working Demo</a>
       <a href="#how" class="btn-out">See How It Works</a>
@@ -670,7 +721,7 @@
     <div class="sp-meta">Serving Tucson, Marana, Oro Valley, Sahuarita &amp; Vail</div>
   </div>
 </header>
-<section class="statband"><div class="wrap"><div class="stat"><div class="n">Tucson</div><div class="l">First live client</div></div><div class="stat"><div class="n">Metro-wide</div><div class="l">On-site &amp; remote</div></div><div class="stat"><div class="n">End-to-end</div><div class="l">Quote to cash</div></div><div class="stat"><div class="n">Bilingual</div><div class="l">EN / ES</div></div></div></section>
+<section class="statband"><div class="wrap"><div class="stat"><div class="n">Tucson</div><div class="l">First live partner</div></div><div class="stat"><div class="n">Metro-wide</div><div class="l">On-site &amp; remote</div></div><div class="stat"><div class="n">End-to-end</div><div class="l">Quote to cash</div></div><div class="stat"><div class="n">Bilingual</div><div class="l">EN / ES</div></div></div></section>
 <section>
   <div class="wrap">
     <div class="sec-kicker">For Tucson operators</div>
@@ -690,23 +741,23 @@
   <div class="wrap">
     <div class="sec-kicker">Across the metro</div>
     <h2 class="sec-title">Tucson-area communities we serve</h2>
-    <ul class="checks"><li>Tucson, Marana, Oro Valley, Sahuarita, Green Valley, Vail, Catalina Foothills</li><li>Home of our first live client, Tucson Badger Electric</li><li>On-site where it helps, remote where it&#x27;s faster</li><li>Bilingual (English / Spanish) service</li><li>Contractors, service businesses, and startups</li><li>Flexible partnership structures to fit your cash flow</li></ul>
+    <ul class="checks"><li>Tucson, Marana, Oro Valley, Sahuarita, Green Valley, Vail, Catalina Foothills</li><li>Home of our first live partner, Tucson Badger Electric</li><li>On-site where it helps, remote where it&#x27;s faster</li><li>Bilingual (English / Spanish) service</li><li>Contractors, service businesses, and startups</li><li>Flexible partnership structures to fit your cash flow</li></ul>
   </div>
 </section>
 <section><div class="wrap"><div class="sec-kicker">Questions</div>
       <h2 class="sec-title">Tucson small business questions</h2>
-      <div class="faq"><details><summary>Do you really have a live client in Tucson?</summary><p>Yes. Tucson Badger Electric is our first live client and the real-world deployment of the system. It started from our electrical template and was customized with their actual services, pricing, and workflow.</p></details><details><summary>Will you build for my trade in Tucson?</summary><p>Yes. We have demo-ready builds for several trades and customize them to your business. If your trade isn&#x27;t built yet, you could be the first local case study for it.</p></details><details><summary>Is service available in Spanish?</summary><p>Yes. The system, quotes, and support are bilingual in English and Spanish, built for the Tucson metro&#x27;s operators and customers.</p></details></div></div></section>
+      <div class="faq"><details><summary>Do you really have a live partner in Tucson?</summary><p>Yes. We&#x27;re proud to partner with Tucson Badger Electric, a local business running on the system today — built around their actual services, pricing, and workflow.</p></details><details><summary>Will you build for my trade in Tucson?</summary><p>Yes. We have demo-ready builds for several trades and customize them to your business. If your trade isn&#x27;t built yet, you could be the first local case study for it.</p></details><details><summary>Is service available in Spanish?</summary><p>Yes. The system, quotes, and support are bilingual in English and Spanish, built for the Tucson metro&#x27;s operators and customers.</p></details></div></div></section>
 <section class="related">
   <div class="wrap">
     <div class="sec-kicker">Explore More</div>
     <h2 class="sec-title">Related solutions</h2>
-    <div class="rel-grid"><a class="rel-card" href="electrical-contractor-software.html"><div class="rt">Electrical Contractors</div><div class="rd">The system behind our first live build, Tucson Badger Electric.</div></a><a class="rel-card" href="small-business-software-arizona.html"><div class="rt">Arizona Small Business Systems</div><div class="rd">Operating systems built for Arizona operators.</div></a><a class="rel-card" href="phoenix-small-business-help.html"><div class="rt">Phoenix Small Business Help</div><div class="rd">Hands-on systems and guidance for Phoenix-area owners.</div></a><a class="rel-card" href="start-a-contracting-business-arizona.html"><div class="rt">Start a Contracting Business</div><div class="rd">Stand up your business on real systems from day one.</div></a></div>
+    <div class="rel-grid"><a class="rel-card" href="small-business-software-arizona.html"><div class="rt">Arizona Small Business Systems</div><div class="rd">Operating systems built for Arizona operators.</div></a><a class="rel-card" href="phoenix-small-business-help.html"><div class="rt">Phoenix Small Business Help</div><div class="rd">Hands-on systems and guidance for Phoenix-area owners.</div></a><a class="rel-card" href="landscaping-business-software.html"><div class="rt">Landscaping</div><div class="rd">Quote, route, and cost recurring and project landscaping work.</div></a><a class="rel-card" href="start-a-contracting-business-arizona.html"><div class="rt">Start a Contracting Business</div><div class="rd">Stand up your business on real systems from day one.</div></a></div>
   </div>
 </section>
 <section class="cta-band" id="quote">
   <div class="wrap">
     <h2>Let&#x27;s grow your Tucson business.</h2>
-    <p>Book a working demo and see your Tucson business running on the same system as our first live client.</p>
+    <p>Book a working demo and see your Tucson business running on the same system as our first live partner.</p>
     <form class="lead" action="https://formspree.io/f/mojbowww" method="POST">
       <input type="hidden" name="_subject" value="New inquiry — Tucson — Precision Growth Partners">
       <input type="hidden" name="Source Page" value="Tucson">
@@ -739,7 +790,7 @@
     </div>
     <div class="foot-cols">
       <div><h5>Solutions</h5><a href="quote-and-win-software.html">Quoting &amp; Sales</a><a href="inventory-operations-software.html">Inventory &amp; Operations</a><a href="job-costing-software.html">Job Costing &amp; Profit</a><a href="business-operations-playbook.html">Operating Playbook</a></div>
-      <div><h5>Industries</h5><a href="electrical-contractor-software.html">Electrical Contractors</a><a href="landscaping-business-software.html">Landscaping</a><a href="roofing-business-software.html">Roofing</a><a href="drywall-contractor-software.html">Drywall</a><a href="solar-installer-software.html">Solar</a><a href="barber-salon-software.html">Barber &amp; Salon</a></div>
+      <div><h5>Industries</h5><a href="landscaping-business-software.html">Landscaping</a><a href="roofing-business-software.html">Roofing</a><a href="drywall-contractor-software.html">Drywall</a><a href="solar-installer-software.html">Solar</a><a href="barber-salon-software.html">Barber &amp; Salon</a></div>
       <div><h5>Locations</h5><a href="small-business-software-arizona.html">Arizona</a><a href="phoenix-small-business-help.html">Phoenix</a><a href="tucson-small-business-help.html">Tucson</a></div>
       <div><h5>Company</h5><a href="start-a-contracting-business-arizona.html">Start a Business</a><a href="small-business-startup-help-arizona.html">Startup Help</a><a href="pricing.html">Partnership Structures</a><a href="index.html">Home</a></div>
     </div>
@@ -748,5 +799,15 @@
     </div>
   </div>
 </footer>
+<script>
+function toggleDD(btn){
+  var dd=btn.parentElement, isOpen=dd.classList.contains('open');
+  document.querySelectorAll('.nav-dd.open').forEach(function(x){ if(x!==dd) x.classList.remove('open'); });
+  dd.classList.toggle('open', !isOpen);
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-dd')) document.querySelectorAll('.nav-dd.open').forEach(function(x){ x.classList.remove('open'); });
+});
+</script>
 </body>
 </html>
