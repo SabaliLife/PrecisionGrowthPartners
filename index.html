@@ -391,18 +391,17 @@
     font-size:13px;font-weight:700;letter-spacing:0}
   #lead-form textarea{resize:vertical;min-height:80px;font-family:inherit}
   .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-  .pill{display:inline-flex;align-items:center;gap:0;padding:9px 16px;
+  .pill{display:inline-flex;align-items:center;gap:0;padding:10px 18px;
     border:1.5px solid var(--accent);border-radius:999px;
-    background:var(--accent);color:var(--rose);font-weight:700;letter-spacing:.3px;
-    font-size:13px;cursor:pointer;transition:all .15s;user-select:none;
-    box-shadow:0 2px 6px rgba(201,147,131,.22);
-    text-shadow:0 1px 1px rgba(0,0,0,.08)}
+    background:#ffffff;color:var(--ink);font-weight:600;letter-spacing:.2px;
+    font-size:14px;cursor:pointer;transition:all .15s;user-select:none;
+    box-shadow:0 1px 3px rgba(0,0,0,.06)}
   .pill input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
-  .pill:hover{background:var(--accent-d);border-color:var(--accent-d);color:var(--rose-d);
-    transform:translateY(-1px);box-shadow:0 4px 12px rgba(201,147,131,.32)}
-  .pill:has(input:checked){background:var(--rose);border-color:var(--rose);color:var(--accent);
-    box-shadow:0 4px 12px rgba(31,168,160,.32);text-shadow:0 1px 1px rgba(0,0,0,.1)}
-  .pill:has(input:checked):hover{background:var(--rose-d);border-color:var(--rose-d);color:var(--accent-d)}
+  .pill:hover{background:#f7ede8;border-color:var(--accent-d);color:var(--ink);
+    transform:translateY(-1px);box-shadow:0 3px 8px rgba(201,147,131,.25)}
+  .pill:has(input:checked){background:var(--accent);border-color:var(--accent);color:#ffffff;
+    font-weight:700;box-shadow:0 3px 10px rgba(201,147,131,.4);text-shadow:0 1px 2px rgba(0,0,0,.25)}
+  .pill:has(input:checked):hover{background:var(--accent-d);border-color:var(--accent-d);color:#ffffff}
 
   /* ---------- LANG TOGGLE ---------- */
   .mascot-nav{height:90px;width:auto;display:block;margin-left:12px;flex-shrink:0;
@@ -1063,11 +1062,79 @@ function dismissIntro(){
             <input name="Phone" type="tel" placeholder="(520) 555-0100">
             <label data-i18n="f_ind">Industry / Trade</label>
             <select name="Industry">
-              <option data-i18n="ind_landscape">Landscaping</option>
-              <option data-i18n="ind_roofing">Roofing</option>
-              <option data-i18n="ind_drywall">Drywall</option>
-              <option data-i18n="ind_solar">Solar</option>
-              <option data-i18n="ind_barber">Barber &amp; Beauty</option>
+              <option value="" disabled selected>Select your trade…</option>
+              <optgroup label="Construction &amp; Trades">
+                <option data-i18n="ind_electric_res">Electrical (Residential)</option>
+                <option data-i18n="ind_electric_com">Electrical (Commercial)</option>
+                <option data-i18n="ind_landscape">Landscaping</option>
+                <option data-i18n="ind_roofing">Roofing</option>
+                <option data-i18n="ind_drywall">Drywall</option>
+                <option data-i18n="ind_solar">Solar</option>
+                <option data-i18n="ind_tile">Tile</option>
+                <option data-i18n="ind_construction">Construction &amp; Architecture</option>
+                <option data-i18n="ind_hvac">HVAC</option>
+                <option data-i18n="ind_plumbing">Plumbing</option>
+                <option data-i18n="ind_concrete">Concrete</option>
+                <option data-i18n="ind_fencing">Fencing</option>
+                <option data-i18n="ind_painting">Painting</option>
+                <option data-i18n="ind_flooring">Flooring</option>
+                <option data-i18n="ind_carpentry">Carpentry</option>
+                <option data-i18n="ind_pool_spa">Pool &amp; Spa</option>
+                <option data-i18n="ind_excavation">Excavation</option>
+                <option data-i18n="ind_insulation">Insulation</option>
+                <option data-i18n="ind_garage_doors">Garage Doors</option>
+                <option data-i18n="ind_glass_windows">Glass &amp; Windows</option>
+              </optgroup>
+              <optgroup label="Vehicle &amp; Mobile Services">
+                <option data-i18n="ind_mechanic">Mechanic</option>
+                <option data-i18n="ind_auto_detail">Auto Detailing</option>
+                <option data-i18n="ind_mobile_tire">Mobile Tire</option>
+                <option data-i18n="ind_truck_repair">Truck Repair</option>
+                <option data-i18n="ind_towing">Towing</option>
+                <option data-i18n="ind_rv_service">RV Service</option>
+              </optgroup>
+              <optgroup label="Personal Care">
+                <option data-i18n="ind_barber">Barber &amp; Beauty</option>
+                <option data-i18n="ind_petgroom">Pet Grooming</option>
+                <option data-i18n="ind_massage">Massage</option>
+                <option data-i18n="ind_tattoo">Tattoo</option>
+                <option data-i18n="ind_spa">Spa</option>
+                <option data-i18n="ind_nails">Nails</option>
+              </optgroup>
+              <optgroup label="Food &amp; Hospitality">
+                <option data-i18n="ind_bakery">Bakery</option>
+                <option data-i18n="ind_catering">Catering</option>
+                <option data-i18n="ind_food_truck">Food Truck</option>
+                <option data-i18n="ind_coffee_roaster">Coffee Roaster</option>
+                <option data-i18n="ind_brewery">Brewery</option>
+              </optgroup>
+              <optgroup label="Creative &amp; Production">
+                <option data-i18n="ind_printing">Printing</option>
+                <option data-i18n="ind_crochet_sewing">Crochet &amp; Sewing</option>
+                <option data-i18n="ind_party_decor">Party Decor &amp; Supplies</option>
+                <option data-i18n="ind_photography">Photography</option>
+                <option data-i18n="ind_sign_shop">Sign Shop</option>
+                <option data-i18n="ind_embroidery">Embroidery</option>
+                <option data-i18n="ind_custom_apparel">Custom Apparel</option>
+              </optgroup>
+              <optgroup label="Family, Home &amp; Property Services">
+                <option data-i18n="ind_daycare_baby">Daycare &amp; Babysitting</option>
+                <option data-i18n="ind_house_sit">House Sitting</option>
+                <option data-i18n="ind_residential_clean">Residential Cleaning</option>
+                <option data-i18n="ind_commercial_clean">Commercial Cleaning</option>
+                <option data-i18n="ind_pest_control">Pest Control</option>
+                <option data-i18n="ind_pressure_wash">Pressure Washing</option>
+                <option data-i18n="ind_carpet_clean">Carpet Cleaning</option>
+                <option data-i18n="ind_window_clean">Window Cleaning</option>
+                <option data-i18n="ind_janitorial">Janitorial</option>
+                <option data-i18n="ind_locksmith">Locksmith</option>
+              </optgroup>
+              <optgroup label="Logistics &amp; Specialty">
+                <option data-i18n="ind_junk_removal">Junk Removal &amp; Hauling</option>
+                <option data-i18n="ind_moving">Moving</option>
+                <option data-i18n="ind_storage">Storage</option>
+                <option data-i18n="ind_event_rental">Event Rentals</option>
+              </optgroup>
               <option data-i18n="ind_other">Other</option>
             </select>
           </div>
