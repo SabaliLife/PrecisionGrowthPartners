@@ -8,7 +8,7 @@ import os, re, html, json
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://www.precisiongrowthpartnersaz.com"
 EMAIL = "JoseOctavio@PrecisionGrowthPartnersAZ.com"
-FORMSPREE = "https://formspree.io/f/mojbowww"
+FORMSPREE = "https://formspree.io/f/mzdqwqnk"
 ORG_NAME = "Precision Growth Partners"
 GEO = {"lat": "33.4484", "lon": "-112.0740", "region": "US-AZ", "place": "Phoenix, Arizona"}
 
