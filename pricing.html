@@ -553,4 +553,65 @@
     opt5_h:["Hybrid","Híbrido"],
     opt5_p:["Combine any of the above to match your cash cycle. Half up front, half in installments, with a revenue-percentage tail — whatever fits.",
             "Combina cualquiera de las anteriores para ajustarse a tu ciclo de efectivo. Mitad por adelantado, mitad en parcialidades, con una cola de porcentaje sobre ingresos — lo que mejor se acomode."],
-    opt_close:["<strong>The options are endless</  
+    opt_close:["<strong>The options are endless</strong> as long as the partnership makes sense. We're firm about being upfront with every number; we're flexible about how the money moves.",
+               "<strong>Las opciones son infinitas</strong> mientras la asociación tenga sentido. Somos firmes en ser claros con cada cifra; flexibles en cómo se mueve el dinero."],
+    cc_kicker:["Why This Works","Por Qué Funciona"],
+    cc_title:["A market course correction.","Una corrección de rumbo en el mercado."],
+    cc_lead:["Small business owners have been overcharged for software for decades.",
+             "A los dueños de pequeños negocios les han cobrado de más por software durante décadas."],
+    cc_p1:["The vendors built for enterprise, then sold a watered-down version to small operators at full price. Then sold integrations on top. Then upcharged for support. Then bundled features behind a “starter tier” that no real business could actually run on.",
+           "Los proveedores construyeron para grandes empresas, luego vendieron una versión diluida a los pequeños operadores a precio completo. Después vendieron integraciones encima. Después cobraron extra por soporte. Después escondieron funciones detrás de un “nivel inicial” con el que ningún negocio real podía operar."],
+    cc_p2:["That is not the model here.","Ese no es el modelo aquí."],
+    cc_p3:["Our goal is to provide <strong>the best technology at a price others won’t be willing to do the work for.</strong> Not the cheapest — the most honest. Built complete, deployed working, owned by you, supported on a flat retainer. No per-seat fees. No paywall on the features that actually matter.",
+           "Nuestra meta es ofrecer <strong>la mejor tecnología a un precio por el que otros no estarán dispuestos a hacer el trabajo.</strong> No la más barata — la más honesta. Construida completa, desplegada y funcionando, tuya, con soporte en una iguala fija. Sin cuotas por usuario. Sin muros de pago en las funciones que de verdad importan."],
+    cc_p4:["The market got this wrong. We’re correcting course.","El mercado se equivocó en esto. Estamos corrigiendo el rumbo."],
+    cc_quote:["“The best technology at a price others won’t do the work for.” <span class=\"by\">— The PGP Standard</span>",
+              "“La mejor tecnología a un precio por el que otros no harán el trabajo.” <span class=\"by\">— El Estándar PGP</span>"],
+    masc_tag:["Precise by design. Patient by choice.","Preciso por diseño. Paciente por elección."],
+    ct_kicker:["Got Questions?","¿Tienes Preguntas?"],
+    ct_h:["Let's talk about what makes sense.","Hablemos de lo que tiene sentido."],
+    ct_p:["Every partnership is built to fit. Send us a note — tell us your trade, your timeline, what your cash flow looks like. We'll meet you where you are.",
+          "Cada asociación se construye a la medida. Mándanos un mensaje — cuéntanos tu oficio, tu tiempo, cómo se ve tu flujo de efectivo. Te encontramos donde estás."],
+    ct_cta:["Or send the full intake form →","O envía el formulario completo →"],
+    foot_tag:["Built honest. Built precise.","Hecho honesto. Hecho preciso."],
+    foot_loc:["Phoenix, Arizona — Serving Arizona and beyond","Phoenix, Arizona — Sirviendo a Arizona y más allá"],
+    footer:["© 2026 Precision Growth Partners","© 2026 Precision Growth Partners"],
+    back_home:["← Back to home","← Volver al inicio"]
+  };
+
+  function t(k){ var e = I18N[k]; return e ? e[STATE.lang === "es" ? 1 : 0] : ""; }
+
+  function applyLang(){
+    var i = STATE.lang === "es" ? 1 : 0;
+    document.documentElement.lang = STATE.lang;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var k = el.getAttribute("data-i18n"); if (I18N[k]) el.textContent = I18N[k][i];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){
+      var k = el.getAttribute("data-i18n-html"); if (I18N[k]) el.innerHTML = I18N[k][i];
+    });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function(el){
+      var k = el.getAttribute("data-i18n-placeholder"); if (I18N[k]) el.setAttribute("placeholder", I18N[k][i]);
+    });
+    if (I18N.page_title) document.title = I18N.page_title[i];
+    var btn = document.getElementById("lang-btn");
+    if (btn) { btn.textContent = STATE.lang === "es" ? "English" : "Hablo Español"; btn.setAttribute("data-lang", STATE.lang); }
+  }
+
+  function toggleLang(){
+    STATE.lang = STATE.lang === "es" ? "en" : "es";
+    try { localStorage.setItem("pgp_lang", STATE.lang); } catch(e){}
+    applyLang();
+  }
+
+  function toggleMobileNav(){
+    var nl = document.getElementById("nav-links");
+    var hb = document.getElementById("hamburger");
+    if (nl) nl.classList.toggle("open");
+    if (hb) hb.classList.toggle("open");
+  }
+
+  applyLang();
+</script>
+</body>
+</html>  

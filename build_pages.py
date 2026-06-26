@@ -390,6 +390,7 @@ def render(p):
 </section>
 {footer()}
 {NAV_JS}
+<script src="i18n-pages.js"></script>
 </body>
 </html>"""
 
