@@ -523,6 +523,15 @@
 
     footer .wrap{flex-direction:column;text-align:center}
   }
+  /* ---------- mobile hardening (safe, additive) ---------- */
+  img{max-width:100%;height:auto}
+  html,body{overflow-x:hidden}
+  @media(max-width:400px){
+    .wrap{padding:0 18px}
+    .hero h1{font-size:30px;line-height:1.12}
+    .sec-title{font-size:28px}
+    .mission .sec-title{font-size:30px}
+  }
 </style>
 <script>
 /* Intro splash flag — head-script so it runs before paint.
@@ -957,7 +966,7 @@ function dismissIntro(){
         <p class="proj-blurb" data-i18n="proj1_blurb">Residential electrical contractor running quoting, scheduling, materials and job costing on the PGP platform.</p>
         <span class="proj-link" data-i18n="proj_visit">Visit the site &rarr;</span>
       </a>
-      <a class="project-card" href="https://tucson-honey-badgers.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <a class="project-card" href="https://www.tuchoneybadgers.com" target="_blank" rel="noopener noreferrer">
         <img class="proj-logo" src="honey-badgers-logo.png" alt="Tucson Honey Badgers basketball logo" onerror="this.style.display='none'">
         <div class="proj-meta">
           <span class="proj-badge" data-i18n="proj_badge_active">Currently Active</span>
@@ -965,6 +974,16 @@ function dismissIntro(){
         </div>
         <h3 class="proj-name" data-i18n="proj2_name">Tucson Honey Badgers</h3>
         <p class="proj-blurb" data-i18n="proj2_blurb">Youth club basketball program with a custom team website &mdash; schedule, roster, and online home, built and running.</p>
+        <span class="proj-link" data-i18n="proj_visit">Visit the site &rarr;</span>
+      </a>
+      <a class="project-card" href="https://www.compadresbarbershop.net" target="_blank" rel="noopener noreferrer">
+        <img class="proj-logo" style="object-fit:cover;padding:0" src="CBS-Hero.jpg" alt="Compadres Barbershop" onerror="this.style.display='none'">
+        <div class="proj-meta">
+          <span class="proj-badge" data-i18n="proj_badge_active">Currently Active</span>
+          <span class="proj-trade" data-i18n="proj3_trade">Barber &amp; Beauty &middot; Guadalupe, AZ</span>
+        </div>
+        <h3 class="proj-name" data-i18n="proj3_name">Compadres Barbershop</h3>
+        <p class="proj-blurb" data-i18n="proj3_blurb">Barbershop running on a custom website &mdash; services, online presence, and bookings, built and running.</p>
         <span class="proj-link" data-i18n="proj_visit">Visit the site &rarr;</span>
       </a>
     </div>
@@ -1511,6 +1530,10 @@ function dismissIntro(){
     proj2_name: ["Tucson Honey Badgers","Tucson Honey Badgers"],
     proj2_blurb:["Youth club basketball program with a custom team website — schedule, roster, and online home, built and running.",
                  "Programa de básquetbol juvenil de club con un sitio web a la medida — calendario, roster y hogar en línea, construido y funcionando."],
+    proj3_trade:["Barber & Beauty · Guadalupe, AZ","Barbería y Belleza · Guadalupe, AZ"],
+    proj3_name: ["Compadres Barbershop","Compadres Barbershop"],
+    proj3_blurb:["Barbershop running on a custom website — services, online presence, and bookings, built and running.",
+                 "Barbería funcionando con un sitio web a la medida — servicios, presencia en línea, y citas, construido y funcionando."],
     proj_visit:["Visit the site →","Visita el sitio →"],
 
     pay_kicker:["How It Works","Cómo Funciona"],
