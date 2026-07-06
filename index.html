@@ -151,6 +151,9 @@
     align-items:center;gap:8px;transition:border-color .15s}
   .btn-line:hover{border-color:var(--copper)}
   .hero-trust{display:flex;align-items:center;gap:10px;color:var(--txt-dim);font-size:13.5px}
+  .email-cta{font-size:13.5px;color:var(--txt-dim);margin-top:16px}
+  .email-cta a{color:var(--copper-b);font-weight:600}
+  .email-cta a:hover{color:var(--teal)}
   .hero-trust .tick{color:var(--teal);font-size:16px}
   .hero-art{position:relative;text-align:center}
   .hero-art img{width:100%;height:470px;object-fit:cover;object-position:50% 35%;
@@ -477,6 +480,7 @@
           <a href="#contact" class="btn-line" data-i18n="hero_btn_demo">Book a Working Demo &rarr;</a>
         </div>
         <div class="hero-trust"><span class="tick">&#10003;</span><span data-i18n="hero_trust">Trusted by local businesses across Arizona</span></div>
+        <div class="email-cta" data-i18n-html="email_hero">Not a form person? <a href="mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Demo%20request%20%E2%80%94%20homepage">Email Jose directly</a> — a real person answers.</div>
       </div>
       <div class="hero-art">
         <img src="hero-snake-web.jpg" alt="Precision Growth Partners — growth emblem over the Arizona desert" onerror="this.parentElement.style.display='none'">
@@ -670,6 +674,7 @@
       </div>
     </div>
     <div class="tier-note" data-i18n-html="tier_note">Flexible payment options — up front, installments, or hybrid. <a href="pricing.html">See full pricing &amp; payment options &rarr;</a></div>
+    <div class="email-cta" style="text-align:center" data-i18n-html="email_tiers">Not sure which package fits? <a href="mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Which%20package%20fits%20my%20business%3F">Just ask Jose</a> — no pitch, straight answers.</div>
   </div>
 </section>
 
@@ -688,6 +693,7 @@
           <div class="founder-name">Jose Octavio</div>
           <div class="founder-role" data-i18n="ab_role">Founder</div>
         </div>
+        <div class="email-cta" data-i18n-html="email_founder">Have a question? <a href="mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Question%20for%20Jose">Write me directly</a> — I read every email myself.</div>
       </div>
     </div>
   </div>
@@ -808,6 +814,12 @@
     hero_btn_work:["See Our Work →","Ver Nuestro Trabajo →"],
     hero_btn_demo:["Book a Working Demo →","Reserva una Demo Funcionando →"],
     hero_trust:["Trusted by local businesses across Arizona","La confianza de negocios locales en todo Arizona"],
+    email_hero:["Not a form person? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Demo%20request%20%E2%80%94%20homepage\">Email Jose directly</a> — a real person answers.",
+               "¿No te gustan los formularios? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Solicitud%20de%20demo\">Escríbele a Jose directamente</a> — responde una persona real."],
+    email_tiers:["Not sure which package fits? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Which%20package%20fits%20my%20business%3F\">Just ask Jose</a> — no pitch, straight answers.",
+               "¿No sabes qué paquete te conviene? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=%C2%BFQu%C3%A9%20paquete%20me%20conviene%3F\">Pregúntale a Jose</a> — sin rollo, respuestas directas."],
+    email_founder:["Have a question? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Question%20for%20Jose\">Write me directly</a> — I read every email myself.",
+               "¿Tienes una pregunta? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com?subject=Pregunta%20para%20Jose\">Escríbeme directamente</a> — yo mismo leo cada correo."],
 
     tb1_h:["Operator First","Primero Operadores"],
     tb1_p:["We’ve been in the field. We get it.","Hemos estado en el campo. Lo entendemos."],
@@ -863,7 +875,4 @@
     pr3_h:["Launch","Lanzar"],
     pr3_p:["Your site, forms, Google presence, and systems go live.","Tu sitio, formularios, presencia en Google y sistemas entran en vivo."],
     pr4_h:["Grow","Crecer"],
-    pr4_p:["We keep improving content, reviews, visibility, and operations.","Seguimos mejorando contenido, reseñas, visibilidad y operaciones."],
-
-    tier_kicker:["Pricing","Precios"],
-    tier_title:
+    pr4_p:["We keep improving content, reviews, visibility, and operations.","Seguimos mejorando contenido, res
