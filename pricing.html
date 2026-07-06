@@ -94,7 +94,7 @@
     border-bottom:1px solid var(--line)}
   .nav-in{max-width:1240px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:20px}
   .logo-lock{display:flex;align-items:center;gap:12px;flex-shrink:0}
-  .logo-img{height:52px;width:auto;display:block}
+  .logo-img{height:64px;width:auto;display:block}
   .logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
     letter-spacing:2px;line-height:1.15;color:#fff}
   .logo-txt .lt2{color:var(--teal)}
@@ -111,6 +111,22 @@
   .nav-cta{border:1px solid var(--copper);color:var(--copper-b);padding:10px 20px;border-radius:6px;
     font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .15s}
   .nav-cta:hover{background:var(--copper);color:#14100B}
+  /* nav dropdown */
+  .dd{position:relative}
+  .dd>a{color:var(--txt-dim);font-size:12.5px;font-weight:600;letter-spacing:1.5px;
+    text-transform:uppercase;white-space:nowrap}
+  .dd>a:hover{color:var(--copper-b)}
+  .dd .caret{font-size:8px;margin-left:4px;color:var(--txt-faint)}
+  .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    padding-top:14px;display:none;z-index:60}
+  .dd:hover .dd-menu,.dd:focus-within .dd-menu,.dd.open .dd-menu{display:block}
+  .dd-in{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;
+    min-width:240px;padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+  .dd-in a{display:block;padding:9px 12px;border-radius:7px;color:var(--txt-dim);
+    font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
+  .dd-in a:hover{background:rgba(208,142,86,.12);color:var(--copper-b)}
+  .dd-sep{height:1px;background:var(--line);margin:8px 6px}
+  .dd-in{max-height:72vh;overflow-y:auto}
 
   /* hero */
   .hero{padding:70px 0 60px;text-align:center;
@@ -246,7 +262,7 @@
   @media(max-width:620px){
     section{padding:56px 0}
     .nav-in{flex-wrap:wrap;padding:12px 18px;gap:12px}
-    .logo-img{height:42px}
+    .logo-img{height:50px}
     .nav-links{gap:14px}
     .hero{padding:48px 0 44px}
     .hero h1{font-size:29px}
@@ -262,11 +278,55 @@
 <nav>
   <div class="nav-in">
     <a class="logo-lock" href="index.html">
-      <img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners logo" onerror="this.style.display='none'">
-      <span class="logo-txt">PRECISION<br><span class="lt2">GROWTH</span><br><span class="lt3">PARTNERS</span></span>
+      <img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners" onerror="this.style.display='none'">
     </a>
     <div class="nav-links">
-      <a href="index.html#services" data-i18n="nav_services">Services</a>
+      <div class="dd">
+        <a href="index.html#services"><span data-i18n="nav_services">Services</span><span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="index.html#services" data-i18n="dd_overview">What We Do</a>
+          <div class="dd-sep"></div>
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+          <a href="start-a-contracting-business-arizona.html">Start a Contracting Business</a>
+        </div></div>
+      </div>
+      <div class="dd">
+        <a href="construction-trades-business-software.html"><span data-i18n="nav_ind">Industries</span><span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="construction-trades-business-software.html">Construction &amp; Trades</a>
+          <a href="vehicle-mobile-services-software.html">Vehicle &amp; Mobile Services</a>
+          <a href="personal-care-business-software.html">Personal Care</a>
+          <a href="food-hospitality-business-software.html">Food &amp; Hospitality</a>
+          <a href="creative-production-business-software.html">Creative &amp; Production</a>
+          <a href="property-services-business-software.html">Home &amp; Property</a>
+          <a href="logistics-specialty-business-software.html">Logistics &amp; Specialty</a>
+        </div></div>
+      </div>
+      <div class="dd">
+        <a href="small-business-software-arizona.html"><span data-i18n="nav_areas">Service Areas</span><span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="small-business-software-arizona.html">Arizona (Statewide)</a>
+          <div class="dd-sep"></div>
+          <a href="tucson-small-business-help.html">Tucson</a>
+          <a href="marana-small-business-help.html">Marana</a>
+          <a href="oro-valley-small-business-help.html">Oro Valley</a>
+          <a href="green-valley-small-business-help.html">Green Valley</a>
+          <a href="vail-small-business-help.html">Vail</a>
+          <div class="dd-sep"></div>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tempe-small-business-help.html">Tempe</a>
+          <a href="chandler-small-business-help.html">Chandler</a>
+          <a href="gilbert-small-business-help.html">Gilbert</a>
+          <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+          <div class="dd-sep"></div>
+          <a href="casa-grande-small-business-help.html">Casa Grande</a>
+        </div></div>
+      </div>
       <a href="index.html#work" data-i18n="nav_work">Our Work</a>
       <a href="index.html#process" data-i18n="nav_process">Process</a>
       <a href="pricing.html" class="active" data-i18n="nav_pricing">Pricing</a>
@@ -509,6 +569,9 @@
     page_title:["Pricing — Websites from $1,295 | Precision Growth Partners",
                 "Precios — Sitios web desde $1,295 | Precision Growth Partners"],
     nav_services:["Services","Servicios"],
+    dd_overview:["What We Do","Lo Que Hacemos"],
+    nav_ind:["Industries","Industrias"],
+    nav_areas:["Service Areas","Áreas de Servicio"],
     nav_work:["Our Work","Nuestro Trabajo"],
     nav_process:["Process","Proceso"],
     nav_pricing:["Pricing","Precios"],
@@ -626,38 +689,4 @@
     cta_h:["Let’s talk about <span class=\"teal\">what makes sense.</span>",
            "Hablemos de <span class=\"teal\">lo que tiene sentido.</span>"],
     cta_p:["Tell us your trade, your timeline, and what your cash flow looks like. We’ll meet you where you are — no pressure, no auto-replies.",
-           "Cuéntanos tu oficio, tus tiempos y cómo se ve tu flujo de efectivo. Te encontramos donde estés — sin presión, sin respuestas automáticas."],
-    cta_btn:["Book a Working Demo →","Reserva una Demo Funcionando →"],
-    cta_email:["Prefer email? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com\">JoseOctavio@PrecisionGrowthPartnersAZ.com</a>",
-               "¿Prefieres correo? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com\">JoseOctavio@PrecisionGrowthPartnersAZ.com</a>"],
-
-    foot_tag:["Built honest. Built precise.","Hecho honesto. Hecho preciso."],
-    foot_desc:["Branding, websites, operations, and growth systems for Arizona contractors and local service businesses. Bilingual EN / ES.",
-               "Marca, sitios web, operaciones y sistemas de crecimiento para contratistas y negocios de servicio de Arizona. Bilingüe EN / ES."],
-    foot_sol:["Solutions","Soluciones"],
-    foot_pricing:["Pricing","Precios"],
-    foot_ind:["Industries","Industrias"],
-    foot_areas:["Service Areas","Áreas de Servicio"],
-    foot_base:["© 2026 Precision Growth Partners AZ. All rights reserved.","© 2026 Precision Growth Partners AZ. Todos los derechos reservados."]
-  };
-
-  function applyLang(idx){
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var k=el.getAttribute('data-i18n'); if(I18N[k]) el.textContent=I18N[k][idx];
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
-      var k=el.getAttribute('data-i18n-html'); if(I18N[k]) el.innerHTML=I18N[k][idx];
-    });
-    document.title=I18N.page_title[idx];
-    document.getElementById('html-root').setAttribute('lang', idx===0?'en':'es');
-  }
-  function toggleLang(){
-    var btn=document.getElementById('lang-btn');
-    var next=btn.getAttribute('data-lang')==='en'?'es':'en';
-    btn.setAttribute('data-lang',next);
-    btn.textContent = next==='es' ? 'English' : 'Hablo Español';
-    applyLang(next==='es'?1:0);
-  }
-</script>
-</body>
-</html>
+           "Cuéntanos tu oficio, tus tiempos y cómo 

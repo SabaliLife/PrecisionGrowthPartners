@@ -66,7 +66,7 @@
     border-bottom:1px solid var(--line)}
   .nav-in{max-width:1240px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:20px}
   .logo-lock{display:flex;align-items:center;gap:12px;flex-shrink:0}
-  .logo-img{height:52px;width:auto;display:block}
+  .logo-img{height:64px;width:auto;display:block}
   .logo-txt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;
     letter-spacing:2px;line-height:1.15;color:#fff}
   .logo-txt .lt2{color:var(--teal)}
@@ -96,6 +96,7 @@
     font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
   .dd-in a:hover{background:rgba(208,142,86,.12);color:var(--copper-b)}
   .dd-sep{height:1px;background:var(--line);margin:8px 6px}
+  .dd-in{max-height:72vh;overflow-y:auto}
 
   /* hero */
   .hero{padding:64px 0 60px;
@@ -220,7 +221,7 @@
   @media(max-width:620px){
     section{padding:54px 0}
     .nav-in{flex-wrap:wrap;padding:12px 18px;gap:12px}
-    .logo-img{height:42px}
+    .logo-img{height:50px}
     .hero h1{font-size:29px}
     .sec-title{font-size:25px}
     .holo{height:260px}
@@ -233,8 +234,7 @@
 <nav>
   <div class="nav-in">
     <a class="logo-lock" href="index.html">
-      <img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners logo" onerror="this.style.display='none'">
-      <span class="logo-txt">PRECISION<br><span class="lt2">GROWTH</span><br><span class="lt3">PARTNERS</span></span>
+      <img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners" onerror="this.style.display='none'">
     </a>
     <div class="nav-links">
       <div class="dd">
@@ -249,6 +249,38 @@
           <div class="dd-sep"></div>
           <a href="small-business-startup-help-arizona.html">Startup Help</a>
           <a href="start-a-contracting-business-arizona.html">Start a Contracting Business</a>
+        </div></div>
+      </div>
+      <div class="dd">
+        <a href="construction-trades-business-software.html"><span data-i18n="nav_ind">Industries</span><span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="construction-trades-business-software.html">Construction &amp; Trades</a>
+          <a href="vehicle-mobile-services-software.html">Vehicle &amp; Mobile Services</a>
+          <a href="personal-care-business-software.html">Personal Care</a>
+          <a href="food-hospitality-business-software.html">Food &amp; Hospitality</a>
+          <a href="creative-production-business-software.html">Creative &amp; Production</a>
+          <a href="property-services-business-software.html">Home &amp; Property</a>
+          <a href="logistics-specialty-business-software.html">Logistics &amp; Specialty</a>
+        </div></div>
+      </div>
+      <div class="dd">
+        <a href="small-business-software-arizona.html"><span data-i18n="nav_areas">Service Areas</span><span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="small-business-software-arizona.html">Arizona (Statewide)</a>
+          <div class="dd-sep"></div>
+          <a href="tucson-small-business-help.html">Tucson</a>
+          <a href="marana-small-business-help.html">Marana</a>
+          <a href="oro-valley-small-business-help.html">Oro Valley</a>
+          <a href="green-valley-small-business-help.html">Green Valley</a>
+          <a href="vail-small-business-help.html">Vail</a>
+          <div class="dd-sep"></div>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tempe-small-business-help.html">Tempe</a>
+          <a href="chandler-small-business-help.html">Chandler</a>
+          <a href="gilbert-small-business-help.html">Gilbert</a>
+          <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+          <div class="dd-sep"></div>
+          <a href="casa-grande-small-business-help.html">Casa Grande</a>
         </div></div>
       </div>
       <a href="index.html#work" data-i18n="nav_work">Our Work</a>
@@ -401,6 +433,8 @@
                 "Tucson Badger Electric — Historia de Cliente | Precision Growth Partners"],
     nav_services:["Services","Servicios"],
     dd_overview:["What We Do","Lo Que Hacemos"],
+    nav_ind:["Industries","Industrias"],
+    nav_areas:["Service Areas","Áreas de Servicio"],
     nav_work:["Our Work","Nuestro Trabajo"],
     nav_process:["Process","Proceso"],
     nav_pricing:["Pricing","Precios"],
