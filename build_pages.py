@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Precision Growth Partners — SEO spoke-page generator.
-Builds branded, fully-SEO'd service pages on the Tucson Badger Electric
-hub-and-spoke pattern. Run from the PGP folder; writes .html files there.
+"""Precision Growth Partners — SEO spoke-page generator (v2, dark copper/teal theme).
+
+v2 renders the same page data with the new brand theme and FOUR distinct layouts
+(solutions / trades / guides / cities) so pages don't feel cookie-cutter.
+The v2 engine lives at the bottom of this file and overrides the legacy
+renderer above it; page DATA (PAGES, CITY_DATA, R) is unchanged.
+
+Usage:
+  python build_pages.py            -> writes .html files here (+ sitemap/robots)
+  python build_pages.py preview    -> writes into ./preview (no sitemap/robots)
 """
 import os, re, html, json
 
@@ -996,25 +1003,667 @@ PAGES = [
 
 PAGES += [city_page(**c) for c in CITY_DATA]
 
+# =============================================================================
+# ======================  V2 ENGINE (dark copper/teal)  ======================
+# ==  Redefines CSS/NAV/FOOTER/head/render below; legacy renderer above is  ==
+# ==  dead code kept only to preserve file history. Page data is untouched. ==
+# =============================================================================
+import sys
+from datetime import date
+
+PREVIEW = len(sys.argv) > 1 and sys.argv[1] == "preview"
+OUT = os.path.join(ROOT, "preview") if PREVIEW else ROOT
+
+SOLUTIONS = {"quote-and-win-software", "inventory-operations-software",
+             "job-costing-software", "business-operations-playbook"}
+TRADES = {"landscaping-business-software", "roofing-business-software",
+          "drywall-contractor-software", "solar-installer-software",
+          "barber-salon-software"}
+
+CITY_GEO = {
+    "phoenix": ("33.4484", "-112.0740", "Phoenix, Arizona"),
+    "tucson": ("32.2226", "-110.9747", "Tucson, Arizona"),
+    "marana": ("32.4467", "-111.2224", "Marana, Arizona"),
+    "vail": ("32.0489", "-110.7123", "Vail, Arizona"),
+    "green-valley": ("31.8543", "-110.9937", "Green Valley, Arizona"),
+    "oro-valley": ("32.3910", "-110.9665", "Oro Valley, Arizona"),
+    "casa-grande": ("32.8795", "-111.7574", "Casa Grande, Arizona"),
+    "chandler": ("33.3062", "-111.8413", "Chandler, Arizona"),
+    "gilbert": ("33.3528", "-111.7890", "Gilbert, Arizona"),
+    "ahwatukee": ("33.3406", "-111.9847", "Ahwatukee, Phoenix, Arizona"),
+    "tempe": ("33.4255", "-111.9400", "Tempe, Arizona"),
+}
+DEFAULT_GEO = ("33.4484", "-112.0740", "Phoenix, Arizona")
+
+def ptype(p):
+    s = p["slug"]
+    if s in SOLUTIONS: return "solution"
+    if s in TRADES: return "trade"
+    if s.endswith("-small-business-help"): return "city"
+    return "guide"
+
+def city_key(p):
+    return p["slug"].replace("-small-business-help", "")
+
+CSS = """<style>
+  :root{
+    --copper:#D08E56; --copper-b:#E8AC72; --copper-d:#A96F3F;
+    --teal:#2FB3AA; --teal-d:#1E8A83;
+    --grad-copper:linear-gradient(135deg,#E8AC72 0%,#D08E56 50%,#A96F3F 100%);
+    --bg:#0B0D10; --panel:#12151A; --panel-2:#181C22; --line:#262B33;
+    --txt:#E7E4DE; --txt-dim:#9BA1AA; --txt-faint:#6E747E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:96px}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  h1,h2{font-family:'Cinzel',serif;font-weight:600;line-height:1.12;letter-spacing:.5px}
+  h3,h4,h5{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.5px;line-height:1.12}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  .teal{color:var(--teal)} .accent{color:var(--teal)}
+  section{padding:72px 0}
+  .kicker{font-family:'Barlow Condensed',sans-serif;letter-spacing:3px;text-transform:uppercase;
+    color:var(--copper);font-size:13.5px;font-weight:600;margin-bottom:10px}
+  .sec-title{font-size:32px;margin-bottom:14px;color:var(--txt)}
+  .sec-intro{color:var(--txt-dim);max-width:640px;font-size:15px;margin-bottom:36px}
+  .center .kicker,.center .sec-title{text-align:center}
+  .center .sec-intro{margin-left:auto;margin-right:auto;text-align:center}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(11,13,16,.96);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1240px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:20px}
+  .logo-img{height:64px;width:auto;display:block;flex-shrink:0}
+  .nav-links{display:flex;gap:22px;margin-left:auto;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .nav-links > a{color:var(--txt-dim);font-size:12.5px;font-weight:600;letter-spacing:1.5px;
+    text-transform:uppercase;white-space:nowrap}
+  .nav-links > a:hover{color:var(--copper-b)}
+  .nav-cta{border:1px solid var(--copper);color:var(--copper-b);padding:10px 20px;border-radius:6px;
+    font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .15s}
+  .nav-cta:hover{background:var(--copper);color:#14100B}
+  .dd{position:relative}
+  .dd>a{color:var(--txt-dim);font-size:12.5px;font-weight:600;letter-spacing:1.5px;
+    text-transform:uppercase;white-space:nowrap}
+  .dd>a:hover{color:var(--copper-b)}
+  .dd .caret{font-size:8px;margin-left:4px;color:var(--txt-faint)}
+  .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    padding-top:14px;display:none;z-index:60}
+  .dd:hover .dd-menu,.dd:focus-within .dd-menu,.dd.open .dd-menu{display:block}
+  .dd-in{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;
+    min-width:240px;padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55);
+    max-height:72vh;overflow-y:auto}
+  .dd-in a{display:block;padding:9px 12px;border-radius:7px;color:var(--txt-dim);
+    font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
+  .dd-in a:hover{background:rgba(208,142,86,.12);color:var(--copper-b)}
+  .dd-sep{height:1px;background:var(--line);margin:8px 6px}
+
+  .breadcrumb{max-width:1160px;margin:0 auto;padding:16px 28px 0;font-size:12px;
+    letter-spacing:1.5px;text-transform:uppercase;color:var(--txt-faint);font-weight:600}
+  .breadcrumb a{color:var(--teal)}
+  .breadcrumb a:hover{color:var(--copper-b)}
+
+  .btn-solid{background:var(--grad-copper);color:#14100B;padding:14px 26px;border-radius:7px;
+    font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;
+    align-items:center;gap:8px;transition:filter .15s,transform .12s}
+  .btn-solid:hover{filter:brightness(1.1);transform:translateY(-1px)}
+  .btn-line{border:1px solid var(--line);color:var(--txt);padding:14px 26px;border-radius:7px;
+    font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;
+    align-items:center;gap:8px;transition:border-color .15s}
+  .btn-line:hover{border-color:var(--copper)}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+
+  .hero{padding:58px 0 62px;
+    background:radial-gradient(900px 460px at 80% 0%,rgba(208,142,86,.10),transparent),var(--bg)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  .hero h1{font-size:42px;margin-bottom:16px}
+  .hero h1 .accent{color:var(--teal)}
+  .hero p.sub{font-size:16px;color:var(--txt-dim);max-width:500px;margin-bottom:26px}
+  .sp-meta{margin-top:20px;color:var(--txt-faint);font-size:12.5px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+
+  .hero-center{padding:64px 0 58px;text-align:center;
+    background:radial-gradient(800px 420px at 50% -10%,rgba(208,142,86,.10),transparent),var(--bg)}
+  .hero-center h1{font-size:42px;max-width:840px;margin:0 auto 18px}
+  .hero-center h1 .accent{color:var(--teal)}
+  .hero-center p.sub{font-size:16px;color:var(--txt-dim);max-width:640px;margin:0 auto 28px}
+  .hero-center .kicker{text-align:center}
+  .hero-center .hero-btns{justify-content:center}
+
+  .hero-city{padding:58px 0 62px;position:relative;overflow:hidden;
+    background:radial-gradient(900px 480px at 15% -10%,rgba(47,179,170,.10),transparent),
+               radial-gradient(700px 420px at 90% 110%,rgba(208,142,86,.10),transparent),var(--bg)}
+  .city-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--teal);
+    color:var(--teal);border-radius:999px;padding:7px 16px;font-size:11.5px;font-weight:700;
+    letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+  .hero-city h1{font-size:46px;max-width:820px;margin-bottom:16px}
+  .hero-city h1 .accent{color:var(--teal)}
+  .hero-city p.sub{font-size:16px;color:var(--txt-dim);max-width:640px;margin-bottom:26px}
+
+  .holo{position:relative;border-radius:14px;overflow:hidden;padding:34px 26px 42px;
+    border:1px solid rgba(208,142,86,.5);
+    background:
+      radial-gradient(380px 200px at 50% 20%,rgba(47,179,170,.12),transparent 70%),
+      radial-gradient(340px 220px at 50% 115%,rgba(208,142,86,.16),transparent 70%),
+      var(--panel-2);
+    box-shadow:0 6px 24px rgba(0,0,0,.4)}
+  .holo::before{content:"";position:absolute;left:-25%;right:-25%;bottom:-12%;height:55%;
+    background:
+      repeating-linear-gradient(90deg,rgba(47,179,170,.16) 0 1px,transparent 1px 44px),
+      repeating-linear-gradient(0deg,rgba(47,179,170,.13) 0 1px,transparent 1px 30px);
+    transform:perspective(300px) rotateX(58deg);transform-origin:bottom;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent,#000 45%);
+    mask-image:linear-gradient(180deg,transparent,#000 45%)}
+  .hud{position:absolute;inset:10px;pointer-events:none}
+  .hud::before,.hud::after{content:"";position:absolute;width:22px;height:22px;
+    border:1.5px solid var(--copper-b);opacity:.9}
+  .hud::before{top:0;left:0;border-right:none;border-bottom:none}
+  .hud::after{bottom:0;right:0;border-left:none;border-top:none}
+  .holo-stats{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .holo-stat{background:rgba(11,13,16,.55);border:1px solid var(--line);border-radius:10px;
+    padding:18px 14px;text-align:center;backdrop-filter:blur(2px)}
+  .holo-stat .n{font-family:'Cinzel',serif;font-size:24px;font-weight:600;color:var(--copper-b)}
+  .holo-stat .l{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--txt-dim);font-weight:700;margin-top:5px}
+
+  .statband{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--panel);padding:0}
+  .statband .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
+  .statband .stat{padding:26px 14px;text-align:center}
+  .statband .n{font-family:'Cinzel',serif;font-size:26px;font-weight:600;color:var(--copper-b)}
+  .statband .l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--txt-dim);font-weight:700;margin-top:5px}
+
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:8px}
+  .feat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px 24px;
+    border-top:3px solid var(--copper);transition:transform .15s,border-color .15s}
+  .feat:hover{transform:translateY(-3px);border-color:var(--copper-d)}
+  .feat .ix{font-family:'Barlow Condensed',sans-serif;color:var(--teal);font-weight:700;
+    font-size:13px;letter-spacing:2px}
+  .feat h3{font-size:21px;margin:6px 0 9px;color:var(--copper-b)}
+  .feat p{color:var(--txt-dim);font-size:14px;line-height:1.65}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 20px;text-align:center}
+  .step .sn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+    border-radius:50%;border:1.5px solid var(--copper);color:var(--copper-b);
+    font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;margin-bottom:12px}
+  .step h4{font-size:17px;letter-spacing:2px;text-transform:uppercase;color:var(--txt);margin-bottom:7px}
+  .step p{color:var(--txt-dim);font-size:13px;line-height:1.6}
+
+  .checks{margin-top:8px;max-width:780px;list-style:none}
+  .checks li{padding:11px 0 11px 30px;position:relative;border-bottom:1px solid var(--line);
+    font-size:14.5px;color:var(--txt-dim)}
+  .checks li:before{content:"\\2713";position:absolute;left:0;color:var(--teal);font-weight:700}
+
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .pill{border:1px solid var(--copper-d);color:var(--copper-b);border-radius:999px;
+    padding:10px 20px;font-size:13.5px;font-weight:600;letter-spacing:.3px;
+    background:rgba(208,142,86,.06)}
+
+  .faq{max-width:780px;margin-top:8px}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    margin-bottom:12px;overflow:hidden}
+  .faq summary{cursor:pointer;padding:17px 22px;font-weight:600;font-size:15px;color:var(--txt);
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--copper);font-size:20px;font-weight:400;flex-shrink:0}
+  .faq details[open] summary::after{content:"\\2212"}
+  .faq details[open] summary{color:var(--copper-b)}
+  .faq p{padding:0 22px 18px;color:var(--txt-dim);font-size:14px;line-height:1.7}
+
+  .related{background:var(--panel)}
+  .rel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+  .rel-card{display:block;background:var(--bg);border:1px solid var(--line);border-radius:11px;
+    padding:22px 20px;border-left:3px solid var(--copper);transition:transform .15s,border-color .15s}
+  .rel-card:hover{transform:translateY(-2px);border-left-color:var(--teal)}
+  .rel-card .rt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;
+    color:var(--copper-b);letter-spacing:.5px;margin-bottom:6px}
+  .rel-card .rd{color:var(--txt-dim);font-size:13px;line-height:1.55}
+
+  .cta-band{padding:80px 0;
+    background:radial-gradient(700px 380px at 50% 120%,rgba(208,142,86,.12),transparent),var(--panel-2)}
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .cta-band h2{font-size:30px;margin-bottom:12px}
+  .cta-band .lead{color:var(--txt-dim);font-size:15px;margin-bottom:20px;max-width:460px}
+  .email-cta{font-size:13.5px;color:var(--txt-dim);margin-top:18px}
+  .email-cta a{color:var(--copper-b);font-weight:600}
+  .email-cta a:hover{color:var(--teal)}
+  .form-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .form-card label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--txt-faint);font-weight:700;margin:14px 0 6px}
+  .form-card .fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .form-card input,.form-card textarea{width:100%;background:var(--panel-2);
+    border:1px solid var(--line);color:var(--txt);padding:12px 13px;border-radius:7px;
+    font-family:inherit;font-size:14px}
+  .form-card input:focus,.form-card textarea:focus{outline:none;border-color:var(--copper)}
+  .form-card textarea{resize:vertical;min-height:76px}
+  .form-card button{width:100%;background:var(--grad-copper);color:#14100B;padding:14px;border:none;
+    border-radius:7px;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+    margin-top:18px;cursor:pointer;font-family:'Inter',sans-serif;transition:filter .15s}
+  .form-card button:hover{filter:brightness(1.1)}
+  .form-card .note{font-size:12px;color:var(--txt-faint);margin-top:11px;text-align:center}
+
+  footer{background:var(--bg);border-top:1px solid var(--line);padding:56px 0 28px;
+    font-size:13px;color:var(--txt-faint)}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;margin-bottom:38px}
+  .foot-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:3px;
+    color:#fff;font-weight:700;margin-bottom:6px}
+  .foot-tag{font-style:italic;color:var(--copper);font-size:13px;margin-bottom:14px}
+  .foot-grid p{line-height:1.6;font-size:12.5px;max-width:260px}
+  .foot-email a{color:var(--copper-b);font-weight:600}
+  .foot-email a:hover{color:var(--teal)}
+  .foot-grid h5{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--txt-dim);margin-bottom:14px}
+  .foot-grid .fc a{display:block;color:var(--txt-faint);font-size:12.5px;padding:4px 0}
+  .foot-grid .fc a:hover{color:var(--copper-b)}
+  .foot-base{padding-top:22px;border-top:1px solid var(--line);font-size:12px;
+    letter-spacing:.5px;text-align:center}
+
+  @media(max-width:980px){
+    .hero-grid,.cta-grid{grid-template-columns:1fr;gap:34px}
+    .hero h1,.hero-center h1{font-size:34px}
+    .hero-city h1{font-size:36px}
+    .statband .wrap{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:620px){
+    section{padding:54px 0}
+    .nav-in{flex-wrap:wrap;padding:12px 18px;gap:12px}
+    .logo-img{height:50px}
+    .nav-links{gap:14px}
+    .hero h1,.hero-center h1,.hero-city h1{font-size:28px}
+    .sec-title{font-size:25px}
+    .form-card .fr{grid-template-columns:1fr}
+    .form-card input,.form-card textarea{font-size:16px}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>"""
+
+NAV = """<nav>
+  <div class="nav-in">
+    <a href="index.html"><img class="logo-img" src="pgp-logo.png" alt="Precision Growth Partners" onerror="this.style.display='none'"></a>
+    <div class="nav-links">
+      <div class="dd">
+        <a href="index.html#services">Services<span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="index.html#services">What We Do</a>
+          <div class="dd-sep"></div>
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+          <a href="start-a-contracting-business-arizona.html">Start a Contracting Business</a>
+        </div></div>
+      </div>
+      <div class="dd">
+        <a href="construction-trades-business-software.html">Industries<span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="construction-trades-business-software.html">Construction &amp; Trades</a>
+          <a href="vehicle-mobile-services-software.html">Vehicle &amp; Mobile Services</a>
+          <a href="personal-care-business-software.html">Personal Care</a>
+          <a href="food-hospitality-business-software.html">Food &amp; Hospitality</a>
+          <a href="creative-production-business-software.html">Creative &amp; Production</a>
+          <a href="property-services-business-software.html">Home &amp; Property</a>
+          <a href="logistics-specialty-business-software.html">Logistics &amp; Specialty</a>
+          <div class="dd-sep"></div>
+          <a href="landscaping-business-software.html">Landscaping</a>
+          <a href="roofing-business-software.html">Roofing</a>
+          <a href="drywall-contractor-software.html">Drywall</a>
+          <a href="solar-installer-software.html">Solar</a>
+          <a href="barber-salon-software.html">Barber &amp; Salon</a>
+        </div></div>
+      </div>
+      <div class="dd">
+        <a href="small-business-software-arizona.html">Service Areas<span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="small-business-software-arizona.html">Arizona (Statewide)</a>
+          <div class="dd-sep"></div>
+          <a href="tucson-small-business-help.html">Tucson</a>
+          <a href="marana-small-business-help.html">Marana</a>
+          <a href="oro-valley-small-business-help.html">Oro Valley</a>
+          <a href="green-valley-small-business-help.html">Green Valley</a>
+          <a href="vail-small-business-help.html">Vail</a>
+          <div class="dd-sep"></div>
+          <a href="phoenix-small-business-help.html">Phoenix</a>
+          <a href="tempe-small-business-help.html">Tempe</a>
+          <a href="chandler-small-business-help.html">Chandler</a>
+          <a href="gilbert-small-business-help.html">Gilbert</a>
+          <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+          <div class="dd-sep"></div>
+          <a href="casa-grande-small-business-help.html">Casa Grande</a>
+        </div></div>
+      </div>
+      <a href="index.html#work">Our Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="index.html#about">About</a>
+      <a href="#quote" class="nav-cta">Book a Demo</a>
+    </div>
+  </div>
+</nav>"""
+
+NAV_JS = """<script>
+  document.querySelectorAll('.dd>a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(window.matchMedia('(hover: none)').matches){
+        var p=a.parentElement;
+        if(!p.classList.contains('open')){
+          e.preventDefault();
+          document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+          p.classList.add('open');
+        }
+      }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.dd')) document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+  });
+</script>"""
+
+FOOTER = f"""<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-name">PRECISION GROWTH PARTNERS</div>
+        <div class="foot-tag">Built honest. Built precise.</div>
+        <p>Branding, websites, operations, and growth systems for Arizona contractors and local service businesses. Bilingual EN / ES.</p>
+        <p class="foot-email" style="margin-top:12px"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+      </div>
+      <div class="fc">
+        <h5>Solutions</h5>
+        <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+        <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+        <a href="job-costing-software.html">Job Costing</a>
+        <a href="business-operations-playbook.html">Operating Playbook</a>
+        <a href="small-business-startup-help-arizona.html">Startup Help</a>
+        <a href="start-a-contracting-business-arizona.html">Start a Contracting Business</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="fc">
+        <h5>Industries</h5>
+        <a href="construction-trades-business-software.html">Construction &amp; Trades</a>
+        <a href="vehicle-mobile-services-software.html">Vehicle &amp; Mobile Services</a>
+        <a href="personal-care-business-software.html">Personal Care</a>
+        <a href="food-hospitality-business-software.html">Food &amp; Hospitality</a>
+        <a href="creative-production-business-software.html">Creative &amp; Production</a>
+        <a href="property-services-business-software.html">Home &amp; Property</a>
+        <a href="logistics-specialty-business-software.html">Logistics &amp; Specialty</a>
+      </div>
+      <div class="fc">
+        <h5>Service Areas</h5>
+        <a href="small-business-software-arizona.html">Arizona (Statewide)</a>
+        <a href="phoenix-small-business-help.html">Phoenix</a>
+        <a href="tucson-small-business-help.html">Tucson</a>
+        <a href="tempe-small-business-help.html">Tempe</a>
+        <a href="chandler-small-business-help.html">Chandler</a>
+        <a href="gilbert-small-business-help.html">Gilbert</a>
+        <a href="ahwatukee-small-business-help.html">Ahwatukee</a>
+        <a href="marana-small-business-help.html">Marana</a>
+        <a href="oro-valley-small-business-help.html">Oro Valley</a>
+        <a href="green-valley-small-business-help.html">Green Valley</a>
+        <a href="vail-small-business-help.html">Vail</a>
+        <a href="casa-grande-small-business-help.html">Casa Grande</a>
+      </div>
+    </div>
+    <div class="foot-base">&copy; 2026 Precision Growth Partners AZ. All rights reserved.</div>
+  </div>
+</footer>"""
+
+def head(p):
+    url = f"{SITE}/{p['slug']}.html"
+    desc = html.escape(p["desc"], quote=True)
+    title = html.escape(p["title"], quote=True)
+    img = f"{SITE}/pgp-logo.png"
+    lat, lon, place = CITY_GEO.get(city_key(p), DEFAULT_GEO) if ptype(p) == "city" else DEFAULT_GEO
+    org = {
+        "@type": ["Organization", "ProfessionalService"],
+        "@id": f"{SITE}/#org", "name": ORG_NAME, "url": SITE + "/",
+        "email": EMAIL, "logo": img, "image": img,
+        "slogan": "Built honest. Built precise.",
+        "description": ("Precision Growth Partners helps Arizona contractors and local service businesses "
+                        "build the business behind the work — branding, websites, operations systems, and growth support."),
+        "priceRange": "$1,295+",
+        "areaServed": [{"@type": "State", "name": "Arizona"},
+                       {"@type": "City", "name": "Phoenix"},
+                       {"@type": "City", "name": "Tucson"}],
+        "address": {"@type": "PostalAddress", "addressRegion": "AZ",
+                    "addressLocality": "Phoenix", "addressCountry": "US"},
+        "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lon},
+    }
+    service = {
+        "@type": "Service", "@id": url + "#service",
+        "name": p["title"].split(" | ")[0],
+        "serviceType": p.get("svc_type", "Business growth services"),
+        "description": p["desc"],
+        "provider": {"@id": f"{SITE}/#org"},
+        "areaServed": {"@type": "State", "name": "Arizona"},
+        "url": url,
+    }
+    crumbs = {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": p["crumb"], "item": url}]}
+    graph = [org, service, crumbs]
+    if p.get("faq"):
+        graph.append({"@type": "FAQPage", "@id": url + "#faq",
+                      "mainEntity": [{"@type": "Question", "name": q,
+                                      "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faq"]]})
+    ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<link rel="canonical" href="{url}">
+<meta name="robots" content="index, follow">
+<meta name="author" content="{ORG_NAME}">
+<meta name="geo.region" content="US-AZ">
+<meta name="geo.placename" content="{place}">
+<meta name="geo.position" content="{lat};{lon}">
+<meta name="ICBM" content="{lat}, {lon}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{ORG_NAME}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{img}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{img}">
+<link rel="icon" type="image/png" href="pgp-logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+{CSS}
+<script type="application/ld+json">
+{ld}
+</script>
+</head>
+<body>"""
+
+def holo_stats(p):
+    cells = "".join(f'<div class="holo-stat"><div class="n">{html.escape(n)}</div>'
+                    f'<div class="l">{html.escape(l)}</div></div>' for n, l in p["stats"])
+    return f'<div class="holo"><div class="hud"></div><div class="holo-stats">{cells}</div></div>'
+
+def statband(p):
+    cells = "".join(f'<div class="stat"><div class="n">{html.escape(n)}</div>'
+                    f'<div class="l">{html.escape(l)}</div></div>' for n, l in p["stats"])
+    return f'<section class="statband"><div class="wrap">{cells}</div></section>'
+
+def feats_sec(p, center=False):
+    feats = "".join(f'<div class="feat"><div class="ix">{html.escape(ix)}</div>'
+                    f'<h3>{html.escape(t)}</h3><p>{html.escape(d)}</p></div>'
+                    for ix, t, d in p["features"])
+    cls = ' class="center"' if center else ""
+    return f"""<section><div class="wrap"{cls}>
+  <div class="kicker">{html.escape(p['s1_kicker'])}</div>
+  <h2 class="sec-title">{html.escape(p['s1_title'])}</h2>
+  <p class="sec-intro">{html.escape(p['s1_intro'])}</p>
+  <div class="feat-grid">{feats}</div></div></section>"""
+
+def steps_sec(p, kicker="How It Works"):
+    steps = "".join(f'<div class="step"><div class="sn">{i+1}</div>'
+                    f'<h4>{html.escape(t)}</h4><p>{html.escape(d)}</p></div>'
+                    for i, (t, d) in enumerate(p["steps"]))
+    return f"""<section style="background:var(--panel)" id="how"><div class="wrap">
+  <div class="kicker">{kicker}</div>
+  <h2 class="sec-title">{html.escape(p['steps_title'])}</h2>
+  <div class="steps">{steps}</div></div></section>"""
+
+def checks_sec(p):
+    checks = "".join(f"<li>{html.escape(c)}</li>" for c in p["checks"])
+    return f"""<section><div class="wrap">
+  <div class="kicker">{html.escape(p['checks_kicker'])}</div>
+  <h2 class="sec-title">{html.escape(p['checks_title'])}</h2>
+  <ul class="checks">{checks}</ul></div></section>"""
+
+def pills_sec(p):
+    pills = "".join(f'<span class="pill">{html.escape(c)}</span>' for c in p["checks"])
+    return f"""<section><div class="wrap">
+  <div class="kicker">{html.escape(p['checks_kicker'])}</div>
+  <h2 class="sec-title">{html.escape(p['checks_title'])}</h2>
+  <div class="pills">{pills}</div></div></section>"""
+
+def faq_sec(p):
+    if not p.get("faq"):
+        return ""
+    faq = "".join(f'<details><summary>{html.escape(q)}</summary><p>{html.escape(a)}</p></details>'
+                  for q, a in p["faq"])
+    return f"""<section><div class="wrap">
+  <div class="kicker">Questions</div>
+  <h2 class="sec-title">{html.escape(p['faq_title'])}</h2>
+  <div class="faq">{faq}</div></div></section>"""
+
+def related_sec(p):
+    rels = "".join(f'<a class="rel-card" href="{u}"><div class="rt">{html.escape(t)}</div>'
+                   f'<div class="rd">{html.escape(d)}</div></a>' for t, d, u in p["related"])
+    return f"""<section class="related"><div class="wrap">
+  <div class="kicker">Explore More</div>
+  <h2 class="sec-title">Related pages</h2>
+  <div class="rel-grid">{rels}</div></div></section>"""
+
+def cta_sec(p):
+    subj = html.escape(f"Inquiry — {p['crumb']}", quote=True)
+    mail_subj = f"Inquiry%20%E2%80%94%20{p['crumb'].replace(' ', '%20').replace('&', '%26')}"
+    return f"""<section class="cta-band" id="quote"><div class="wrap">
+  <div class="cta-grid">
+    <div>
+      <div class="kicker">Book a Demo</div>
+      <h2>{html.escape(p['cta_title'])}</h2>
+      <p class="lead">{html.escape(p['cta_sub'])}</p>
+      <p class="lead">No pressure. No auto-replies. Your inquiry goes directly to Jose.</p>
+      <div class="email-cta">Not a form person? <a href="mailto:{EMAIL}?subject={mail_subj}">Email Jose directly</a> &mdash; a real person answers.</div>
+    </div>
+    <div class="form-card">
+      <form action="{FORMSPREE}" method="POST">
+        <input type="hidden" name="_subject" value="{subj} — Precision Growth Partners">
+        <input type="hidden" name="Source Page" value="{html.escape(p['crumb'], quote=True)}">
+        <div class="fr">
+          <div><label>Name</label><input name="Name" type="text" required></div>
+          <div><label>Business</label><input name="Business" type="text"></div>
+        </div>
+        <div class="fr">
+          <div><label>Email</label><input name="Email" type="email" required></div>
+          <div><label>Phone</label><input name="Phone" type="tel"></div>
+        </div>
+        <label>What do you want to fix or build?</label>
+        <textarea name="Message" rows="3"></textarea>
+        <button type="submit">Book a Working Demo &rarr;</button>
+        <div class="note">Free &middot; No obligation &middot; We respond within one business day</div>
+      </form>
+    </div>
+  </div>
+</div></section>"""
+
+def crumb_bar(p):
+    return (f'<div class="breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; '
+            f'{html.escape(p["crumb"])}</div>')
+
+def hero_split(p):
+    return f"""<header class="hero"><div class="wrap"><div class="hero-grid">
+  <div>
+    <div class="kicker">{html.escape(p['kicker'])}</div>
+    <h1>{p['h1']}</h1>
+    <p class="sub">{html.escape(p['sub'])}</p>
+    <div class="hero-btns">
+      <a href="#quote" class="btn-solid">Book a Working Demo &rarr;</a>
+      <a href="#how" class="btn-line">See How It Works &rarr;</a>
+    </div>
+    <div class="sp-meta">{html.escape(p['meta_line'])}</div>
+  </div>
+  {holo_stats(p)}
+</div></div></header>"""
+
+def hero_center(p):
+    return f"""<header class="hero-center"><div class="wrap">
+  <div class="kicker">{html.escape(p['kicker'])}</div>
+  <h1>{p['h1']}</h1>
+  <p class="sub">{html.escape(p['sub'])}</p>
+  <div class="hero-btns">
+    <a href="#quote" class="btn-solid">Book a Working Demo &rarr;</a>
+    <a href="#how" class="btn-line">See How It Works &rarr;</a>
+  </div>
+</div></header>"""
+
+def hero_city(p):
+    name = p["crumb"]
+    metro = p["meta_line"].replace("Serving ", "")
+    return f"""<header class="hero-city"><div class="wrap">
+  <div class="city-chip">&#9906; Serving {html.escape(metro)}</div>
+  <h1>{p['h1']}</h1>
+  <p class="sub">{html.escape(p['sub'])}</p>
+  <div class="hero-btns">
+    <a href="#quote" class="btn-solid">Book a Working Demo &rarr;</a>
+    <a href="#how" class="btn-line">How We Help {html.escape(name)} &rarr;</a>
+  </div>
+</div></header>"""
+
+def render(p):
+    t = ptype(p)
+    if t == "solution":
+        body = (hero_split(p) + feats_sec(p) + steps_sec(p) + checks_sec(p)
+                + faq_sec(p) + related_sec(p) + cta_sec(p))
+    elif t == "trade":
+        body = (hero_split(p) + steps_sec(p, kicker="Built For Your Trade") + feats_sec(p)
+                + checks_sec(p) + faq_sec(p) + related_sec(p) + cta_sec(p))
+    elif t == "city":
+        body = (hero_city(p) + statband(p) + feats_sec(p) + steps_sec(p)
+                + pills_sec(p) + faq_sec(p) + related_sec(p) + cta_sec(p))
+    else:
+        body = (hero_center(p) + statband(p) + feats_sec(p, center=True) + steps_sec(p)
+                + checks_sec(p) + faq_sec(p) + related_sec(p) + cta_sec(p))
+    return (head(p) + "\n" + NAV + "\n" + crumb_bar(p) + "\n" + body + "\n"
+            + FOOTER + "\n" + NAV_JS + "\n</body>\n</html>")
+
 if __name__ == "__main__":
+    os.makedirs(OUT, exist_ok=True)
     written = []
     for p in PAGES:
-        out = os.path.join(ROOT, p["slug"] + ".html")
+        out = os.path.join(OUT, p["slug"] + ".html")
         with open(out, "w", encoding="utf-8") as f:
             f.write(render(p))
         written.append(p["slug"] + ".html")
-    urls = ["", "pricing.html"] + [s for s in written]
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>',
-          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    from datetime import date
-    today = date.today().isoformat()
-    for u in urls:
-        loc = SITE + "/" + u
-        pr = "1.0" if u == "" else ("0.8" if u == "pricing.html" else "0.7")
-        sm.append(f"  <url><loc>{loc}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>{pr}</priority></url>")
-    sm.append("</urlset>")
-    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
-        f.write("\n".join(sm))
-    with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as f:
-        f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
-    print("WROTE", len(written), "pages (incl. city service-area pages) + sitemap.xml + robots.txt")
+    print(f"WROTE {len(written)} pages -> {OUT}")
+    if not PREVIEW:
+        today = date.today().isoformat()
+        static = ["", "pricing.html",
+                  "tucson-badger-electric.html", "tucson-honey-badgers.html", "compadres-barbershop.html",
+                  "construction-trades-business-software.html", "vehicle-mobile-services-software.html",
+                  "personal-care-business-software.html", "food-hospitality-business-software.html",
+                  "creative-production-business-software.html", "property-services-business-software.html",
+                  "logistics-specialty-business-software.html"]
+        urls = static + written
+        pr = lambda u: "1.0" if u == "" else ("0.8" if u == "pricing.html" else "0.7")
+        sm = ['<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+        for u in urls:
+            sm.append(f"  <url><loc>{SITE}/{u}</loc><lastmod>{today}</lastmod>"
+                      f"<changefreq>monthly</changefreq><priority>{pr(u)}</priority></url>")
+        sm.append("</urlset>")
+        with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
+            f.write("\n".join(sm))
+        with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
+            f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+        print("WROTE sitemap.xml (incl. case-study + industry pages, lastmod) + robots.txt")
