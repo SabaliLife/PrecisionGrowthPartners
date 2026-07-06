@@ -115,6 +115,21 @@
   .nav-cta{border:1px solid var(--copper);color:var(--copper-b);padding:10px 20px;border-radius:6px;
     font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .15s}
   .nav-cta:hover{background:var(--copper);color:#14100B}
+  /* nav dropdown */
+  .dd{position:relative}
+  .dd>a{color:var(--txt-dim);font-size:12.5px;font-weight:600;letter-spacing:1.5px;
+    text-transform:uppercase;white-space:nowrap}
+  .dd>a:hover{color:var(--copper-b)}
+  .dd .caret{font-size:8px;margin-left:4px;color:var(--txt-faint)}
+  .dd-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    padding-top:14px;display:none;z-index:60}
+  .dd:hover .dd-menu,.dd:focus-within .dd-menu,.dd.open .dd-menu{display:block}
+  .dd-in{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;
+    min-width:240px;padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+  .dd-in a{display:block;padding:9px 12px;border-radius:7px;color:var(--txt-dim);
+    font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
+  .dd-in a:hover{background:rgba(208,142,86,.12);color:var(--copper-b)}
+  .dd-sep{height:1px;background:var(--line);margin:8px 6px}
 
   /* hero */
   .hero{padding:64px 0 70px;position:relative;overflow:hidden;
@@ -180,8 +195,8 @@
     display:flex;flex-direction:column;transition:transform .15s,border-color .15s,box-shadow .15s}
   .work-card:hover{transform:translateY(-3px);border-color:var(--copper-d);box-shadow:0 16px 44px rgba(0,0,0,.45)}
   .work-card{padding:13px 13px 0}
-  .work-media{position:relative;height:230px;border-radius:11px;overflow:hidden;
-    display:flex;align-items:center;justify-content:center;
+  .work-media{position:relative;height:245px;border-radius:11px;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;padding-bottom:44px;
     border:1px solid rgba(208,142,86,.5);
     background:
       radial-gradient(340px 180px at 50% 25%,rgba(47,179,170,.13),transparent 70%),
@@ -211,10 +226,10 @@
   .hud::before{top:0;left:0;border-right:none;border-bottom:none}
   .hud::after{bottom:0;right:0;border-left:none;border-top:none}
   /* floating logo hologram */
-  .work-logo-holo{position:relative;z-index:3;max-height:175px;max-width:88%;object-fit:contain;
+  .work-logo-holo{position:relative;z-index:3;max-height:190px;max-width:90%;object-fit:contain;
     filter:drop-shadow(0 0 20px rgba(47,179,170,.5)) drop-shadow(0 12px 26px rgba(0,0,0,.65));
     animation:pgp-float 5.5s ease-in-out infinite}
-  @keyframes pgp-float{0%,100%{transform:translateY(5px)}50%{transform:translateY(-7px)}}
+  @keyframes pgp-float{0%,100%{transform:translateY(3px)}50%{transform:translateY(-4px)}}
   /* full-bleed photo treatment (Compadres) */
   .work-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
     filter:saturate(.6) contrast(1.12) brightness(.82) sepia(.28) hue-rotate(-14deg)}
@@ -231,9 +246,12 @@
     font-weight:700;margin-bottom:8px}
   .work-body h3{font-size:24px;letter-spacing:1px;color:var(--txt);margin-bottom:8px}
   .work-body p{font-size:13.5px;color:var(--txt-dim);line-height:1.6;margin-bottom:16px}
-  .work-body a{margin-top:auto;font-size:12px;font-weight:700;letter-spacing:2px;
+  .work-links{margin-top:auto;display:flex;gap:20px;flex-wrap:wrap}
+  .work-links a{font-size:12px;font-weight:700;letter-spacing:2px;
     text-transform:uppercase;color:var(--copper)}
-  .work-body a:hover{color:var(--copper-b)}
+  .work-links a:hover{color:var(--copper-b)}
+  .work-links a.site{color:var(--teal)}
+  .work-links a.site:hover{color:var(--copper-b)}
 
   /* process */
   .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -391,7 +409,20 @@
       <span class="logo-txt">PRECISION<br><span class="lt2">GROWTH</span><br><span class="lt3">PARTNERS</span></span>
     </a>
     <div class="nav-links">
-      <a href="#services" data-i18n="nav_services">Services</a>
+      <div class="dd">
+        <a href="#services"><span data-i18n="nav_services">Services</span><span class="caret">&#9660;</span></a>
+        <div class="dd-menu"><div class="dd-in">
+          <a href="#services" data-i18n="dd_overview">What We Do</a>
+          <div class="dd-sep"></div>
+          <a href="quote-and-win-software.html">Quoting &amp; Sales</a>
+          <a href="inventory-operations-software.html">Inventory &amp; Operations</a>
+          <a href="job-costing-software.html">Job Costing</a>
+          <a href="business-operations-playbook.html">Operating Playbook</a>
+          <div class="dd-sep"></div>
+          <a href="small-business-startup-help-arizona.html">Startup Help</a>
+          <a href="start-a-contracting-business-arizona.html">Start a Contracting Business</a>
+        </div></div>
+      </div>
       <a href="#work" data-i18n="nav_work">Our Work</a>
       <a href="#process" data-i18n="nav_process">Process</a>
       <a href="pricing.html" data-i18n="nav_pricing">Pricing</a>
@@ -488,7 +519,10 @@
           <div class="work-trade" data-i18n="w1_trade">Electrical &middot; Tucson, AZ</div>
           <h3>Tucson Badger Electric</h3>
           <p data-i18n="w1_p">Website, brand, and a full quoting, materials, and job-costing system for a growing electrical contractor.</p>
-          <a href="https://www.TucsonBadgerElectric.com" target="_blank" rel="noopener noreferrer" data-i18n="w_view">View Project &rarr;</a>
+          <div class="work-links">
+            <a href="tucson-badger-electric.html" data-i18n="w_view">View Project &rarr;</a>
+            <a class="site" href="https://www.TucsonBadgerElectric.com" target="_blank" rel="noopener noreferrer" data-i18n="w_site">View Website &rarr;</a>
+          </div>
         </div>
       </div>
       <div class="work-card">
@@ -501,7 +535,10 @@
           <div class="work-trade" data-i18n="w2_trade">Youth Club Basketball &middot; Tucson, AZ</div>
           <h3>Tucson Honey Badgers</h3>
           <p data-i18n="w2_p">Team brand, website, and content built to represent culture and pride — together, tougher, Honey Badgers forever.</p>
-          <a href="https://www.tuchoneybadgers.com" target="_blank" rel="noopener noreferrer" data-i18n="w_view">View Project &rarr;</a>
+          <div class="work-links">
+            <a href="tucson-honey-badgers.html" data-i18n="w_view">View Project &rarr;</a>
+            <a class="site" href="https://www.tuchoneybadgers.com" target="_blank" rel="noopener noreferrer" data-i18n="w_site">View Website &rarr;</a>
+          </div>
         </div>
       </div>
       <div class="work-card">
@@ -514,7 +551,10 @@
           <div class="work-trade" data-i18n="w3_trade">Barbershop &middot; Guadalupe, AZ</div>
           <h3>Compadres Barbershop</h3>
           <p data-i18n="w3_p">Modern website and booking experience for a local barbershop — more than a haircut, it&rsquo;s a vibe.</p>
-          <a href="https://www.compadresbarbershop.net" target="_blank" rel="noopener noreferrer" data-i18n="w_view">View Project &rarr;</a>
+          <div class="work-links">
+            <a href="compadres-barbershop.html" data-i18n="w_view">View Project &rarr;</a>
+            <a class="site" href="https://www.compadresbarbershop.net" target="_blank" rel="noopener noreferrer" data-i18n="w_site">View Website &rarr;</a>
+          </div>
         </div>
       </div>
     </div>
@@ -720,6 +760,7 @@
     page_title:["Precision Growth Partners — Branding, Websites & Business Growth Systems for Arizona Contractors",
                 "Precision Growth Partners — Marca, Sitios Web y Sistemas de Crecimiento para Contratistas de Arizona"],
     nav_services:["Services","Servicios"],
+    dd_overview:["What We Do","Lo Que Hacemos"],
     nav_work:["Our Work","Nuestro Trabajo"],
     nav_process:["Process","Proceso"],
     nav_pricing:["Pricing","Precios"],
@@ -777,6 +818,7 @@
     w3_p:["Modern website and booking experience for a local barbershop — more than a haircut, it’s a vibe.",
           "Sitio web moderno y reservas en línea para una barbería local — más que un corte, es una experiencia."],
     w_view:["View Project →","Ver Proyecto →"],
+    w_site:["View Website →","Ver Sitio Web →"],
 
     proc_kicker:["Our Process","Nuestro Proceso"],
     proc_title:["From scattered to systemized.","De disperso a sistematizado."],
@@ -900,6 +942,23 @@
         if(r.ok){ f.style.display='none'; document.getElementById('form-ok').style.display='block'; }
         else{ f.submit(); }
       }).catch(function(){ f.submit(); });
+  });
+
+  /* dropdown: tap-to-open on touch devices */
+  document.querySelectorAll('.dd>a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(window.matchMedia('(hover: none)').matches){
+        var p=a.parentElement;
+        if(!p.classList.contains('open')){
+          e.preventDefault();
+          document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+          p.classList.add('open');
+        }
+      }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.dd')) document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
   });
 
   /* mascot video: load & play only when scrolled into view */
