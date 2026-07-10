@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="page_title">Precision Growth Partners — Branding, Websites & Business Growth Systems for Arizona Contractors</title>
-<meta name="description" content="We help Arizona contractors and local service businesses turn scattered quotes, jobs, materials, websites, and paperwork into one clear system for sustainable growth. Websites from $1,295.">
+<meta name="description" content="We help Arizona contractors and local service businesses turn scattered quotes, jobs, materials, websites, and paperwork into one clear system for sustainable growth. Founding-client pricing — websites from $300.">
 <link rel="canonical" href="https://www.precisiongrowthpartnersaz.com/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Precision Growth Partners">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Precision Growth Partners">
 <meta property="og:title" content="Precision Growth Partners — Build the Business Behind the Work">
-<meta property="og:description" content="Branding, websites, operations, and growth systems for Arizona contractors and local service businesses. Real businesses, real results — starting at $1,295.">
+<meta property="og:description" content="Branding, websites, operations, and growth systems for Arizona contractors and local service businesses. Real businesses, real results — founding rates from $300.">
 <meta property="og:url" content="https://www.precisiongrowthpartnersaz.com/">
 <meta property="og:image" content="https://www.precisiongrowthpartnersaz.com/pgp-logo.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,7 +38,7 @@
    "slogan": "Built honest. Built precise.",
    "description": "Precision Growth Partners helps Arizona contractors and local service businesses build the business behind the work — branding, websites, operations systems, and growth support. Bilingual English/Spanish.",
    "founder": {"@type": "Person", "name": "Jose Octavio"},
-   "priceRange": "$1,295+",
+   "priceRange": "$300+",
    "knowsLanguage": ["en", "es"],
    "areaServed": [
     {"@type": "State", "name": "Arizona"},
@@ -60,8 +60,8 @@
    "@type": "OfferCatalog",
    "name": "Growth Packages",
    "itemListElement": [
-    {"@type": "Offer", "name": "Foundation", "price": "1295", "priceCurrency": "USD", "description": "Custom website, mobile responsive, basic SEO setup, Google Maps integration, launch support. Starting at $1,295."},
-    {"@type": "Offer", "name": "Growth", "price": "2295", "priceCurrency": "USD", "description": "Everything in Foundation plus Google Business Profile setup, on-page SEO, review integration, 30 days of support, custom graphics. Starting at $2,295."},
+    {"@type": "Offer", "name": "Foundation", "price": "300", "priceCurrency": "USD", "description": "Custom website, mobile responsive, basic SEO setup, Google Maps integration, launch support. Founding-client rate: starting at $300 (regularly $1,295)."},
+    {"@type": "Offer", "name": "Growth", "price": "600", "priceCurrency": "USD", "description": "Everything in Foundation plus Google Business Profile setup, on-page SEO, review integration, 30 days of support, custom graphics. Founding-client rate: starting at $600 (regularly $2,295)."},
     {"@type": "Offer", "name": "Partner", "description": "Everything in Growth plus business operations playbook, advanced SEO, monthly content, ongoing support, priority access. Custom quote."}
    ]
   }
@@ -288,7 +288,12 @@
   .tier .start{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;
     color:var(--txt-faint);text-align:center}
   .tier .price{font-family:'Cinzel',serif;font-size:36px;font-weight:600;color:var(--copper-b);
-    text-align:center;margin:6px 0 18px}
+    text-align:center;margin:2px 0 18px}
+  .tier .price-was{font-family:'Cinzel',serif;font-size:19px;font-weight:600;color:#E25555;
+    text-decoration:line-through;text-align:center;margin:6px 0 0}
+  .founding{margin:0 auto 34px;text-align:center;font-size:12.5px;letter-spacing:1.5px;
+    text-transform:uppercase;font-weight:700;color:var(--teal);border:1px solid var(--teal);
+    border-radius:999px;padding:9px 20px;width:fit-content;max-width:92%}
   .tier.pop .price{color:var(--copper-b)}
   .tier ul{list-style:none;margin:0 0 22px}
   .tier li{font-size:13px;color:var(--txt-dim);padding:7px 0 7px 24px;position:relative;line-height:1.5}
@@ -630,11 +635,13 @@
     <div class="kicker" data-i18n="tier_kicker">Pricing</div>
     <h2 class="sec-title" data-i18n="tier_title">Simple starting points.</h2>
     <p class="sec-intro" data-i18n="tier_intro">Transparent packages, flexible payment options, and every number on the table before anything is signed.</p>
+    <div class="founding" data-i18n="founding_note">Founding Client Pricing &mdash; introductory rates while we build our Arizona portfolio. Limited spots.</div>
     <div class="tier-grid">
       <div class="tier">
         <h3 data-i18n="t1_h">Foundation</h3>
         <div class="start" data-i18n="t_start">Starting at</div>
-        <div class="price">$1,295</div>
+        <div class="price-was">$1,295</div>
+        <div class="price">$300</div>
         <ul>
           <li data-i18n="t1_1">Custom website</li>
           <li data-i18n="t1_2">Mobile responsive</li>
@@ -648,7 +655,8 @@
         <div class="pop-badge" data-i18n="t_pop">Most Popular</div>
         <h3 data-i18n="t2_h">Growth</h3>
         <div class="start" data-i18n="t_start">Starting at</div>
-        <div class="price">$2,295</div>
+        <div class="price-was">$2,295</div>
+        <div class="price">$600</div>
         <ul>
           <li data-i18n="t2_1">Everything in Foundation</li>
           <li data-i18n="t2_2">Google Business Profile setup</li>
@@ -889,6 +897,8 @@
                 "Paquetes transparentes, opciones de pago flexibles, y cada número sobre la mesa antes de firmar nada."],
     t_start:["Starting at","Desde"],
     t_pop:["Most Popular","El Más Popular"],
+    founding_note:["Founding Client Pricing — introductory rates while we build our Arizona portfolio. Limited spots.",
+               "Precios de Clientes Fundadores — tarifas introductorias mientras construimos nuestro portafolio en Arizona. Cupo limitado."],
     t_cta:["Get Started","Comenzar"],
     t1_h:["Foundation","Fundación"],
     t1_1:["Custom website","Sitio web personalizado"],
