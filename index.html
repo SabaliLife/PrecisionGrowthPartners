@@ -180,13 +180,19 @@
     transition:transform .15s,border-color .15s,box-shadow .15s}
   .pillar:hover{transform:translateY(-3px);border-color:var(--copper-d);
     box-shadow:0 14px 40px rgba(0,0,0,.4)}
-  .pillar-ico{margin-bottom:16px;line-height:0}
-  .pillar-ico svg{width:54px;height:54px;fill:none;stroke-width:1.4;
-    stroke-linecap:round;stroke-linejoin:round;
-    filter:drop-shadow(0 0 8px rgba(47,179,170,.18))}
-  .pillar-ico .c{stroke:var(--copper)}
-  .pillar-ico .t{stroke:var(--teal)}
-  .pillar-ico .bars{stroke:var(--teal);stroke-width:2.6}
+  .pillar-img{width:100%;max-width:230px;margin:0 auto 18px;display:block;border-radius:12px;
+    cursor:zoom-in;transition:transform .18s,box-shadow .18s;
+    box-shadow:0 10px 30px rgba(0,0,0,.45), 0 0 24px rgba(208,142,86,.12)}
+  .pillar-img:hover{transform:scale(1.04);box-shadow:0 14px 38px rgba(0,0,0,.55), 0 0 34px rgba(208,142,86,.25)}
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(5,6,8,.93);z-index:200;display:none;
+    align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+  .lightbox.show{display:flex}
+  .lightbox img{max-width:min(1100px,94vw);max-height:90vh;border-radius:14px;
+    box-shadow:0 40px 120px rgba(0,0,0,.8), 0 0 80px rgba(208,142,86,.18)}
+  .lightbox .lb-close{position:absolute;top:22px;right:28px;color:var(--txt-dim);
+    font-size:30px;line-height:1;cursor:pointer;background:none;border:none;font-family:inherit}
+  .lightbox .lb-close:hover{color:var(--copper-b)}
   .pillar h3{font-size:23px;letter-spacing:2px;text-transform:uppercase;color:var(--copper-b);margin-bottom:10px}
   .pillar p{font-size:13.5px;color:var(--txt-dim);line-height:1.6;margin-bottom:18px}
   .pillar a{margin-top:auto;font-size:12px;font-weight:700;letter-spacing:2px;
@@ -513,25 +519,25 @@
     <p class="sec-intro" data-i18n="wwd_intro">Four pieces that work on their own or stack together — the partnership shapes around your business, not the other way around.</p>
     <div class="pillar-grid">
       <div class="pillar">
-        <div class="pillar-ico"><svg viewBox="0 0 24 24"><path class="c" d="M14.5 4.5l5 5L8.5 20.5 3 22l1.5-5.5z"/><path class="c" d="M13 6.5l4.5 4.5"/><path class="t" d="M10 3.5H4.5"/><path class="t" d="M6.5 1.5l-2 2 2 2"/><circle class="t" cx="13.5" cy="2.5" r="1.2"/><circle class="t" cx="21" cy="13.5" r="1.2"/><path class="t" d="M20.5 17.5v4M18.5 19.5h4"/></svg></div>
+        <img class="pillar-img" src="New%20Logos/brand-card.webp" data-full="New%20Logos/brand-full.webp" alt="Brand — Precision Growth Partners service emblem" loading="lazy" decoding="async">
         <h3 data-i18n="p1_h">Brand</h3>
         <p data-i18n="p1_p">Logos, colors, messaging, and identity that builds trust and sets you apart.</p>
         <a href="#contact" data-i18n="p_more">Learn More &rarr;</a>
       </div>
       <div class="pillar">
-        <div class="pillar-ico"><svg viewBox="0 0 24 24"><rect class="c" x="1.5" y="3.5" width="15" height="10.5" rx="1.3"/><path class="c" d="M9 14v3M5.5 20h7l-1-3h-5z"/><path class="t" d="M4.5 6.5h9M4.5 9h6M4.5 11.5h4"/><rect class="c" x="18" y="7.5" width="5.5" height="11" rx="1.2"/><path class="t" d="M19.8 16.3h1.9"/><path class="t" d="M19.8 10h1.9"/></svg></div>
+        <img class="pillar-img" src="New%20Logos/Website-card.webp" data-full="New%20Logos/Website-full.webp" alt="Website — Precision Growth Partners service emblem" loading="lazy" decoding="async">
         <h3 data-i18n="p2_h">Website</h3>
         <p data-i18n="p2_p">Mobile-friendly sites that generate leads and turn visitors into customers.</p>
         <a href="#work" data-i18n="p_more">Learn More &rarr;</a>
       </div>
       <div class="pillar">
-        <div class="pillar-ico"><svg viewBox="0 0 24 24"><rect class="c" x="4" y="3.5" width="13.5" height="18" rx="2"/><path class="c" d="M8 2h5.5v3.5H8z"/><path class="t" d="M7.5 9.5h6.5"/><path class="t" d="M7.5 12.5h6.5"/><path class="t" d="M7.5 15.5h3.5"/><circle class="t" cx="17.8" cy="17.3" r="3.9"/><path class="t" d="M16.1 17.3l1.2 1.2 2.3-2.3"/></svg></div>
+        <img class="pillar-img" src="New%20Logos/operations-card.webp" data-full="New%20Logos/operations-full.webp" alt="Operations — Precision Growth Partners service emblem" loading="lazy" decoding="async">
         <h3 data-i18n="p3_h">Operations</h3>
         <p data-i18n="p3_p">Quotes, scheduling, job tracking, materials, and SOPs to run a smoother business.</p>
         <a href="inventory-operations-software.html" data-i18n="p_more">Learn More &rarr;</a>
       </div>
       <div class="pillar">
-        <div class="pillar-ico"><svg viewBox="0 0 24 24"><path class="bars" d="M4.5 21.5v-3.5"/><path class="bars" d="M9.5 21.5v-6.5"/><path class="bars" d="M14.5 21.5v-5"/><path class="bars" d="M19.5 21.5v-9"/><path class="c" d="M3 12.5L9 7.5l4 2.5 7.5-6.5"/><path class="c" d="M16 3.5h4.5V8"/></svg></div>
+        <img class="pillar-img" src="New%20Logos/growth-card.webp" data-full="New%20Logos/growth-full.webp" alt="Growth — Precision Growth Partners service emblem" loading="lazy" decoding="async">
         <h3 data-i18n="p4_h">Growth</h3>
         <p data-i18n="p4_p">Google Business Profile, reviews, content, and ongoing support to keep you growing.</p>
         <a href="business-operations-playbook.html" data-i18n="p_more">Learn More &rarr;</a>
@@ -875,4 +881,155 @@
     pr3_h:["Launch","Lanzar"],
     pr3_p:["Your site, forms, Google presence, and systems go live.","Tu sitio, formularios, presencia en Google y sistemas entran en vivo."],
     pr4_h:["Grow","Crecer"],
-    pr4_p:["We keep improving content, reviews, visibility, and operations.","Seguimos mejorando contenido, res
+    pr4_p:["We keep improving content, reviews, visibility, and operations.","Seguimos mejorando contenido, reseñas, visibilidad y operaciones."],
+
+    tier_kicker:["Pricing","Precios"],
+    tier_title:["Simple starting points.","Puntos de partida simples."],
+    tier_intro:["Transparent packages, flexible payment options, and every number on the table before anything is signed.",
+                "Paquetes transparentes, opciones de pago flexibles, y cada número sobre la mesa antes de firmar nada."],
+    t_start:["Starting at","Desde"],
+    t_pop:["Most Popular","El Más Popular"],
+    t_cta:["Get Started","Comenzar"],
+    t1_h:["Foundation","Fundación"],
+    t1_1:["Custom website","Sitio web personalizado"],
+    t1_2:["Mobile responsive","Adaptado a móviles"],
+    t1_3:["Basic SEO setup","Configuración SEO básica"],
+    t1_4:["Google Maps integration","Integración con Google Maps"],
+    t1_5:["Launch support","Apoyo en el lanzamiento"],
+    t2_h:["Growth","Crecimiento"],
+    t2_1:["Everything in Foundation","Todo lo de Fundación"],
+    t2_2:["Google Business Profile setup","Configuración de Google Business Profile"],
+    t2_3:["On-page SEO","SEO en la página"],
+    t2_4:["Review integration","Integración de reseñas"],
+    t2_5:["30 days of support","30 días de soporte"],
+    t2_6:["Custom graphics","Gráficos personalizados"],
+    t3_h:["Partner","Socio"],
+    t3_start:["Custom quote","Cotización a medida"],
+    t3_price:["Custom","A Medida"],
+    t3_1:["Everything in Growth","Todo lo de Crecimiento"],
+    t3_2:["Business operations playbook","Manual de operaciones del negocio"],
+    t3_3:["Advanced SEO","SEO avanzado"],
+    t3_4:["Monthly content","Contenido mensual"],
+    t3_5:["Ongoing support & guidance","Apoyo y asesoría continua"],
+    t3_6:["Priority access","Acceso prioritario"],
+    t3_cta:["Let’s Talk","Hablemos"],
+    t4_h:["Not sure which is right?","¿No sabes cuál te conviene?"],
+    t4_p:["Let’s build the right plan for your business — tell us where you are and we’ll meet you there.",
+          "Construyamos el plan correcto para tu negocio — dinos dónde estás y ahí nos encontramos."],
+    t4_cta:["Book a Demo","Solicita una Demo"],
+    tier_note:["Flexible payment options — up front, installments, or hybrid. <a href=\"pricing.html\">See full pricing &amp; payment options →</a>",
+               "Opciones de pago flexibles — por adelantado, en mensualidades o híbrido. <a href=\"pricing.html\">Ver precios y opciones de pago completos →</a>"],
+
+    ab_h1:["Built honest.","Hecho honesto."],
+    ab_h2:["Built precise.","Hecho preciso."],
+    ab_p1:["Precision Growth Partners exists for small operators who are good at the work but need help building the business around it. We turn talent, hustle, and scattered systems into something organized, professional, and ready to grow.",
+           "Precision Growth Partners existe para pequeños operadores que son buenos en su trabajo pero necesitan ayuda construyendo el negocio a su alrededor. Convertimos talento, esfuerzo y sistemas dispersos en algo organizado, profesional y listo para crecer."],
+    ab_p2:["Greed has flooded this market. We have faith in people — the ones taking the harder routes, waking up every day trying to get a company off the ground, missing just one person who can help from a genuine, honest place. Not another corporate company that bakes bread but shares crumbs.",
+           "La codicia ha inundado este mercado. Nosotros tenemos fe en la gente — los que toman los caminos más difíciles, los que se levantan cada día tratando de sacar adelante una empresa, a quienes solo les falta esa persona que ayude desde un lugar genuino y honesto. No otra empresa corporativa que hornea el pan pero solo reparte las migajas."],
+    ab_bread:["It’s time to bake our own bread.","Es hora de hornear nuestro propio pan."],
+    ab_role:["Founder","Fundador"],
+
+    ct_kicker:["Book a Demo","Solicita una Demo"],
+    ct_title:["Ready to build the business <span class=\"teal\">behind your work?</span>",
+              "¿Listo para construir el negocio <span class=\"teal\">detrás de tu trabajo?</span>"],
+    ct_lead:["No pressure. No auto-replies. Your inquiry goes directly to Jose — and you’ll see a real working system, not a slide deck.",
+             "Sin presión. Sin respuestas automáticas. Tu mensaje llega directamente a Jose — y verás un sistema real funcionando, no una presentación."],
+    ct1:["Live demo of a real app, configured for your trade","Demo en vivo de una app real, configurada para tu oficio"],
+    ct2:["Every number on the table before anything is signed","Cada número sobre la mesa antes de firmar nada"],
+    ct3:["Your domain, your data, your system to keep","Tu dominio, tus datos, tu sistema para siempre"],
+    ct_email:["Prefer email? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com\">JoseOctavio@PrecisionGrowthPartnersAZ.com</a>",
+              "¿Prefieres correo? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com\">JoseOctavio@PrecisionGrowthPartnersAZ.com</a>"],
+    f_name:["Name","Nombre"],
+    f_name_ph:["Your name","Tu nombre"],
+    f_email:["Email","Correo"],
+    f_phone:["Phone (optional)","Teléfono (opcional)"],
+    f_trade:["Your Trade / Business","Tu Oficio / Negocio"],
+    f_trade_ph:["e.g. Electrical, Landscaping, Barbershop","p. ej. Eléctrico, Jardinería, Barbería"],
+    f_need:["What do you need?","¿Qué necesitas?"],
+    f_need_ph:["Website, branding, quoting system, not sure yet — anything works.","Sitio web, marca, sistema de cotizaciones, aún no sé — todo funciona."],
+    f_btn:["Book a Working Demo →","Reserva una Demo Funcionando →"],
+    f_note:["Free · No obligation · We respond within one business day","Gratis · Sin compromiso · Respondemos en un día hábil"],
+    f_ok_h:["Got it. Talk soon.","Recibido. Hablamos pronto."],
+    f_ok_p:["Your inquiry went straight to Jose. Expect a reply within one business day.","Tu mensaje llegó directamente a Jose. Espera respuesta en un día hábil."],
+
+    masc_tag:["Precise by design. Patient by choice.","Preciso por diseño. Paciente por elección."],
+
+    foot_tag:["Built honest. Built precise.","Hecho honesto. Hecho preciso."],
+    foot_desc:["Branding, websites, operations, and growth systems for Arizona contractors and local service businesses. Bilingual EN / ES.",
+               "Marca, sitios web, operaciones y sistemas de crecimiento para contratistas y negocios de servicio de Arizona. Bilingüe EN / ES."],
+    foot_sol:["Solutions","Soluciones"],
+    foot_pricing:["Pricing","Precios"],
+    foot_ind:["Industries","Industrias"],
+    foot_areas:["Service Areas","Áreas de Servicio"],
+    foot_base:["© 2026 Precision Growth Partners AZ. All rights reserved.","© 2026 Precision Growth Partners AZ. Todos los derechos reservados."]
+  };
+
+  function applyLang(idx){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k=el.getAttribute('data-i18n'); if(I18N[k]) el.textContent=I18N[k][idx];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var k=el.getAttribute('data-i18n-html'); if(I18N[k]) el.innerHTML=I18N[k][idx];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+      var k=el.getAttribute('data-i18n-placeholder'); if(I18N[k]) el.setAttribute('placeholder',I18N[k][idx]);
+    });
+    document.title=I18N.page_title[idx];
+    document.getElementById('html-root').setAttribute('lang', idx===0?'en':'es');
+  }
+  function toggleLang(){
+    var btn=document.getElementById('lang-btn');
+    var next=btn.getAttribute('data-lang')==='en'?'es':'en';
+    btn.setAttribute('data-lang',next);
+    btn.textContent = next==='es' ? 'English' : 'Hablo Español';
+    applyLang(next==='es'?1:0);
+  }
+
+  /* form: submit via fetch, show inline confirmation */
+  document.getElementById('lead-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var f=e.target;
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){ f.style.display='none'; document.getElementById('form-ok').style.display='block'; }
+        else{ f.submit(); }
+      }).catch(function(){ f.submit(); });
+  });
+
+  /* dropdown: tap-to-open on touch devices */
+  document.querySelectorAll('.dd>a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(window.matchMedia('(hover: none)').matches){
+        var p=a.parentElement;
+        if(!p.classList.contains('open')){
+          e.preventDefault();
+          document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+          p.classList.add('open');
+        }
+      }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.dd')) document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+  });
+
+  /* lightbox: click any pillar emblem to expand */
+  (function(){
+    var lb=document.createElement('div');
+    lb.className='lightbox';
+    lb.innerHTML='<button class="lb-close" aria-label="Close">&times;</button><img alt="">';
+    document.body.appendChild(lb);
+    var lbImg=lb.querySelector('img');
+    document.querySelectorAll('.pillar-img').forEach(function(im){
+      im.addEventListener('click',function(){
+        lbImg.src=im.dataset.full||im.src; lbImg.alt=im.alt; lb.classList.add('show');
+        document.body.style.overflow='hidden';
+      });
+    });
+    function close(){ lb.classList.remove('show'); document.body.style.overflow=''; }
+    lb.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  })();
+</script>
+</body>
+</html>
