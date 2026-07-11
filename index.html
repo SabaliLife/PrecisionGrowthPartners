@@ -64,6 +64,16 @@
     {"@type": "Offer", "name": "Growth", "price": "600", "priceCurrency": "USD", "description": "Everything in Foundation plus Google Business Profile setup, on-page SEO, review integration, 30 days of support, custom graphics. Founding-client rate: starting at $600 (regularly $2,295)."},
     {"@type": "Offer", "name": "Partner", "description": "Everything in Growth plus business operations playbook, advanced SEO, monthly content, ongoing support, priority access. Custom quote."}
    ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {"@type": "Question", "name": "How much does a small business website cost in Arizona?", "acceptedAnswer": {"@type": "Answer", "text": "Our founding-client rates start at $300 for a Foundation website and $600 for Growth (regularly $1,295 and $2,295). Every number is in writing before anything is signed, with flexible payment options."}},
+    {"@type": "Question", "name": "How long does it take to launch?", "acceptedAnswer": {"@type": "Answer", "text": "Most Foundation websites go from intake to live in a few weeks. Growth and Partner engagements get a timeline in your proposal — and we build from working systems, not from scratch, so it moves fast."}},
+    {"@type": "Question", "name": "Do you only build websites?", "acceptedAnswer": {"@type": "Answer", "text": "No — websites are one pillar of four. We build brands, websites, operations systems (quoting, scheduling, job costing), and ongoing growth support. Start with one piece and stack the rest as you grow."}},
+    {"@type": "Question", "name": "Do I own my website and my system?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Your domain, your data, your system — yours to keep, even if we part ways."}},
+    {"@type": "Question", "name": "Where do you work, and do you speak Spanish?", "acceptedAnswer": {"@type": "Answer", "text": "We're Arizona-based and serve the whole state — the Tucson and Phoenix metros especially — with remote-friendly deployment. And yes: everything we do is bilingual, English and Spanish."}}
+   ]
   }
  ]
 }
@@ -326,6 +336,19 @@
     font-weight:700;margin-top:3px}
   .founder-bread{font-family:'Barlow Condensed',sans-serif;font-size:22px;color:var(--teal);
     font-weight:700;letter-spacing:.5px;margin-top:16px}
+
+  /* faq */
+  #faq{background:var(--bg)}
+  .faq{max-width:780px;margin:38px auto 0}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    margin-bottom:12px;overflow:hidden}
+  .faq summary{cursor:pointer;padding:17px 22px;font-weight:600;font-size:15px;color:var(--txt);
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--copper);font-size:20px;font-weight:400;flex-shrink:0}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details[open] summary{color:var(--copper-b)}
+  .faq .fa{padding:0 22px 18px;color:var(--txt-dim);font-size:14px;line-height:1.7}
 
   /* contact */
   #contact{background:
@@ -713,6 +736,35 @@
   </div>
 </section>
 
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker" data-i18n="faq_kicker">Questions</div>
+    <h2 class="sec-title" data-i18n="faq_title">Fair questions. Straight answers.</h2>
+    <div class="faq">
+      <details>
+        <summary data-i18n="hf1_q">How much does a small business website cost in Arizona?</summary>
+        <div class="fa" data-i18n="hf1_a">Our founding-client rates start at $300 for a Foundation website and $600 for Growth (regularly $1,295 and $2,295). Every number is in writing before anything is signed, with flexible payment options.</div>
+      </details>
+      <details>
+        <summary data-i18n="hf2_q">How long does it take to launch?</summary>
+        <div class="fa" data-i18n="hf2_a">Most Foundation websites go from intake to live in a few weeks. Growth and Partner engagements get a timeline in your proposal &mdash; and we build from working systems, not from scratch, so it moves fast.</div>
+      </details>
+      <details>
+        <summary data-i18n="hf3_q">Do you only build websites?</summary>
+        <div class="fa" data-i18n="hf3_a">No &mdash; websites are one pillar of four. We build brands, websites, operations systems (quoting, scheduling, job costing), and ongoing growth support. Start with one piece and stack the rest as you grow.</div>
+      </details>
+      <details>
+        <summary data-i18n="hf4_q">Do I own my website and my system?</summary>
+        <div class="fa" data-i18n="hf4_a">Yes. Your domain, your data, your system &mdash; yours to keep, even if we part ways.</div>
+      </details>
+      <details>
+        <summary data-i18n="hf5_q">Where do you work, and do you speak Spanish?</summary>
+        <div class="fa" data-i18n="hf5_a">We&rsquo;re Arizona-based and serve the whole state &mdash; the Tucson and Phoenix metros especially &mdash; with remote-friendly deployment. And yes: everything we do is bilingual, English and Spanish.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
     <div class="contact-grid">
@@ -939,6 +991,23 @@
     ab_bread:["It’s time to bake our own bread.","Es hora de hornear nuestro propio pan."],
     ab_role:["Founder","Fundador"],
 
+    faq_kicker:["Questions","Preguntas"],
+    faq_title:["Fair questions. Straight answers.","Preguntas justas. Respuestas directas."],
+    hf1_q:["How much does a small business website cost in Arizona?","¿Cuánto cuesta un sitio web para un negocio pequeño en Arizona?"],
+    hf1_a:["Our founding-client rates start at $300 for a Foundation website and $600 for Growth (regularly $1,295 and $2,295). Every number is in writing before anything is signed, with flexible payment options.",
+           "Nuestras tarifas de clientes fundadores comienzan en $300 por un sitio Fundación y $600 por Crecimiento (regularmente $1,295 y $2,295). Cada número por escrito antes de firmar nada, con opciones de pago flexibles."],
+    hf2_q:["How long does it take to launch?","¿Cuánto tarda el lanzamiento?"],
+    hf2_a:["Most Foundation websites go from intake to live in a few weeks. Growth and Partner engagements get a timeline in your proposal — and we build from working systems, not from scratch, so it moves fast.",
+           "La mayoría de los sitios Fundación pasan de la entrevista inicial a estar en vivo en pocas semanas. Los proyectos Crecimiento y Socio reciben su cronograma en la propuesta — y construimos desde sistemas que ya funcionan, no desde cero, así que avanza rápido."],
+    hf3_q:["Do you only build websites?","¿Solo construyen sitios web?"],
+    hf3_a:["No — websites are one pillar of four. We build brands, websites, operations systems (quoting, scheduling, job costing), and ongoing growth support. Start with one piece and stack the rest as you grow.",
+           "No — los sitios web son uno de cuatro pilares. Construimos marcas, sitios web, sistemas de operaciones (cotizaciones, programación, costeo de trabajos) y apoyo continuo de crecimiento. Empieza con una pieza y suma las demás mientras creces."],
+    hf4_q:["Do I own my website and my system?","¿Soy dueño de mi sitio web y mi sistema?"],
+    hf4_a:["Yes. Your domain, your data, your system — yours to keep, even if we part ways.",
+           "Sí. Tu dominio, tus datos, tu sistema — tuyos para siempre, incluso si tomamos caminos distintos."],
+    hf5_q:["Where do you work, and do you speak Spanish?","¿Dónde trabajan y hablan español?"],
+    hf5_a:["We're Arizona-based and serve the whole state — the Tucson and Phoenix metros especially — with remote-friendly deployment. And yes: everything we do is bilingual, English and Spanish.",
+           "Estamos en Arizona y servimos a todo el estado — especialmente los metros de Tucson y Phoenix — con implementación remota. Y sí: todo lo que hacemos es bilingüe, inglés y español."],
     ct_kicker:["Book a Demo","Solicita una Demo"],
     ct_title:["Ready to build the business <span class=\"teal\">behind your work?</span>",
               "¿Listo para construir el negocio <span class=\"teal\">detrás de tu trabajo?</span>"],
