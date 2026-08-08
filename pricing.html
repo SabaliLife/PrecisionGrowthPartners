@@ -705,4 +705,56 @@
     cta_h:["Let’s talk about <span class=\"teal\">what makes sense.</span>",
            "Hablemos de <span class=\"teal\">lo que tiene sentido.</span>"],
     cta_p:["Tell us your trade, your timeline, and what your cash flow looks like. We’ll meet you where you are — no pressure, no auto-replies.",
-           "Cuéntanos tu oficio, tus tiempos y cómo 
+           "Cuéntanos tu oficio, tus tiempos y cómo se ve tu flujo de efectivo. Te encontramos donde estés — sin presión, sin respuestas automáticas."],
+    cta_btn:["Book a Working Demo →","Reserva una Demo Funcionando →"],
+    cta_email:["Prefer email? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com\">JoseOctavio@PrecisionGrowthPartnersAZ.com</a>",
+               "¿Prefieres correo? <a href=\"mailto:JoseOctavio@PrecisionGrowthPartnersAZ.com\">JoseOctavio@PrecisionGrowthPartnersAZ.com</a>"],
+
+    foot_tag:["Built honest. Built precise.","Hecho honesto. Hecho preciso."],
+    foot_desc:["Branding, websites, operations, and growth systems for Arizona contractors and local service businesses. Bilingual EN / ES.",
+               "Marca, sitios web, operaciones y sistemas de crecimiento para contratistas y negocios de servicio de Arizona. Bilingüe EN / ES."],
+    foot_sol:["Solutions","Soluciones"],
+    foot_pricing:["Pricing","Precios"],
+    foot_ind:["Industries","Industrias"],
+    foot_areas:["Service Areas","Áreas de Servicio"],
+    foot_base:["© 2026 Precision Growth Partners AZ. All rights reserved.","© 2026 Precision Growth Partners AZ. Todos los derechos reservados."]
+  };
+
+  function applyLang(idx){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k=el.getAttribute('data-i18n'); if(I18N[k]) el.textContent=I18N[k][idx];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var k=el.getAttribute('data-i18n-html'); if(I18N[k]) el.innerHTML=I18N[k][idx];
+    });
+    document.title=I18N.page_title[idx];
+    document.getElementById('html-root').setAttribute('lang', idx===0?'en':'es');
+  }
+  function toggleLang(){
+    var btn=document.getElementById('lang-btn');
+    var next=btn.getAttribute('data-lang')==='en'?'es':'en';
+    btn.setAttribute('data-lang',next);
+    btn.textContent = next==='es' ? 'English' : 'Hablo Español';
+    applyLang(next==='es'?1:0);
+  }
+
+  /* dropdown: tap-to-open on touch devices */
+  document.querySelectorAll('.dd>a').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(window.matchMedia('(hover: none)').matches){
+        var p=a.parentElement;
+        if(!p.classList.contains('open')){
+          e.preventDefault();
+          document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+          p.classList.add('open');
+        }
+      }
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.dd')) document.querySelectorAll('.dd.open').forEach(function(d){d.classList.remove('open')});
+  });
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html> 

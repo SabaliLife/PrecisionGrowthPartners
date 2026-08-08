@@ -1635,7 +1635,8 @@ def render(p):
         body = (hero_center(p) + statband(p) + feats_sec(p, center=True) + steps_sec(p)
                 + checks_sec(p) + faq_sec(p) + related_sec(p) + cta_sec(p))
     return (head(p) + "\n" + NAV + "\n" + crumb_bar(p) + "\n" + body + "\n"
-            + FOOTER + "\n" + NAV_JS + "\n</body>\n</html>")
+            + FOOTER + "\n" + NAV_JS
+            + '\n<script defer src="/_vercel/insights/script.js"></script>\n</body>\n</html>')
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
